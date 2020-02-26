@@ -37,6 +37,14 @@ function deleteEmail(emailId) {
     storageService.store(EMAILS_KEY, emailsDB)
 }
 
+function addToStarred(emailId) {
+    const email = getById(emailId);
+    const idx = emailsDB.findIndex(email => email.id === emailId)
+    emailsDB.splice(idx, 1);
+
+    storageService.store(EMAILS_KEY, emailsDB)
+}
+
 function query() {
     var emails = storageService.load(EMAILS_KEY);
     if (!emails) {
@@ -75,6 +83,7 @@ function getEmptyEmail() {
 function createEmails() {
     var emails = [{
             from: 'Dudu',
+            isStar: false,
             id: utilService.makeId(),
             subject: 'Hello Mate',
             body: utilService.makeLorem(300),
@@ -83,6 +92,7 @@ function createEmails() {
         },
         {
             from: 'God',
+            isStar: false,
             id: utilService.makeId(),
             subject: 'Dont you worry child',
             body: utilService.makeLorem(200),
@@ -92,18 +102,4 @@ function createEmails() {
     ]
 
     return Promise.resolve(emails);
-}
-
-function composeEmail() {
-
-    var $email = $('.email').val();
-    var $subject = $('.subject').val();
-    var $message = $('.message').val();
-
-    if (!$email || !$subject || !$message) return;
-
-    window.location.href = (`https://mail.google.com/mail/?view=cm&fs=1&to=${$email}.com&su=${$subject}&body=${$message}`);
-    var $email = '';
-    var $subject = '';
-    var $message = '';
 }

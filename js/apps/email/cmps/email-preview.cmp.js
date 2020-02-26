@@ -19,6 +19,7 @@ export default {
         <button @click="deleteEmail(email.id)">Delete</button>
         <button>Long</button>
         <button>Forward</button>
+        <button @click="starEmail(email.id)">Starred</button>
         <button>SaveTo..</button>
         </div>
 
@@ -45,6 +46,9 @@ export default {
         },
         deleteEmail(emailId) {
             emailService.deleteEmail(emailId);
+        },
+        starEmail(emailId) {
+            emailService.starEmail(emailId);
         }
     },
     computed: {
