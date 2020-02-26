@@ -8,5 +8,6 @@ export default {
     Subject:<input type="text">
     <input type="textarea">
     <div>Send trash</div>
+    <router-view></router-view>
     </section>`
 }
