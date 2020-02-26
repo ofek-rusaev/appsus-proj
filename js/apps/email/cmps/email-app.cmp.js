@@ -3,6 +3,8 @@ import emailList from './email-list.cmp.js'
 
 export default {
     template: `
+    <section>
+    <input type="search"/>
     <section class="email-bar">
         <section class=".left-bar">
         <router-link to="/email/compose" @added="composeEmail"><button class="button">+Compose</button></router-link>
@@ -16,16 +18,14 @@ export default {
         <!-- <email-filter @set-filter="setFilter"></email-filter> -->
         <!-- <email-compose @added="composeEmail"></email-compose> -->
         <email-list @selected="selectEmail" :emails="emailsToShow"></email-list>
-        <!-- <email-details @back="resetSelect" v-if="chosenEmail" @click.native="resetSelect" :email="chosenEmail"></email-details> -->
         <!-- <email-status></email-status> // Renders how many read from the emails -->
         <email-details @back="resetSelect" v-if="chosenEmail" @click.native="resetSelect" :email="chosenEmail"></email-details>
         <!-- <router-link to="/email/compose">COMPOSE</router-link> -->
             |
         </section>
     </section>
-
-
-    `,
+    </section>
+   `,
     data() {
         return {
             emails: [],
