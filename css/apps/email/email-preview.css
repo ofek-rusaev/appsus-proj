@@ -1,9 +1,34 @@
 .email-preview {
     display: flex;
-    margin-bottom: 10px;
+    /* display: grid;
+    grid-template-rows: ;
+    grid-template-columns: ; */
+    background-color: white;
+}
+
+.email-preview a {
+    text-decoration: none;
+}
+
+a:-webkit-any-link {
+    text-decoration: none;
+    color: inherit;
+    /* cursor: pointer; */
 }
 
 .email-item {
     text-decoration: none;
     padding: 10px;
 }
+
+.bold {
+    font-weight: 700;
+}
+
+.email-sender {}
+
+.email-title {}
+
+.email-content {}
+
+.email-date {}

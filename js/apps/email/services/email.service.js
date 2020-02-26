@@ -70,7 +70,7 @@ function createEmails() {
             subject: 'Hello Mate',
             body: 'Where are u now?',
             isRead: false,
-            sentAt: Date.now()
+            sentAt: new Date()
         },
         {
             from: 'God',
@@ -78,7 +78,7 @@ function createEmails() {
             subject: 'Dont you worry child',
             body: 'see heaven got a plan for you',
             isRead: true,
-            sentAt: Date.now()
+            sentAt: new Date()
         }
     ]
 
