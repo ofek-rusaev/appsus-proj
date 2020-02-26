@@ -9,7 +9,8 @@ export const emailService = {
     query,
     composeEmail,
     getEmptyEmail,
-    sendEmail
+    sendEmail,
+    getById
 }
 
 function getNextPrevEmailIds(emailId) {
@@ -58,6 +59,17 @@ function getEmptyEmail() {
         isRead: false,
         sentAt: null
     }
+}
+
+function composeEmails() {
+    var emails = [{
+        subject: 'Hello Mate',
+        body: 'Where are u now?',
+        isRead: false,
+        sentAt: Date.now()
+    }]
+
+    return Promise.resolve(emails);
 }
 
 function composeEmail() {
