@@ -3,7 +3,7 @@ import {noteService} from '../services/note.service.js'
 export default {
     template: `
     <section class="note-app">
-        <h1>Welcome to Notes App</h1>
+        <h1>Your Notes</h1>
         <!-- <note-filter @set-filter="setFilter"></note-filter> -->
         <!-- <note-compose @added="composeNote"></note-compose> -->
         <!-- <note-list v-else  @selected="selectNote" :notes="notesToShow"></note-list> -->

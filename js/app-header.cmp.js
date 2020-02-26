@@ -4,14 +4,11 @@ export default {
         <router-link to="/" exact>
         Home
         </router-link>
-        <router-link to="/emails">
-        Email
+        <router-link to="/email" exact>
+        Emails
         </router-link>
         <router-link to="/note">
-        Note
-        </router-link>
-        <router-link to="/about">
-        About
+        Notes
         </router-link>
         <button @click="goBack">GO BACK</button>
         </div>
