@@ -14,14 +14,10 @@ export default {
     methods: {
         emitSelected(email) {
             console.log(emails)
-
             this.$emit('selected', email)
         }
     },
     components: {
         emailPreview
-    },
-    created() {
-        console.log(emails)
     }
 }
