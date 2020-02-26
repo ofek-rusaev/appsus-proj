@@ -15,12 +15,10 @@ new Vue({
             <h1>Welcome</h1>
             <!-- <user-msg></user-msg> -->
             <!-- <note-app></note-app> -->
-            <email-app></email-app>
             <router-view></router-view>
         </section>
     `,
     components: {
-        emailApp,
         appHeader,
         // noteApp
         // userMsg

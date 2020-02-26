@@ -4,9 +4,8 @@ export default {
     name: 'email-list',
     template: `
     <section class="emails-container">
-    <h1>Emailllllls</h1>
      <router-link v-for="(email, idx) in emails" :to="'email/'+email.id" exact>
-        <email-preview :key="idx" :email="email"></email-preview>
+        <div class="email-preview"><email-preview :key="idx" :email="email"></email-preview></div>
     </router-link>
  </section>
     `,

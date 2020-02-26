@@ -55,6 +55,7 @@ function sendEmail(email) {
 
 function getEmptyEmail() {
     return {
+        from: '',
         subject: '',
         body: '',
         isRead: false,
@@ -64,6 +65,7 @@ function getEmptyEmail() {
 
 function createEmails() {
     var emails = [{
+            from: 'Dudu',
             id: utilService.makeId(),
             subject: 'Hello Mate',
             body: 'Where are u now?',
@@ -71,6 +73,7 @@ function createEmails() {
             sentAt: Date.now()
         },
         {
+            from: 'God',
             id: utilService.makeId(),
             subject: 'Dont you worry child',
             body: 'see heaven got a plan for you',

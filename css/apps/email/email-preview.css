@@ -1,0 +1,9 @@
+.email-preview {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.email-item {
+    text-decoration: none;
+    padding: 10px;
+}
