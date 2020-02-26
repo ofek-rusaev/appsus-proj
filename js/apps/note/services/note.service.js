@@ -9,7 +9,8 @@ export const noteService = {
     query,
     composeNote,
     getEmptyNote,
-    sendNote
+    sendNote,
+    getById
 }
 
 function getNextPrevNoteIds(noteId) {
@@ -29,7 +30,7 @@ function getNextPrevNoteIds(noteId) {
 function query() {
     var notes = storageService.load(NOTES_KEY);
     if (!notes) {
-        return composeNotes().then(newNotes => {
+        return composeNote().then(newNotes => {
             notes = newNotes;
             storageService.store(NOTES_KEY, notes)
             return notes;
@@ -53,10 +54,10 @@ function sendNote(note) {
 
 function getEmptyNote() {
     return {
-        subject: '',
-        body: '',
-        isRead: false,
-        sentAt: null
+        type: '',
+        isPinned: false,
+        info: {txt: 'Fullstack Me Baby!'},
+        createdAt: null
     }
 }
 
