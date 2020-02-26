@@ -35,6 +35,6 @@ export default {
     components: {
         emailPreview,
         emailDetails,
-        emailCompose
+        // emailCompose
     }
 }
