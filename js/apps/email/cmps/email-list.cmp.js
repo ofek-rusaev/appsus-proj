@@ -32,16 +32,7 @@ export default {
     },
     components: {
         emailPreview,
-        <<
-        <<
-        << < HEAD
-        emailDetails ===
-        ===
-        =
         emailDetails,
         // emailCompose
-        >>>
-        >>>
-        > f60ac8b655588acc9b194ae0d7d1389b9af4cc0b
     }
 }
