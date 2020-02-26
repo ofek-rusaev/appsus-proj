@@ -1,4 +1,4 @@
-// import { emailService } from "../services/email.service";
+import { emailService } from "../services/email.service.js";
 
 export default {
     name: 'email-preview',
@@ -16,7 +16,7 @@ export default {
         <div class="email-date">
         <td class="email-item">{{formattedTime}}</td>
         <div v-if="isClicked">
-        <button @click="deleteEmail">Delete</button>
+        <button @click="deleteEmail(email.id)">Delete</button>
         <button>Long</button>
         <button>Forward</button>
         <button>SaveTo..</button>
@@ -35,7 +35,7 @@ export default {
     },
     methods: {
         changeBodyClass() {
-            if(this.className === 'email-content'){
+            if (this.className === 'email-content') {
                 this.className = 'email-content-extended';
                 this.isClicked = true;
             } else {
@@ -43,9 +43,8 @@ export default {
                 this.isClicked = false;
             }
         },
-        deleteEmail() {
-            console.log('delete rmail', email.id);
-            
+        deleteEmail(emailId) {
+            emailService.deleteEmail(emailId);
         }
     },
     computed: {

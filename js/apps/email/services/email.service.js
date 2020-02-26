@@ -11,7 +11,8 @@ export const emailService = {
     getEmptyEmail,
     sendEmail,
     getById,
-    createEmails
+    createEmails,
+    deleteEmail
 }
 
 function getNextPrevEmailIds(emailId) {
@@ -26,6 +27,14 @@ function getNextPrevEmailIds(emailId) {
         prevId: emailsDB[prevIdx].id,
         nextId: emailsDB[nextIdx].id,
     }
+}
+
+function deleteEmail(emailId) {
+    const email = getById(emailId);
+    const idx = emailsDB.findIndex(email => email.id === emailId)
+    emailsDB.splice(idx, 1);
+
+    storageService.store(EMAILS_KEY, emailsDB)
 }
 
 function query() {
