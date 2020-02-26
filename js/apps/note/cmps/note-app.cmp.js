@@ -1,4 +1,5 @@
-import {noteService} from '../services/note.service.js'
+import {noteService} from '../services/note.service.js';
+import noteList from './note-list.cmp.js';
 
 export default {
     template: `
@@ -6,7 +7,7 @@ export default {
         <h1>Your Notes</h1>
         <!-- <note-filter @set-filter="setFilter"></note-filter> -->
         <!-- <note-compose @added="composeNote"></note-compose> -->
-        <!-- <note-list v-else  @selected="selectNote" :notes="notesToShow"></note-list> -->
+        <note-list v-else  @selected="selectNote" :notes="notesToShow"></note-list>
         <!-- <note-details @back="resetSelect" v-if="chosenNote" @click.native="resetSelect" :note="chosenNote"></note-details>  -->
         <!-- <note-status></note-status> // Renders how many read from the notes -->
     </section>
@@ -20,7 +21,8 @@ export default {
     },
     computed: {
         notesToShow() {
-            if (!this.filterBy) return this.note;
+            // if (!this.filterBy) 
+            return this.notes;
         }
     },
     methods: {
@@ -37,12 +39,14 @@ export default {
     created() {
         noteService.query()
             .then(notes => {
+                console.log('note created: ', notes);
+                
                 this.notes = notes
             });
     },
     // components: {
     //     'note-filter': noteFilter,
-    //     'note-list': noteList,
+        'note-list': noteList,
     //     'note-compose': noteCompose,
 
     // }
