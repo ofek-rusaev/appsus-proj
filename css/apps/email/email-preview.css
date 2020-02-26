@@ -29,6 +29,16 @@ a:-webkit-any-link {
 
 .email-title {}
 
-.email-content {}
+.email-content {
+    width: 40vw;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.email-content-extended {
+    width: 80vw;
+    text-overflow: unset;
+}
 
 .email-date {}

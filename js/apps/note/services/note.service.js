@@ -10,7 +10,8 @@ export const noteService = {
     composeNote,
     getEmptyNote,
     sendNote,
-    getById
+    getById,
+    createNotes
 }
 
 function getNextPrevNoteIds(noteId) {
@@ -30,7 +31,7 @@ function getNextPrevNoteIds(noteId) {
 function query() {
     var notes = storageService.load(NOTES_KEY);
     if (!notes) {
-        return composeNote().then(newNotes => {
+        return createNotes().then(newNotes => {
             notes = newNotes;
             storageService.store(NOTES_KEY, notes)
             return notes;
@@ -59,6 +60,20 @@ function getEmptyNote() {
         info: {txt: 'Fullstack Me Baby!'},
         createdAt: null
     }
+}
+
+function createNotes(){
+    var notes = [
+        {
+            id: utilService.makeId(),
+            title: utilService.makeLorem(5)
+        },
+        {
+            id: utilService.makeId(),
+            title: utilService.makeLorem(5)
+        }
+    ]
+    return Promise.resolve(notes)
 }
 
 function composeNote() {

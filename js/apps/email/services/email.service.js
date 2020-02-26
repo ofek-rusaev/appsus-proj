@@ -68,7 +68,7 @@ function createEmails() {
             from: 'Dudu',
             id: utilService.makeId(),
             subject: 'Hello Mate',
-            body: 'Where are u now?',
+            body: utilService.makeLorem(300),
             isRead: false,
             sentAt: new Date()
         },
@@ -76,7 +76,7 @@ function createEmails() {
             from: 'God',
             id: utilService.makeId(),
             subject: 'Dont you worry child',
-            body: 'see heaven got a plan for you',
+            body: utilService.makeLorem(200),
             isRead: true,
             sentAt: new Date()
         }
