@@ -53,7 +53,7 @@ function _addEmail(email) {
 function _updateEmail(email) {
     const idx = emailsDB.findIndex(currEmail => currEmail.id === email.id);
     emailsDB.splice(idx, 1, email)
-    storageService.store(KEY, emailsDB)
+    storageService.store(EMAILS_KEY, emailsDB)
     return Promise.resolve(emailsDB)
 }
 
@@ -94,6 +94,8 @@ function getEmptyEmail() {
     return {
         id: utilService.makeId(),
         from: '',
+        cc: '',
+        bcc: '',
         isStar: false,
         subject: '',
         body: '',
@@ -107,6 +109,8 @@ function createEmails() {
     var emails = [{
             id: utilService.makeId(),
             from: 'Dudu',
+            cc: '',
+            bcc: '',
             isStar: false,
             subject: 'Hello Mate',
             body: utilService.makeLorem(300),
@@ -116,6 +120,8 @@ function createEmails() {
         {
             id: utilService.makeId(),
             from: 'God',
+            cc: '',
+            bcc: '',
             isStar: false,
             subject: 'Dont you worry child',
             body: utilService.makeLorem(200),

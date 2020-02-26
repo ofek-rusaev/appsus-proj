@@ -6,6 +6,10 @@
 @import "./apps/book/book-main.css";
 @import "./apps/email/email-main.css";
 @import "./apps/note/note-main.css";
+body {
+    text-align: center;
+}
+
 
 /**********helpers***********/
 
