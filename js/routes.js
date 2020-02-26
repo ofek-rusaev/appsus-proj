@@ -4,8 +4,8 @@ import emailApp from './apps/email/cmps/email-app.cmp.js'
 
 
 const routes = [
-    // { path: '/', component: home },
     { path: '/email', component: emailApp },
+    // { path: '/note', component: noteApp },
     // { path: '/email/:id', component: emailDetails },
 ];
 

@@ -4,8 +4,11 @@ export default {
         <router-link to="/" exact>
         Home
         </router-link>
-        <router-link to="/emails" exact>
-        Emails
+        <router-link to="/emails">
+        Email
+        </router-link>
+        <router-link to="/note">
+        Note
         </router-link>
         <router-link to="/about">
         About
