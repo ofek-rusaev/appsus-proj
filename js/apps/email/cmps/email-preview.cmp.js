@@ -48,7 +48,7 @@ export default {
             emailService.deleteEmail(emailId);
         },
         starEmail(emailId) {
-            emailService.starEmail(emailId);
+            emailService.addToStarred(emailId);
         }
     },
     computed: {
