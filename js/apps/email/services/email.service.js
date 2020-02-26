@@ -10,7 +10,8 @@ export const emailService = {
     composeEmail,
     getEmptyEmail,
     sendEmail,
-    getById
+    getById,
+    createEmails
 }
 
 function getNextPrevEmailIds(emailId) {
@@ -63,12 +64,14 @@ function getEmptyEmail() {
 
 function createEmails() {
     var emails = [{
+            id: utilService.makeId(),
             subject: 'Hello Mate',
             body: 'Where are u now?',
             isRead: false,
             sentAt: Date.now()
         },
         {
+            id: utilService.makeId(),
             subject: 'Dont you worry child',
             body: 'see heaven got a plan for you',
             isRead: true,
