@@ -30,7 +30,7 @@ function getNextPrevEmailIds(emailId) {
 function query() {
     var emails = storageService.load(EMAILS_KEY);
     if (!emails) {
-        return composeEmails().then(newEmails => {
+        return createEmails().then(newEmails => {
             emails = newEmails;
             storageService.store(EMAILS_KEY, emails)
             return emails;
@@ -61,7 +61,7 @@ function getEmptyEmail() {
     }
 }
 
-function composeEmails() {
+function createEmails() {
     var emails = [{
             subject: 'Hello Mate',
             body: 'Where are u now?',

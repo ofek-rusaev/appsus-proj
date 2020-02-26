@@ -4,7 +4,8 @@ export default {
     name: 'email-list',
     template: `
     <section class="emails-container">
-      <router-link v-for="(email, idx) in email" :to="'/email/'+email.id" exact>
+    <h1>Emailllllls</h1>
+     <router-link v-for="(email, idx) in emails" :to="'/email/'+email.id" exact>
         <email-preview  :key="idx" :email="email" ></email-preview>
         </router-link>
  </section>
@@ -14,7 +15,6 @@ export default {
         emitSelected(email) {
             this.$emit('selected', email)
         }
-
     },
     components: {
         emailPreview
