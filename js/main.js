@@ -10,8 +10,8 @@ new Vue({
     router,
     template: `
         <section class="email-app">
+        <app-header></app-header>
             <h1>Email App</h1>
-            <app-header></app-header>
             <!-- <user-msg></user-msg> -->
             <router-view></router-view>
         </section>

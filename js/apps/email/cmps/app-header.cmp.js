@@ -1,6 +1,6 @@
 export default {
     template: `
-        <div class="navbar">
+        <div class="app-header">
             <button @click="goBack">GO BACK</button>
             <router-link to="/" exact>
                 Home
