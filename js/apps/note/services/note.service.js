@@ -64,8 +64,7 @@ function getEmptyNote() {
 function composeNote() {
     var note = {
         id: utilService.makeId(),
-        title: utilService.makeLorem(10),
-
+        title: 'boooom'
     }
     return Promise.resolve(note);
 }
