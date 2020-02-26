@@ -13,3 +13,17 @@
     display: flex;
     background-color: white;
 }
+
+.search {
+    padding: 5px 20px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.compose {
+    padding: 10px;
+    border-radius: 10px;
+    background-color: lightgray;
+}
+
+.new-mail {}

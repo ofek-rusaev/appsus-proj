@@ -9,7 +9,6 @@ export default {
         <!-- <email-compose @added="composeEmail"></email-compose> -->
         <email-list @selected="selectEmail" :emails="emailsToShow"></email-list>
         <email-details @back="resetSelect" v-if="chosenEmail" @click.native="resetSelect" :email="chosenEmail"></email-details>
-        <!-- <email-status></email-status> // Renders how many read from the emails -->
     </section>
     `,
     data() {
