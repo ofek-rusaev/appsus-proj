@@ -12,7 +12,8 @@ export const emailService = {
     getById,
     createEmails,
     deleteEmail,
-    addToStarred
+    addToStarred,
+    saveEmail
 }
 
 function getNextPrevEmailIds(emailId) {
@@ -35,6 +36,25 @@ function deleteEmail(emailId) {
     emailsDB.splice(idx, 1);
 
     storageService.store(EMAILS_KEY, emailsDB)
+}
+
+function saveEmail(email) {
+    if (email.id) return _updateEmail(email)
+    else return _addEmail(email);
+}
+
+function _addEmail(email) {
+    email.id = utilService.makeId()
+    emailsDB.push(Email);
+    storageService.store(KEY, emailsDB)
+    return Promise.resolve(email)
+}
+
+function _updateEmail(email) {
+    const idx = emailsDB.findIndex(currEmail => currEmail.id === email.id);
+    emailsDB.splice(idx, 1, email)
+    storageService.store(KEY, emailsDB)
+    return Promise.resolve(emailsDB)
 }
 
 function addToStarred(emailId) {
@@ -72,28 +92,31 @@ function sendEmail(email) {
 
 function getEmptyEmail() {
     return {
+        id: utilService.makeId(),
         from: '',
+        isStar: false,
         subject: '',
         body: '',
         isRead: false,
-        sentAt: null
+        sentAt: new Date()
     }
 }
 
+
 function createEmails() {
     var emails = [{
+            id: utilService.makeId(),
             from: 'Dudu',
             isStar: false,
-            id: utilService.makeId(),
             subject: 'Hello Mate',
             body: utilService.makeLorem(300),
             isRead: false,
             sentAt: new Date()
         },
         {
+            id: utilService.makeId(),
             from: 'God',
             isStar: false,
-            id: utilService.makeId(),
             subject: 'Dont you worry child',
             body: utilService.makeLorem(200),
             isRead: true,
@@ -102,4 +125,8 @@ function createEmails() {
     ]
 
     return Promise.resolve(emails);
+}
+
+function composeEmail() {
+
 }

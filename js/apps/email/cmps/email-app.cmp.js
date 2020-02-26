@@ -5,24 +5,24 @@ import emailCompose from './email-compose.cmp.js'
 export default {
     template: `
     <section>
-    <input type="search"/>
-    <section class="email-bar">
-        <section class=".left-bar">
-        <router-link to="/email/compose" @click="composeEmail"><button class="button">+Compose</button></router-link>
-        <router-link to="/email">EMAILS</router-link>
-        <router-view></router-view>
+        <input type="search"/>
+        <section class="email-bar">
+            <section class=".left-bar">
             <div>Starred</div>
             <div>Sent Mail</div>
             <div>Drafts</div>
-        </section>
-        <section class="emails-container">
+            </section>
+            <section class="emails-container">
+            <router-view></router-view>
         <!-- <email-filter @set-filter="setFilter"></email-filter> -->
-        <email-list @selected="selectEmail" :emails="emailsToShow"></email-list>
         <!-- <email-status></email-status> // Renders how many read from the emails -->
+        <router-link to="/email/"><email-list @selected="selectEmail" :emails="emailsToShow"></email-list>
+        </router-link>
+        <router-link to="/email/compose" @click="composeEmail"><button class="button">+Compose</button></router-link>
         <email-details @back="resetSelect" v-if="chosenEmail" @click.native="resetSelect" :email="chosenEmail"></email-details>
         </section>
         </section>
-    </section>
+        </section>
    `,
     data() {
         return {
@@ -47,7 +47,7 @@ export default {
             this.chosenEmail = null;
         },
         composeEmail() {
-            emailService.composeEmail();
+
         }
     },
     created() {

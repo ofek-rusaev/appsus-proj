@@ -53,7 +53,6 @@ export default {
     },
     computed: {
         formattedTime() {
-            console.log('keren', this.time)
             var ampm = this.time.getHours() >= 12 ? 'PM' : 'AM';
             return this.time.getHours() + ":" + this.time.getMinutes() + ":" + this.time.getSeconds() + ' ' + ampm
         },
