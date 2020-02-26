@@ -1,4 +1,4 @@
-import {emailService} from '../services/email.service.js'
+import { emailService } from '../services/email.service.js'
 
 export default {
     template: `
@@ -6,7 +6,7 @@ export default {
         <h1>Welcome to Emails App</h1>
         <!-- <email-filter @set-filter="setFilter"></email-filter> -->
         <!-- <email-compose @added="composeEmail"></email-compose> -->
-        <!-- <email-list v-else  @selected="selectEmail" :emails="emailsToShow"></email-list> -->
+        <email-list v-else  @selected="selectEmail" :emails="emailsToShow"></email-list>
         <!-- <email-details @back="resetSelect" v-if="chosenEmail" @click.native="resetSelect" :email="chosenEmail"></email-details>  -->
         <!-- <email-status></email-status> // Renders how many read from the emails -->
     </section>
@@ -14,7 +14,7 @@ export default {
     data() {
         return {
             emails: [],
-            filterBy: {read: '', unread: ''},
+            filterBy: { read: '', unread: '' },
             chosenEmail: null,
         }
     },
