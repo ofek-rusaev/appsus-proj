@@ -1,5 +1,5 @@
 export default {
-    name: 'compose',
+    name: 'email-compose',
     template: `<section class="new-mail">
     <div class="new-msg">New Message</div>
     <div class="flex">To:<input class="txt-inupt" type="text" name="To"></div>

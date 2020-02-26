@@ -1,5 +1,6 @@
 import { emailService } from '../services/email.service.js'
 import emailList from './email-list.cmp.js'
+import emailCompose from './email-compose.cmp.js'
 
 export default {
     template: `
@@ -7,7 +8,7 @@ export default {
     <input type="search"/>
     <section class="email-bar">
         <section class=".left-bar">
-        <router-link to="/email/compose" @added="composeEmail"><button class="button">+Compose</button></router-link>
+        <router-link to="/email/compose" @click="composeEmail"><button class="button">+Compose</button></router-link>
         <router-link to="/email">EMAILS</router-link>
         <router-view></router-view>
             <div>Starred</div>
@@ -16,7 +17,6 @@ export default {
         </section>
         <section class="emails-container">
         <!-- <email-filter @set-filter="setFilter"></email-filter> -->
-        <!-- <email-compose @added="composeEmail"></email-compose> -->
         <email-list @selected="selectEmail" :emails="emailsToShow"></email-list>
         <!-- <email-status></email-status> // Renders how many read from the emails -->
         <email-details @back="resetSelect" v-if="chosenEmail" @click.native="resetSelect" :email="chosenEmail"></email-details>
@@ -45,6 +45,9 @@ export default {
         },
         resetSelect() {
             this.chosenEmail = null;
+        },
+        composeEmail() {
+            emailService.composeEmail();
         }
     },
     created() {
@@ -56,7 +59,7 @@ export default {
     components: {
         // 'email-filter': emailFilter,
         emailList,
-        // 'email-compose': emailCompose,
+        emailCompose,
 
     }
 }
