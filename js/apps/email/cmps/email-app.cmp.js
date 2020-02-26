@@ -7,7 +7,7 @@ export default {
     <input type="search"/>
     <section class="email-bar">
         <section class=".left-bar">
-            <button class="button">+Compose</button>
+            <button class="compose">+Compose</button>
             <div>Starred</div>
             <div>Sent Mail</div>
             <div>Drafts</div>

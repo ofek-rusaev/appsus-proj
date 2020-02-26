@@ -7,12 +7,12 @@ var emailsDB = [];
 export const emailService = {
     getNextPrevEmailIds,
     query,
-    composeEmail,
     getEmptyEmail,
     sendEmail,
     getById,
     createEmails,
-    deleteEmail
+    deleteEmail,
+    addToStarred
 }
 
 function getNextPrevEmailIds(emailId) {
@@ -40,8 +40,8 @@ function deleteEmail(emailId) {
 function addToStarred(emailId) {
     const email = getById(emailId);
     const idx = emailsDB.findIndex(email => email.id === emailId)
-    emailsDB.splice(idx, 1);
-
+    emailsDB[idx].isStar = true;
+    console.log('keren', emailsDB[idx])
     storageService.store(EMAILS_KEY, emailsDB)
 }
 
