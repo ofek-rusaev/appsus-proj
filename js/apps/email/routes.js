@@ -1,15 +1,12 @@
 import home from './pages/home.cmp.js'
-import bookApp from './pages/book-app.cmp.js'
-import bookDetails from './pages/book-details.cmp.js'
-import aboutPage from './pages/about-page.cmp.js'
-
+import emailApp from './cmps/email-app.cmp.js'
+import emailDetails from './cmps/email-details.cmp.js'
 
 
 const routes = [
     { path: '/', component: home },
-    { path: '/book', component: bookApp },
-    { path: '/book/:id', component: bookDetails },
-    { path: '/about', component: aboutPage },
+    { path: '/email', component: emailApp },
+    { path: '/email/:id', component: emailDetails },
 ];
 
 export default routes;
