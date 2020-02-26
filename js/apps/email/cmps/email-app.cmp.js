@@ -3,7 +3,7 @@ import {emailService} from '../services/email.service.js'
 export default {
     template: `
     <section class="email-app">
-        <h1>Welcome to Emails App</h1>
+        <h1>Your Emails</h1>
         <!-- <email-filter @set-filter="setFilter"></email-filter> -->
         <!-- <email-compose @added="composeEmail"></email-compose> -->
         <!-- <email-list v-else  @selected="selectEmail" :emails="emailsToShow"></email-list> -->
