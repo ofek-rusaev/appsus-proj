@@ -15,7 +15,7 @@ const routes = [{
             { path: 'compose', component: emailCompose }
         ]
     },
-    // { path: '/email/:id', component: emailDetails },
+    { path: '/email/:id', component: emailDetails },
     { path: '/note', component: noteApp },
     { path: '/note/:id', component: noteDetails },
 ];

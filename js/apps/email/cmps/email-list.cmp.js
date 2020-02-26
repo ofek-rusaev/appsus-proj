@@ -5,13 +5,13 @@ export default {
     name: 'email-list',
     template: `
     <section class="emails-container">
-     <router-link v-for="(email, idx) in emails" :to="'email/'+email.id" exact>
+     <!-- <router-link v-for="(email, idx) in emails" :to="'email/'+email.id" exact> -->
         <div class="email-preview" v-for="(email, idx) in emails">
             <email-preview :key="idx" :email="email">
                 <email-details></email-details>
             </email-preview>
         </div>
-    </router-link>
+    <!-- </router-link> -->
  </section>
     `,
     props: ['emails'],
