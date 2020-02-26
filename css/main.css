@@ -3,7 +3,21 @@
 @import "./home-page.css";
 @import "./main-nav-bar.css";
 @import "./user-msg.css";
-
 @import "./apps/book/book-main.css";
 @import "./apps/email/email-main.css";
 @import "./apps/note/note-main.css";
+
+/**********helpers***********/
+
+.flex {
+    display: flex;
+    border: lightgray 1px solid;
+}
+
+input {
+    border: none;
+}
+
+textarea {
+    border: none;
+}

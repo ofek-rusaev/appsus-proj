@@ -7,7 +7,9 @@ export default {
     <input type="search"/>
     <section class="email-bar">
         <section class=".left-bar">
-            <button class="compose">+Compose</button>
+        <router-link to="/email/compose" @added="composeEmail"><button class="button">+Compose</button></router-link>
+        <router-link to="/email">EMAILS</router-link>
+        <router-view></router-view>
             <div>Starred</div>
             <div>Sent Mail</div>
             <div>Drafts</div>
@@ -19,7 +21,7 @@ export default {
         <!-- <email-status></email-status> // Renders how many read from the emails -->
         <email-details @back="resetSelect" v-if="chosenEmail" @click.native="resetSelect" :email="chosenEmail"></email-details>
         </section>
-    </section>
+        </section>
     </section>
    `,
     data() {
