@@ -17,19 +17,10 @@ a:-webkit-any-link {
     /* cursor: pointer; */
 }
 
-.email-item {
-    text-decoration: none;
-    padding: 10px;
-}
-
-.bold {
-    font-weight: 700;
-}
-
 .read {
     text-decoration: none;
     padding: 10px;
-    font-weight: 200;
+    font-weight: 700;
     background-color: red;
 }
 
@@ -38,6 +29,16 @@ a:-webkit-any-link {
     text-decoration: none;
     padding: 10px;
     background-color: green;
+}
+
+.email-preview img {
+    height: 20px;
+    cursor: pointer;
+}
+
+.email-preview button {
+    padding: 10px;
+    width: 40px;
 }
 
 .email-sender {}
