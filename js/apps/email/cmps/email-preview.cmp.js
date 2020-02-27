@@ -6,74 +6,69 @@ export default {
     template: `
      <section class="email-preview">
      <div @click="starEmail(email.id)">
-     <div v-if="isClicked"><img src="img/color2.png"/></div>
+     <div v-if="clickedStar"><img src="img/color2.png"/></div>
      <div v-else><img src="img/emptystar.png"/></div>
      </div>
         <div class="email-sender">
-        <td class="email-item bold">{{email.from}}</td>
+        <td :class="{read: this.email.isRead, unread: !this.email.isRead}">{{email.from}}</td>
         </div>
         <div class="email-title">
-        <td class="email-item bold" >{{email.subject}}</td>
+        <td class="email-item bold">{{email.subject}}</td>
         </div>
-        <div :class="className" @click="changeBodyClass">
+        <div :class="className" @click="changeBodyClass(email.id)">
         <td class="email-item">{{email.body}}</td>
         </div>
         <div class="email-date">
-        <td class="email-item bold">{{formattedTime}}</td>
+        <td :class="emailIsRead">{{formattedTime}}</td>
         <div v-if="isClicked">
-        <button @click="deleteEmail(email.id)">Delete</button>
-        <router-link :to="'inbox/'+email.id"><button>Long</button></router-link>
-               <router-link :to="'compose/'+email.id"><button @click="forwardEmail(email.id)">Forward</button></router-link>
-        <button >Starred</button>
-        <button>SaveTo..</button>
+        <button @click="deleteEmail(email.id)"><img src="img/trash.png"/></button>
+        <router-link :to="'inbox/'+email.id"><button><img src="img/extand.png"/></button></router-link>
+               <router-link :to="'compose/'+email.id"><button><img src="img/forward.png"/></button></router-link>
+        <button><img src="img/save.png"/></button>
         </div>
-
+        
         </div>
-    </section>
-  `,
+        </section>
+        `,
     props: ['email'],
     data() {
         return {
             time: new Date(),
             className: 'email-content',
-            isClicked: false
+            isClicked: false,
+            clickedStar: false
+        }
+    },
+    computed: {
+        emailIsRead() {
+            console.log('hi')
+            return { read: this.email.isRead, unread: !this.email.isRead }
         }
     },
     methods: {
-        changeBodyClass() {
+        changeBodyClass(emailId) {
             if (this.className === 'email-content') {
                 this.className = 'email-content-extended';
                 this.isClicked = true;
-                this.email.isRead = true;
-                console.log(this.email)
+                emailService.getById(emailId)
+                    .then(email => {
+                        console.log('keren', email)
+                        this.email.isRead = true;
+                    })
             } else {
                 this.className = 'email-content';
                 this.isClicked = false;
+
             }
         },
         deleteEmail(emailId) {
             emailService.deleteEmail(emailId);
         },
         starEmail(emailId) {
-            this.isClicked = !this.isClicked;
+            this.clickedStar = !this.clickedStar;
             emailService.addToStarred(emailId);
         },
-        forwardEmail(emailId) {
-            if (emailId) {
-                emailService.getById(emailId)
-                    .then(email => {
-                        console.log(email)
-                        this.email = email
-                    })
-            }
-        },
-
-        emailIsRead() {
-            console.log('hi')
-            return { read: this.email.isRead === true, 'email-item-bold': !this.email.isRead }
-        }
     },
-
     computed: {
         formattedTime() {
             var ampm = this.time.getHours() >= 12 ? 'PM' : 'AM';

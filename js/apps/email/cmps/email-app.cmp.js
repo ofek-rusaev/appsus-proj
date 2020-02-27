@@ -4,21 +4,27 @@ import emailSideBar from './email-side-bar.cmp.js'
 
 export default {
     template: `
-    <section class="all-container">
+    <section class="all-container" :key="this.$route.path">
        <section class="left-bar">
-       <email-side-bar></email-side-bar>
+            <email-side-bar></email-side-bar>
        </section>
        <router-view></router-view>
     </section>`,
     data() {
         return {
             emails: [],
-            chosenEmail: null
+            chosenEmail: null,
+            filterBy: { from: '' }
+
         }
     },
     computed: {
         emailsToShow() {
-            return this.emails;
+            if (!this.filterBy.from) return this.emails;
+            return this.emails.filter(email => {
+                var currEmail = email.from.toLowerCase();
+                return currEmail.includes(this.filterBy.from.toLowerCase())
+            })
         }
     },
     created() {

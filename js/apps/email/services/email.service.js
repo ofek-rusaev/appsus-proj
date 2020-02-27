@@ -141,7 +141,3 @@ function createEmails() {
 
     return Promise.resolve(emails);
 }
-
-function composeEmail() {
-
-}
