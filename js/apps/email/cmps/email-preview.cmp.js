@@ -1,14 +1,19 @@
 import { emailService } from "../services/email.service.js";
 
+
 export default {
     name: 'email-preview',
     template: `
      <section class="email-preview">
+     <div @click="starEmail(email.id)">
+     <div v-if="isClicked"><img src="img/color2.png"/></div>
+     <div v-else><img src="img/emptystar.png"/></div>
+     </div>
         <div class="email-sender">
         <td class="email-item bold">{{email.from}}</td>
         </div>
         <div class="email-title">
-        <td class="email-item bold">{{email.subject}}</td>
+        <td class="email-item bold" >{{email.subject}}</td>
         </div>
         <div :class="className" @click="changeBodyClass">
         <td class="email-item">{{email.body}}</td>
@@ -18,9 +23,8 @@ export default {
         <div v-if="isClicked">
         <button @click="deleteEmail(email.id)">Delete</button>
         <router-link :to="'inbox/'+email.id"><button>Long</button></router-link>
-       
-        <router-link to="/email/compose"><button @click="forwardEmail(email.id)">Forward</button></router-link>
-        <button @click="starEmail(email.id)">Starred</button>
+               <router-link :to="'compose/'+email.id"><button @click="forwardEmail(email.id)">Forward</button></router-link>
+        <button >Starred</button>
         <button>SaveTo..</button>
         </div>
 
@@ -51,21 +55,16 @@ export default {
             emailService.deleteEmail(emailId);
         },
         starEmail(emailId) {
+            this.isClicked = !this.isClicked;
             emailService.addToStarred(emailId);
         },
         forwardEmail(emailId) {
-            console.log('keren', emailId)
             if (emailId) {
                 emailService.getById(emailId)
                     .then(email => {
-                        emailService.updateEmail(email)
-                            .then(email => {
-                                // DEEP copy
-                                const copyemail = JSON.parse(JSON.stringify(email))
-                                this.email = copyemail;
-                            })
+                        console.log(email)
+                        this.email = email
                     })
-
             }
         },
 
@@ -81,5 +80,4 @@ export default {
             return this.time.getHours() + ":" + this.time.getMinutes() + ":" + this.time.getSeconds() + ' ' + ampm
         },
     },
-    created() {}
 }

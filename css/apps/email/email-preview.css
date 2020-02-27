@@ -40,6 +40,12 @@ a:-webkit-any-link {
     background-color: green;
 }
 
+.email-preview img {
+    padding: 10px;
+    height: 20px;
+    cursor: pointer;
+}
+
 .email-sender {}
 
 .email-title {}

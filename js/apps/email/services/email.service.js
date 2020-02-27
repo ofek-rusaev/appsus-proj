@@ -15,7 +15,8 @@ export const emailService = {
     addToStarred,
     saveEmail,
     addEmail,
-    updateEmail
+    updateEmail,
+    filterStarred
 }
 
 function getNextPrevEmailIds(emailId) {
@@ -42,7 +43,7 @@ function deleteEmail(emailId) {
 
 function saveEmail(email) {
     if (email.id) return updateEmail(email)
-    else return _addEmail(email);
+    else return addEmail(email);
 }
 
 function addEmail(email) {
@@ -67,6 +68,12 @@ function addToStarred(emailId) {
     console.log('keren', emailsDB[idx])
     storageService.store(EMAILS_KEY, emailsDB)
 }
+
+function filterStarred() {
+    const starred = emailsDB.filter(email => email.isStar)
+    return Promise.resolve(starred);
+}
+
 
 function query() {
     var emails = storageService.load(EMAILS_KEY);
@@ -106,7 +113,6 @@ function getEmptyEmail() {
         sentAt: new Date()
     }
 }
-
 
 function createEmails() {
     var emails = [{

@@ -26,7 +26,7 @@ export default {
                     this.email = emailService.getEmptyEmail()
                     return this.email;
                 })
-            this.$router.push('/email')
-        },
-    }
+            this.$router.push('/email/inbox')
+        }
+    },
 }

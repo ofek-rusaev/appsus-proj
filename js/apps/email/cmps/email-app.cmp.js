@@ -22,7 +22,6 @@ export default {
         }
     },
     created() {
-        console.log('app');
         emailService.query()
             .then(emails => {
                 this.emails = emails;

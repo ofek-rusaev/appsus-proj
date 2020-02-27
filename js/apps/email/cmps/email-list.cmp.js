@@ -33,7 +33,7 @@ export default {
         emailDetails
     },
     created() {
-        emailService.query()
+        emailService.filterStarred()
             .then(emails => {
                 console.log
                 this.emails = emails;

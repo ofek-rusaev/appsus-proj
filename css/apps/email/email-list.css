@@ -17,6 +17,10 @@
     font-family: 'Times New Roman', Times, serif;
 }
 
+.email-side-bar * {
+    padding: 5px;
+}
+
 .email-bar {
     display: flex;
     background-color: white;
