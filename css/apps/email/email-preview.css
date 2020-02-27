@@ -5,6 +5,7 @@
     /* grid-template-rows: repeat(auto-fill, minmax(200px, 1fr)); */
     background-color: white;
     border-bottom: lightgray 1px solid;
+    cursor: pointer;
 }
 
 .email-preview a {
@@ -17,18 +18,16 @@ a:-webkit-any-link {
     /* cursor: pointer; */
 }
 
-.read {
+.unread {
     text-decoration: none;
     padding: 10px;
     font-weight: 700;
-    background-color: red;
 }
 
-.unread {
-    font-weight: 700;
+.read {
+    font-weight: 200;
     text-decoration: none;
     padding: 10px;
-    background-color: green;
 }
 
 .email-preview img {
@@ -55,11 +54,6 @@ a:-webkit-any-link {
 .email-content-extended {
     width: 80vw;
     text-overflow: unset;
-}
-
-.read {
-    font-weight: 100;
-    background-color: green;
 }
 
 .email-date {}

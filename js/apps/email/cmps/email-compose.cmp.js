@@ -11,7 +11,7 @@ export default {
         <div class="flex">Subject:<input type="text" v-model="email.subject"></div>
         <div class="flex"><textarea name="message" rows="10" cols="30" v-model="email.body"></textarea></div>
         <div class="email-bottom flex">
-           <button @click="saveEmail">Send</button><span>🗑️</span>
+           <button></button><button @click="saveEmail">Send</button><button>🗑️</button><button><img src="img/draft.png"/></button>
         </div>
     </section>`,
 
@@ -22,7 +22,6 @@ export default {
     },
     methods: {
         saveEmail() {
-            const email = {...this.email };
             emailService.addEmail(this.email)
                 .then(email => {
                     this.email = emailService.getEmptyEmail()

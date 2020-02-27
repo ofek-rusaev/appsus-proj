@@ -9,17 +9,17 @@ export default {
      <div v-if="clickedStar"><img src="img/color2.png"/></div>
      <div v-else><img src="img/emptystar.png"/></div>
      </div>
-        <div class="email-sender">
+        <div class="email-sender" @click="changeBodyClass(email.id)">
         <td :class="{read: this.email.isRead, unread: !this.email.isRead}">{{email.from}}</td>
         </div>
-        <div class="email-title">
-        <td class="email-item bold">{{email.subject}}</td>
+        <div  :class="className"  class="email-title" @click="changeBodyClass(email.id)">
+        <td :class="{read: this.email.isRead, unread: !this.email.isRead}">{{email.subject}}</td>
         </div>
         <div :class="className" @click="changeBodyClass(email.id)">
         <td class="email-item">{{email.body}}</td>
         </div>
         <div class="email-date">
-        <td :class="emailIsRead">{{formattedTime}}</td>
+        <td :class="{read: this.email.isRead, unread: !this.email.isRead}">{{formattedTime}}</td>
         <div v-if="isClicked">
         <button @click="deleteEmail(email.id)"><img src="img/trash.png"/></button>
         <router-link :to="'inbox/'+email.id"><button><img src="img/extand.png"/></button></router-link>
@@ -39,12 +39,6 @@ export default {
             clickedStar: false
         }
     },
-    computed: {
-        emailIsRead() {
-            console.log('hi')
-            return { read: this.email.isRead, unread: !this.email.isRead }
-        }
-    },
     methods: {
         changeBodyClass(emailId) {
             if (this.className === 'email-content') {
@@ -52,7 +46,6 @@ export default {
                 this.isClicked = true;
                 emailService.getById(emailId)
                     .then(email => {
-                        console.log('keren', email)
                         this.email.isRead = true;
                     })
             } else {
