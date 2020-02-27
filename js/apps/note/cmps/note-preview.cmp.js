@@ -11,7 +11,6 @@ export default {
         <!-- <button>Clone</button> -->
         <button>Edit</button>
         <!-- <button>Change BGC</button> -->
-        <button>Mark</button>
         <!-- <i class="fas fa-thumbtack"></i> -->
         <button @click="togglePinNote(note.id)">Pin</button>
         </form>
