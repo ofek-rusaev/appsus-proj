@@ -8,17 +8,18 @@ export default {
         <td class="email-item bold">{{email.from}}</td>
         </div>
         <div class="email-title">
-        <td class="email-item bold" :class="emailIsRead">{{email.subject}}</td>
+        <td class="email-item bold">{{email.subject}}</td>
         </div>
         <div :class="className" @click="changeBodyClass">
         <td class="email-item">{{email.body}}</td>
         </div>
         <div class="email-date">
-        <td class="email-item">{{formattedTime}}</td>
+        <td class="email-item bold">{{formattedTime}}</td>
         <div v-if="isClicked">
         <button @click="deleteEmail(email.id)">Delete</button>
         <button>Long</button>
-        <button>Forward</button>
+       
+        <router-link to="/email/compose"><button @click="forwardEmail(email.id)">Forward</button></router-link>
         <button @click="starEmail(email.id)">Starred</button>
         <button>SaveTo..</button>
         </div>
@@ -52,16 +53,43 @@ export default {
         starEmail(emailId) {
             emailService.addToStarred(emailId);
         },
+        forwardEmail(emailId) {
+            console.log('keren', emailId)
+            if (emailId) {
+                emailService.getById(emailId)
+                    .then(email => {
+                        emailService.updateEmail(email)
+                            .then(email => {
+                                // DEEP copy
+                                const copyemail = JSON.parse(JSON.stringify(email))
+                                this.email = copyemail;
+                            })
+                    })
+
+            }
+        },
+
         emailIsRead() {
             console.log('hi')
-            return { read: (this.email.isRead === true) }
-
+            return { read: this.email.isRead === true, 'email-item-bold': !this.email.isRead }
         }
     },
+
     computed: {
         formattedTime() {
             var ampm = this.time.getHours() >= 12 ? 'PM' : 'AM';
             return this.time.getHours() + ":" + this.time.getMinutes() + ":" + this.time.getSeconds() + ' ' + ampm
         },
+    },
+    created() {
+        // const emailId = this.$route.params.id;
+        // if (emailId) {
+        //     emailService.getById(emailId)
+        //         .then(email => {
+        //             // DEEP copy
+        //             const copyemail = JSON.parse(JSON.stringify(email))
+        //             this.email = copyemail;
+        //         })
+        // }
     }
 }

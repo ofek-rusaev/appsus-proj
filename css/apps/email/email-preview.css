@@ -26,6 +26,20 @@ a:-webkit-any-link {
     font-weight: 700;
 }
 
+.read {
+    text-decoration: none;
+    padding: 10px;
+    font-weight: 200;
+    background-color: red;
+}
+
+.unread {
+    font-weight: 700;
+    text-decoration: none;
+    padding: 10px;
+    background-color: green;
+}
+
 .email-sender {}
 
 .email-title {}
