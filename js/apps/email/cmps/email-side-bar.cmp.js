@@ -1,4 +1,5 @@
 import emailCompose from './email-compose.cmp.js'
+import emailList from './email-list.cmp.js'
 
 export default {
     name: 'email-side-bar',
@@ -6,12 +7,12 @@ export default {
     <section class="email-side-bar">
     <router-link to="/email/compose"><button class="compose">+Compose</button></router-link>
     <router-link to="/email/inbox">Inbox</router-link>
-        <div>Starred</div>
-        <div>Sent Mail</div>
-        <div>Drafts</div>
+    <router-link to="/email/inbox"><div>Starred</div></router-link>
+    <router-link to="/email/inbox"><div>Sent Mail</div></router-link>
+    <router-link to="/email/inbox"><div>Drafts</div></router-link>
     </section>`,
-        components: {
-            // emailList,
-            emailCompose,
-        }
+    components: {
+        emailList,
+        emailCompose
+    }
 }

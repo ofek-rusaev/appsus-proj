@@ -17,7 +17,7 @@ export default {
         <td class="email-item bold">{{formattedTime}}</td>
         <div v-if="isClicked">
         <button @click="deleteEmail(email.id)">Delete</button>
-        <button>Long</button>
+        <router-link :to="'inbox/'+email.id"><button>Long</button></router-link>
        
         <router-link to="/email/compose"><button @click="forwardEmail(email.id)">Forward</button></router-link>
         <button @click="starEmail(email.id)">Starred</button>
@@ -81,15 +81,5 @@ export default {
             return this.time.getHours() + ":" + this.time.getMinutes() + ":" + this.time.getSeconds() + ' ' + ampm
         },
     },
-    created() {
-        // const emailId = this.$route.params.id;
-        // if (emailId) {
-        //     emailService.getById(emailId)
-        //         .then(email => {
-        //             // DEEP copy
-        //             const copyemail = JSON.parse(JSON.stringify(email))
-        //             this.email = copyemail;
-        //         })
-        // }
-    }
+    created() {}
 }
