@@ -7,6 +7,14 @@
     display: flex;
     flex-direction: column;
     margin-right: 20px;
+    padding: 10px;
+    width: 130px;
+}
+
+.left-bar-item {
+    font-size: 20px;
+    padding: 0 20px 15px 0;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 .email-bar {
@@ -24,6 +32,29 @@
     padding: 10px;
     border-radius: 10px;
     background-color: lightgray;
+    margin-bottom: 15px;
 }
 
-.new-mail {}
+.new-mail {
+    background-color: white;
+    width: 100%;
+    border: grey 2px solid;
+    display: flex;
+    flex-direction: column;
+}
+
+.new-msg {
+    background-color: black;
+    color: white;
+    font-weight: 700;
+    border: grey 2px solid;
+}
+
+.txt-input {
+    width: 100%;
+}
+
+.email-bottom {
+    margin: 0 auto;
+    display: flex;
+}

@@ -1,29 +1,28 @@
 import { emailService } from '../services/email.service.js'
 import emailList from './email-list.cmp.js'
-import emailSideBar from './email-side-bar.cmp.js'
+import emailCompose from './email-compose.cmp.js'
 
 export default {
     template: `
     <section>
-    <input type="search"/>
-    <section class="email-bar">
-        <section class=".left-bar">
-            <router-link to="/email/compose" @added="composeEmail"><button class="button">+Compose</button></router-link>
-            <router-link to="/email">EMAILS</router-link>
+        <input type="search" class="search"/>
+        <section class="email-bar">
+            <section class="left-bar">
+            <router-link to="/email/compose" @click="composeEmail"><button class="compose">+Compose</button></router-link>
+            <div class="left-bar-item">Starred</div>
+            <div class="left-bar-item">Sent Mail</div>
+            <div class="left-bar-item">Drafts</div>
+            </section>
+            <section class="emails-container">
             <router-view></router-view>
-            <email-side-bar></email-side-bar>
-        </section>
-        <section class="emails-container">
         <!-- <email-filter @set-filter="setFilter"></email-filter> -->
-        <!-- <email-compose @added="composeEmail"></email-compose> -->
-        <email-list @selected="selectEmail" :emails="emailsToShow"></email-list>
         <!-- <email-status></email-status> // Renders how many read from the emails -->
+        <router-link to="/email/"><email-list @selected="selectEmail" :emails="emailsToShow"></email-list>
+        </router-link>
         <email-details @back="resetSelect" v-if="chosenEmail" @click.native="resetSelect" :email="chosenEmail"></email-details>
-        <!-- <router-link to="/email/compose">COMPOSE</router-link> -->
-            |
         </section>
-    </section>
-    </section>
+        </section>
+        </section>
    `,
     data() {
         return {
@@ -48,6 +47,9 @@ export default {
         },
         resetSelect() {
             this.chosenEmail = null;
+        },
+        composeEmail() {
+
         }
     },
     created() {
@@ -59,8 +61,7 @@ export default {
     components: {
         // 'email-filter': emailFilter,
         emailList,
-        emailSideBar
-        // 'email-compose': emailCompose,
+        emailCompose,
 
     }
 }

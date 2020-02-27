@@ -7,12 +7,14 @@ var emailsDB = [];
 export const emailService = {
     getNextPrevEmailIds,
     query,
-    // composeEmail,
     getEmptyEmail,
     sendEmail,
     getById,
     createEmails,
-    deleteEmail
+    deleteEmail,
+    addToStarred,
+    saveEmail,
+    addEmail
 }
 
 function getNextPrevEmailIds(emailId) {
@@ -37,11 +39,33 @@ function deleteEmail(emailId) {
     storageService.store(EMAILS_KEY, emailsDB)
 }
 
+function saveEmail(email) {
+    if (email.id) return _updateEmail(email)
+    else return _addEmail(email);
+}
+
+function addEmail(email) {
+    console.log('add')
+    email.id = utilService.makeId()
+    emailsDB.unshift(email);
+    storageService.store(EMAILS_KEY, emailsDB)
+    return Promise.resolve(emailsDB)
+}
+
+function _updateEmail(email) {
+    console.log('update')
+
+    const idx = emailsDB.findIndex(currEmail => currEmail.id === email.id);
+    emailsDB.splice(idx, 1, email)
+    storageService.store(EMAILS_KEY, emailsDB)
+    return Promise.resolve(emailsDB)
+}
+
 function addToStarred(emailId) {
     const email = getById(emailId);
     const idx = emailsDB.findIndex(email => email.id === emailId)
-    emailsDB.splice(idx, 1);
-
+    emailsDB[idx].isStar = true;
+    console.log('keren', emailsDB[idx])
     storageService.store(EMAILS_KEY, emailsDB)
 }
 
@@ -72,28 +96,37 @@ function sendEmail(email) {
 
 function getEmptyEmail() {
     return {
+        id: utilService.makeId(),
         from: '',
+        cc: '',
+        bcc: '',
+        isStar: false,
         subject: '',
         body: '',
         isRead: false,
-        sentAt: null
+        sentAt: new Date()
     }
 }
 
+
 function createEmails() {
     var emails = [{
-            from: 'Dudu',
-            isStar: false,
             id: utilService.makeId(),
+            from: 'Dudu',
+            cc: '',
+            bcc: '',
+            isStar: false,
             subject: 'Hello Mate',
             body: utilService.makeLorem(300),
             isRead: false,
             sentAt: new Date()
         },
         {
-            from: 'God',
-            isStar: false,
             id: utilService.makeId(),
+            from: 'God',
+            cc: '',
+            bcc: '',
+            isStar: false,
             subject: 'Dont you worry child',
             body: utilService.makeLorem(200),
             isRead: true,
@@ -102,4 +135,8 @@ function createEmails() {
     ]
 
     return Promise.resolve(emails);
+}
+
+function composeEmail() {
+
 }

@@ -5,21 +5,14 @@ export default {
     name: 'email-list',
     template: `
     <section class="emails-container">
-     <!-- <router-link v-for="(email, idx) in emails" :to="'email/'+email.id" exact> -->
         <div class="email-preview" v-for="(email, idx) in emails">
             <email-preview :key="idx" :email="email">
                 <email-details></email-details>
             </email-preview>
         </div>
-    <!-- </router-link> -->
- </section>
+    </section>
     `,
     props: ['emails'],
-    data() {
-        return {
-            routerLink: ''
-        }
-    },
     methods: {
         setFilter(filterBy) {
             this.filterBy = filterBy;
@@ -28,11 +21,9 @@ export default {
             console.log(emails)
             this.$emit('selected', email)
         }
-
     },
     components: {
         emailPreview,
         emailDetails,
-        // emailCompose
     }
 }

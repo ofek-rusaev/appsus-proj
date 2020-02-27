@@ -8,7 +8,7 @@ export default {
         <td class="email-item bold">{{email.from}}</td>
         </div>
         <div class="email-title">
-        <td class="email-item bold">{{email.subject}}</td>
+        <td class="email-item bold" :class="emailIsRead">{{email.subject}}</td>
         </div>
         <div :class="className" @click="changeBodyClass">
         <td class="email-item">{{email.body}}</td>
@@ -39,6 +39,8 @@ export default {
             if (this.className === 'email-content') {
                 this.className = 'email-content-extended';
                 this.isClicked = true;
+                this.email.isRead = true;
+                console.log(this.email)
             } else {
                 this.className = 'email-content';
                 this.isClicked = false;
@@ -49,11 +51,15 @@ export default {
         },
         starEmail(emailId) {
             emailService.addToStarred(emailId);
+        },
+        emailIsRead() {
+            console.log('hi')
+            return { read: (this.email.isRead === true) }
+
         }
     },
     computed: {
         formattedTime() {
-            console.log('keren', this.time)
             var ampm = this.time.getHours() >= 12 ? 'PM' : 'AM';
             return this.time.getHours() + ":" + this.time.getMinutes() + ":" + this.time.getSeconds() + ' ' + ampm
         },
