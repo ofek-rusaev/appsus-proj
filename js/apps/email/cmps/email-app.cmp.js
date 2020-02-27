@@ -1,5 +1,6 @@
 import { emailService } from '../services/email.service.js'
 import emailList from './email-list.cmp.js'
+import emailSideBar from './email-side-bar.cmp.js'
 
 export default {
     template: `
@@ -7,12 +8,10 @@ export default {
     <input type="search"/>
     <section class="email-bar">
         <section class=".left-bar">
-        <router-link to="/email/compose" @added="composeEmail"><button class="button">+Compose</button></router-link>
-        <router-link to="/email">EMAILS</router-link>
-        <router-view></router-view>
-            <div>Starred</div>
-            <div>Sent Mail</div>
-            <div>Drafts</div>
+            <router-link to="/email/compose" @added="composeEmail"><button class="button">+Compose</button></router-link>
+            <router-link to="/email">EMAILS</router-link>
+            <router-view></router-view>
+            <email-side-bar></email-side-bar>
         </section>
         <section class="emails-container">
         <!-- <email-filter @set-filter="setFilter"></email-filter> -->
@@ -31,10 +30,12 @@ export default {
             emails: [],
             filterBy: { read: '', unread: '' },
             chosenEmail: null,
+            isCompose: false
         }
     },
     computed: {
         emailsToShow() {
+            this.isCompose = true;
             return this.emails;
         }
     },
@@ -58,6 +59,7 @@ export default {
     components: {
         // 'email-filter': emailFilter,
         emailList,
+        emailSideBar
         // 'email-compose': emailCompose,
 
     }

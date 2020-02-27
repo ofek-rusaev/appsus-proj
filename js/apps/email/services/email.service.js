@@ -7,7 +7,7 @@ var emailsDB = [];
 export const emailService = {
     getNextPrevEmailIds,
     query,
-    composeEmail,
+    // composeEmail,
     getEmptyEmail,
     sendEmail,
     getById,
