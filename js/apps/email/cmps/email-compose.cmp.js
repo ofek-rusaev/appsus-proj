@@ -21,6 +21,7 @@ export default {
     },
     methods: {
         saveEmail() {
+            const email = {...this.email };
             emailService.addEmail(this.email)
                 .then(email => {
                     this.email = emailService.getEmptyEmail()

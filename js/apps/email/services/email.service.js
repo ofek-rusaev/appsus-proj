@@ -41,8 +41,14 @@ function deleteEmail(emailId) {
 }
 
 function saveEmail(email) {
-    if (email.id) return updateEmail(email)
-    else return _addEmail(email);
+    if (email.id) {
+        console.log('indise if', email.id);
+        
+        return updateEmail(email)
+    } else {
+        console.log('indise else', email.id);
+        return _addEmail(email)
+    }
 }
 
 function addEmail(email) {
@@ -53,8 +59,8 @@ function addEmail(email) {
     return Promise.resolve(emailsDB)
 }
 
-function updateEmail(emailId) {
-    const idx = emailsDB.findIndex(currEmail => currEmail.id === emailId);
+function updateEmail(email) {
+    const idx = emailsDB.findIndex(currEmail => currEmail.id === email.id);
     emailsDB.splice(idx, 1, email)
     storageService.store(EMAILS_KEY, emailsDB)
     return Promise.resolve(emailsDB)

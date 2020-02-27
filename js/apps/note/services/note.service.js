@@ -3,29 +3,45 @@ import { utilService } from './util.service.js'
 const NOTES_KEY = 'notes';
 var notesDB = [];
 
-
 export const noteService = {
-    getNextPrevNoteIds,
     query,
-    composeNote,
     getEmptyNote,
-    sendNote,
+    saveNote,
     getById,
-    createNotes
+    createNotes,
+    removeNote,
+    changePinned,
+    createNote,
+    getPinnedNotes,
+    getOtherNotes
 }
 
-function getNextPrevNoteIds(noteId) {
+function removeNote(noteId) {
     const idx = notesDB.findIndex(note => note.id === noteId)
+    if(idx === -1) return Promise.reject('DID NOT REMOVE CAR')
+    notesDB.splice(idx, 1);
+    storageService.store(NOTES_KEY, notesDB)
+    return Promise.resolve('CAR REMOVED')
+}
 
-    var nextIdx = idx + 1;
-    if (nextIdx === notesDB.length) nextIdx = 0;
-    var prevIdx = idx - 1;
-    if (prevIdx < 0) prevIdx = notesDB.length - 1;
+function getPinnedNotes() {
+    return notesDB.map(note=> {
+        if (note.isPinned) return note
+    })
+}
 
-    return {
-        prevId: notesDB[prevIdx].id,
-        nextId: notesDB[nextIdx].id,
-    }
+function getOtherNotes() {
+    return notesDB.map(note=> {
+        if (!note.isPinned) return note
+    })
+}
+
+function changePinned(noteId) {
+    const note = getById(noteId);
+    const idx = notesDB.findIndex(note => note.id === noteId)
+    notesDB[idx].isPinned = !notesDB[idx].isPinned;
+    console.log('un/pin', notesDB[idx])
+    storageService.store(NOTES_KEY, notesDB)
 }
 
 function query() {
@@ -47,7 +63,7 @@ function getById(noteId) {
     return Promise.resolve(note);
 }
 
-function sendNote(note) {
+function saveNote(note) {
     notesDB.unshift(note);
     storageService.store(NOTES_KEY, notesDB)
     return Promise.resolve(notesDB);
@@ -55,10 +71,10 @@ function sendNote(note) {
 
 function getEmptyNote() {
     return {
+        id: utilService.makeId(),
         type: '',
         isPinned: false,
         info: {txt: 'Fullstack Me Baby!'},
-        createdAt: null
     }
 }
 
@@ -66,20 +82,39 @@ function createNotes(){
     var notes = [
         {
             id: utilService.makeId(),
-            title: utilService.makeLorem(5)
+            type: 'noteText',
+            isPinned: true,
+            info: { txt: 'Fullstack Me Baby!' }, 
+            style: { backgroundColor: '#00d' },
         },
         {
             id: utilService.makeId(),
-            title: utilService.makeLorem(5)
+            type: 'noteImg',     
+            isPinned: false,
+            info: { url: 'http://some-img/me', title: 'Me playing Mi'},
+            style: { backgroundColor: '#00d' }
+        },
+        {
+            id: utilService.makeId(),
+            type: "noteTodos",
+            isPinned: false,
+            info: { label: "How was it:",
+                todos: [
+                    { txt: "Do that", doneAt: null }, 
+                       { txt: "Do this", doneAt: 187111111 }
+                ]},
+            style: { backgroundColor: '#00d' },
         }
     ]
     return Promise.resolve(notes)
 }
 
-function composeNote() {
+function createNote(type, info, style) {
     var note = {
         id: utilService.makeId(),
-        title: 'boooom'
+        type: type,
+        info: info,
+        style: style
     }
     return Promise.resolve(note);
 }

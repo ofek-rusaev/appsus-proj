@@ -61,8 +61,8 @@ export default {
                         emailService.updateEmail(email)
                             .then(email => {
                                 // DEEP copy
-                                const copyemail = JSON.parse(JSON.stringify(email))
-                                this.email = copyemail;
+                                const copyEmail = JSON.parse(JSON.stringify(email))
+                                this.email = copyEmail;
                             })
                     })
 
