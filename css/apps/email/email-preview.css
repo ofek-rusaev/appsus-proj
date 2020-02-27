@@ -42,4 +42,9 @@ a:-webkit-any-link {
     text-overflow: unset;
 }
 
+.read {
+    font-weight: 100;
+    background-color: green;
+}
+
 .email-date {}

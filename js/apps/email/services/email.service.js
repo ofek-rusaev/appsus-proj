@@ -13,7 +13,8 @@ export const emailService = {
     createEmails,
     deleteEmail,
     addToStarred,
-    saveEmail
+    saveEmail,
+    addEmail
 }
 
 function getNextPrevEmailIds(emailId) {
@@ -43,14 +44,17 @@ function saveEmail(email) {
     else return _addEmail(email);
 }
 
-function _addEmail(email) {
+function addEmail(email) {
+    console.log('add')
     email.id = utilService.makeId()
-    emailsDB.push(Email);
-    storageService.store(KEY, emailsDB)
-    return Promise.resolve(email)
+    emailsDB.unshift(email);
+    storageService.store(EMAILS_KEY, emailsDB)
+    return Promise.resolve(emailsDB)
 }
 
 function _updateEmail(email) {
+    console.log('update')
+
     const idx = emailsDB.findIndex(currEmail => currEmail.id === email.id);
     emailsDB.splice(idx, 1, email)
     storageService.store(EMAILS_KEY, emailsDB)

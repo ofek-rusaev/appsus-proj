@@ -14,43 +14,20 @@ export default {
     </div>
     </section>`,
 
-
-
-    // id: utilService.makeId(),
-    // from: '',
-    // isStar: false,
-    // subject: '',
-    // body: '',
-    // isRead: false,
-    // sentAt: new Date()
     data() {
         return {
             email: emailService.getEmptyEmail()
         }
     },
-    created() {
-        const emailId = this.$route.params.id;
-        if (emailId) {
-            emailService.getById(emailId)
-                .then(email => {
-                    // DEEP copy
-                    const copyEmail = JSON.parse(JSON.stringify(email))
-                    this.email = copyEmail;
-                    // this.email = emailService.getEmptyEmail();
-                })
-        }
-    },
     methods: {
         saveEmail() {
-            console.log('Saving', this.email);
-            emailService.saveEmail(this.email)
-                .then((email) => {
-                    console.log(email)
-                        // eventBus.$emit('showMsg',{txt:'Saved a email'+savedemail.id})
-                        // this.$router.push('/email')
-                    return email;
+            const email = {...this.email };
+            emailService.addEmail(this.email)
+                .then(email => {
+                    this.email = emailService.getEmptyEmail()
+                    return this.email;
                 })
-
+            this.$router.push('/email')
         },
     }
 }
