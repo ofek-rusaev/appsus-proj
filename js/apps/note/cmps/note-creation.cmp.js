@@ -3,7 +3,7 @@ import {noteService} from '../services/note.service.js';
 export default {
     template: `
         <section class="note-add">
-            <input type="text" :placeholder="updatePlaceholder" @keyup.enter="addNote"/>            
+            <input type="text" :placeholder="updatePlaceholder" v-model="userText" @keyup.enter="addNote"/>            
                 <input type="radio" id="text" name="text" v-model="type" value="noteText">
                 <label for="text">Text</label><br>
                 <input type="radio" id="img" name="text" v-model="type" value="noteImg">
@@ -18,6 +18,7 @@ export default {
     data() {
         return {
             type: 'noteText',
+            userText: '',
             note: {}
         }
     },
@@ -41,15 +42,42 @@ export default {
     },
     methods: {
         addNote() {
-                noteService.saveNote(this.note)
-                    .then(note => {
-                        this.note = noteService.getEmptyNote()
-                        return this.note;
-                    })
+            noteService.query()
+            // .then(notes => {
+                // console.log('notes created: ', notes);
+                // this.notes = JSON.parse(JSON.stringify(notes))
+                // this.notes = notes
+            // });
+            this.note = noteService.getEmptyNote();
+            this.note.type = this.type;
+            this.note.info.txt = this.userText;
+            noteService.saveNote(this.note)
+            .then(note => {
+                console.log('adding note');
+                console.log('user text: ', this.note);
+                    return this.note;
+                })
                 // this.$router.push('/email/inbox')
-            console.log('adding note');
-            console.log(this.note);
+                console.log(this.note);
             
-        }
+        },
+        // addNote() {
+        //     noteService.saveNote(this.userText)
+        //     .then(note => {
+        //         console.log('adding note');
+        //         console.log('user text: ', this.userText);
+        //             this.note = noteService.getEmptyNote()
+        //             return this.note;
+        //         })
+        //         // this.$router.push('/email/inbox')
+        //         console.log(this.note);
+            
+        // },
+        saveNote() {
+            console.log('Saving', this.note);
+            noteService.saveNote(this.note)
+            .then((savedNote) => {
+        })},
+        
     }
 }

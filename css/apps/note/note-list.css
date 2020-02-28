@@ -11,3 +11,8 @@
     padding: 5px 20px;
     break-inside: avoid;
 }
+
+.note-img img{
+    height: 150px;
+    width: 150px;
+}

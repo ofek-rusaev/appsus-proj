@@ -39,7 +39,8 @@ export default {
         noteService.query()
             .then(notes => {
                 console.log('notes created: ', notes);
-                this.notes = JSON.parse(JSON.stringify(notes))
+                // this.notes = JSON.parse(JSON.stringify(notes))
+                this.notes = notes
             });
     },
     components: {
