@@ -79,12 +79,14 @@ function saveNote(note) {
     return Promise.resolve(notesDB);
 }
 
+
 function getEmptyNote() {
     return {
         id: utilService.makeId(),
         type: '',
         isPinned: false,
-        info: {txt: 'Fullstack Me Baby!'},
+        info: {txt: ''},
+        style: ''
     }
 }
 
@@ -119,12 +121,12 @@ function createNotes(){
     return Promise.resolve(notes)
 }
 
-function createNote(type, info, style) {
+function createNote(noteInfo) {
     var note = {
         id: utilService.makeId(),
-        type: type,
-        info: info,
-        style: style
+        type: noteInfo.type,
+        info: noteInfo.info,
+        style: noteInfo.style
     }
     return Promise.resolve(note);
 }
