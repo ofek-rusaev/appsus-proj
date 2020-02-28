@@ -5,14 +5,14 @@ export default {
     name: 'email-preview',
     template: `
      <section class="email-preview">
-     <div @click="starEmail(email.id)">
+     <div @click="starEmail(email.id)" class="star">
      <div v-if="clickedStar"><img src="img/color2.png"/></div>
      <div v-else><img src="img/emptystar.png"/></div>
      </div>
         <div class="email-sender" @click="changeBodyClass(email.id)">
         <td :class="{read: this.email.isRead, unread: !this.email.isRead}">{{email.from}}</td>
         </div>
-        <div  :class="className"  class="email-title" @click="changeBodyClass(email.id)">
+        <div :class="className"  class="email-title" @click="changeBodyClass(email.id)">
         <td :class="{read: this.email.isRead, unread: !this.email.isRead}">{{email.subject}}</td>
         </div>
         <div :class="className" @click="changeBodyClass(email.id)">

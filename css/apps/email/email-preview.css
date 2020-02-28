@@ -40,20 +40,35 @@ a:-webkit-any-link {
     width: 40px;
 }
 
-.email-sender {}
-
-.email-title {}
-
 .email-content {
     width: 40vw;
+    padding: 30px 10px;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
 }
 
+.email-sender {
+    width: 10vw;
+    padding: 20px 10px;
+}
+
+.email-title {
+    width: 200px;
+    padding: 20px 10px;
+}
+
 .email-content-extended {
-    width: 80vw;
+    width: 40vw;
+    padding: 20px 0px;
     text-overflow: unset;
 }
 
-.email-date {}
+.star {
+    padding: 20px 10px;
+}
+
+.email-date {
+    width: 50px;
+    padding: 20px;
+}

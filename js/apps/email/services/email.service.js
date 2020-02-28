@@ -8,12 +8,10 @@ export const emailService = {
     getNextPrevEmailIds,
     query,
     getEmptyEmail,
-    sendEmail,
     getById,
     createEmails,
     deleteEmail,
     addToStarred,
-    saveEmail,
     addEmail,
     updateEmail,
     filterStarred,
@@ -41,11 +39,6 @@ function deleteEmail(emailId) {
     emailsDB.splice(idx, 1);
 
     storageService.store(EMAILS_KEY, emailsDB)
-}
-
-function saveEmail(email) {
-    if (email.id) return updateEmail(email)
-    else return addEmail(email);
 }
 
 function addEmail(email) {
@@ -88,7 +81,6 @@ function filterDrafts() {
     return Promise.resolve(draftted);
 }
 
-
 function query() {
     var emails = storageService.load(EMAILS_KEY);
     if (!emails) {
@@ -109,11 +101,6 @@ function getById(emailId) {
     return Promise.resolve(email);
 }
 
-function sendEmail(email) {
-    emailsDB.unshift(email);
-    storageService.store(EMAILS_KEY, emailsDB)
-    return Promise.resolve(emailsDB);
-}
 
 function getEmptyEmail() {
     return {
@@ -135,7 +122,7 @@ function getEmptyEmail() {
 function createEmails() {
     var emails = [{
             id: utilService.makeId(),
-            from: 'Dudu',
+            from: 'Dudu Bunker',
             cc: '',
             bcc: '',
             isStar: false,
@@ -148,7 +135,20 @@ function createEmails() {
         },
         {
             id: utilService.makeId(),
-            from: 'God',
+            from: 'Audrey Hephborn',
+            cc: '',
+            bcc: '',
+            isStar: false,
+            subject: 'Paris is always a good idea',
+            isRead: false,
+            isDraft: false,
+            isSent: true,
+            body: utilService.makeLorem(300),
+            sentAt: new Date()
+        },
+        {
+            id: utilService.makeId(),
+            from: 'God from heaven',
             cc: '',
             bcc: '',
             isStar: false,

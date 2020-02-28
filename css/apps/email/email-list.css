@@ -3,6 +3,10 @@
     flex-direction: column;
 }
 
+.td {
+    width: 30px;
+}
+
 .left-bar {
     display: flex;
     flex-direction: column;
@@ -79,5 +83,4 @@
 
 .email-bottom-left {
     display: flex;
-    align-items: flex-end;
 }
