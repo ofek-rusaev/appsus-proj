@@ -4,3 +4,19 @@
     background-color: lightgoldenrodyellow;
     margin-bottom: 5px;
 } */
+
+label {
+    cursor: pointer;
+}
+
+.radio {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+}
+
+label img {
+    height: 30px;
+}

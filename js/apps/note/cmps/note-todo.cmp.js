@@ -1,31 +1,25 @@
-import {noteService} from '../services/note.service.js';
+import { noteService } from '../services/note.service.js';
 
 export default {
     name: 'noteTodo',
     template: `
         <section class="note-todo">
         <div class="note-todo-container">
-            <h2>{{info.label}}</h2>
-            <div class="todo" v-for="todo in info.todos">
-
-                <p :class="{done:todo.doneAt, undone:!todo.doneAt}" @click="todoToggle(todo.id)">TODO: {{todo.txt}}</p>
-                <!-- <p>{{todo.doneAt}}</p> -->
+            <h2>{{info.txt}}</h2>
+            <div class="todo" v-for="todo in info.todos" >
+                <p :class="{done:todo.doneAt, undone:!todo.doneAt}" @click="todoToggle">TODO: {{todo.txt}}</p>
             </div>
         </div>
-  
+        <img src="img/todo.png"/>
+
     </section>
     `,
-    props: ['info'],
-    data() {
-        return {
-            noteID: this.info
-        }
-    },
+    props: ['info', 'note'],
     methods: {
-        todoToggle(todoId) {
-            console.log(this.info)
+        todoToggle() {
             noteService.query();
-            noteService.toggleDoneAt(todoId, this.noteId);
+            const KEY = Object.keys(this.info.todos)
+            noteService.toggleDoneAt(this.info.todos[0].id, this.note.id);
         }
     }
 }

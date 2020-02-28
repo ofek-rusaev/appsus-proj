@@ -6,6 +6,7 @@ var notesDB = [];
 export const noteService = {
     query,
     getEmptyNote,
+    getEmptyTodoNote,
     saveNote,
     getById,
     createNotes,
@@ -19,26 +20,26 @@ export const noteService = {
 
 function removeNote(noteId) {
     const idx = notesDB.findIndex(note => note.id === noteId)
-    if(idx === -1) return Promise.reject('DID NOT REMOVE CAR')
+    if (idx === -1) return Promise.reject('DID NOT REMOVE CAR')
     notesDB.splice(idx, 1);
     storageService.store(NOTES_KEY, notesDB)
     return Promise.resolve('CAR REMOVED')
 }
 
 function getPinnedNotes() {
-    return notesDB.map(note=> {
+    return notesDB.map(note => {
         if (note.isPinned) {
             console.log('in pinned fun:', note);
-            
+
             return note;
         }
     })
 }
 
 function getOtherNotes() {
-    console.log(notesDB,'ppppp');
-    
-    return notesDB.map(note=> {
+    console.log(notesDB, 'ppppp');
+
+    return notesDB.map(note => {
         if (!note.isPinned) {
 
             console.log('in UNpinned fun:', note);
@@ -75,11 +76,8 @@ function getById(noteId) {
 }
 
 function saveNote(note) {
-    note.id = utilService.makeId(),
-    console.log('notes DB before', notesDB);
+    note.id = utilService.makeId();
     notesDB.unshift(note);
-    
-    console.log('notes DB after', notesDB);
     storageService.store(NOTES_KEY, notesDB)
     return Promise.resolve(notesDB);
 }
@@ -89,43 +87,54 @@ function getEmptyNote() {
         id: utilService.makeId(),
         type: '',
         isPinned: false,
-        info: {txt: ''},
+        info: { txt: '' },
         style: ''
     }
 }
 
-function createNotes(){
-    var notes = [
-        {
+function getEmptyTodoNote() {
+    return {
+        id: utilService.makeId(),
+        type: '',
+        isPinned: false,
+        info: { label: '', todos: [{ id: utilService.makeId(), txt: '', doneAt: null }] },
+        style: ''
+    }
+}
+
+function createNotes() {
+    var notes = [{
             id: utilService.makeId(),
             type: 'noteText',
             isPinned: true,
-            info: { txt: 'Fullstack Me Baby!' }, 
+            info: { txt: 'Fullstack Me Baby!' },
             style: { backgroundColor: '#00d' },
         },
         {
             id: utilService.makeId(),
-            type: 'noteImg',     
+            type: 'noteImg',
             isPinned: false,
-            info: { txt: 'https://www.w3.org/TR/2016/WD-html51-20160310/images/elo.png', title: 'Me playing Mi'},
+            info: { txt: 'https://www.w3.org/TR/2016/WD-html51-20160310/images/elo.png', title: 'Me playing Mi' },
             style: { backgroundColor: '#00d' }
         },
         {
             id: utilService.makeId(),
             type: 'noteTodo',
             isPinned: false,
-            info: { label: 'How was it:',
+            info: {
+                label: 'How was it:',
                 todos: [
-                    {id: utilService.makeId(), txt: 'Do that', doneAt: null }, 
-                       {id: utilService.makeId(),txt: 'Do this', doneAt: 187111111 }
-                ]},
+                    { id: utilService.makeId(), txt: 'Do that', doneAt: null },
+                    { id: utilService.makeId(), txt: 'Do this', doneAt: 187111111 }
+                ]
+            },
             style: { backgroundColor: '#00d' },
         },
         {
             id: utilService.makeId(),
             type: 'noteVid',
             isPinned: false,
-            info: { txt: ''},
+            info: { txt: '' },
             style: { backgroundColor: '#00d' },
         }
     ]
@@ -143,13 +152,9 @@ function createNote(noteInfo) {
 }
 
 function toggleDoneAt(todoId, noteId) {
-    console.log('note id:', noteId);
-    
-    const note = notesDB.find(note=> note.id === noteId)
-    const todo = note.find(todo=> todo.id === todoId)
-    todo.doneAt = (todo.doneAt)? null : Date.now() 
-    console.log();
-    
+    const note = notesDB.find(note => note.id === noteId)
+    const todo = note.info.todos.find(todo => todo.id === todoId)
+    todo.doneAt = (todo.doneAt) ? null : Date.now()
     storageService.store(NOTES_KEY, notesDB);
     return Promise.resolve(todo);
 }
