@@ -1,7 +1,7 @@
 import { noteService } from "../services/note.service.js";
 import noteInputText from './note-input-text.cmp.js';
 import noteInputImg from './note-input-img.cmp.js';
-import noteInputTodo from './note-input-todos.cmp.js';
+import noteInputTodo from './note-input-todo.cmp.js';
 
 const surveyCmps = [
   {

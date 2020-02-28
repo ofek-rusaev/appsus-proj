@@ -74,11 +74,14 @@ function getById(noteId) {
 }
 
 function saveNote(note) {
+    note.id = utilService.makeId(),
+    console.log('notes DB before', notesDB);
     notesDB.unshift(note);
+    
+    console.log('notes DB after', notesDB);
     storageService.store(NOTES_KEY, notesDB)
     return Promise.resolve(notesDB);
 }
-
 
 function getEmptyNote() {
     return {
@@ -103,7 +106,7 @@ function createNotes(){
             id: utilService.makeId(),
             type: 'noteImg',     
             isPinned: false,
-            info: { url: 'https://www.w3.org/TR/2016/WD-html51-20160310/images/elo.png', title: 'Me playing Mi'},
+            info: { txt: 'https://www.w3.org/TR/2016/WD-html51-20160310/images/elo.png', title: 'Me playing Mi'},
             style: { backgroundColor: '#00d' }
         },
         {
@@ -115,6 +118,13 @@ function createNotes(){
                     { txt: 'Do that', doneAt: null }, 
                        { txt: 'Do this', doneAt: 187111111 }
                 ]},
+            style: { backgroundColor: '#00d' },
+        },
+        {
+            id: utilService.makeId(),
+            type: 'noteVid',
+            isPinned: false,
+            info: { txt: ''},
             style: { backgroundColor: '#00d' },
         }
     ]
