@@ -1,56 +1,48 @@
 import {noteService} from '../services/note.service.js';
-import noteList from './note-list.cmp.js';
-import noteCreation from './note-creation.cmp.js'
+import noteInputText from './note-input-text.cmp.js';
+import noteInputImg from './note-input-img.cmp.js';
+import noteInputTodo from './note-input-todos.cmp.js';
 
 export default {
     template: `
     <section class="note-app">
-        <!-- <note-filter @set-filter="setFilter"></note-filter> -->
-        <!-- <note-compose @added="composeNote"></note-compose> -->
-        <note-creation></note-creation>
-        <h1>Your Pinned Notes</h1>
-        <note-list @selected="selectNote" :notes="notesToShow"></note-list>
+        <!-- <note-creation></note-creation> -->
+        <!-- <h1>Your Pinned Notes</h1> -->
+        <!-- <note-list @selected="selectNote" :notes="notesToShow"></note-list> -->
         <!-- <h1>Other notes...</h1> -->
         <!-- <note-list @selected="selectNote" :notes="otherNotesToShow"></note-list> -->
-        <!-- <note-details @back="resetSelect" v-if="chosenNote" @click.native="resetSelect" :note="chosenNote"></note-details>  -->
-        <!-- <note-status></note-status> // Renders how many read from the notes -->
+        <h1>Your Notes</h1>
+            <hr />
+            <pre>{{results}}</pre>
     </section>
     `,
     data() {
         return {
-            // pinNotes: [],
-            // otherNotes: [],
-            notes: [],
-            filterBy: {read: '', unread: ''},
-            chosenNote: null,
+            results: [],
+            cmps: surveyCmps
         }
     },
-    computed: {
-        // pinnedNotesToShow(){
-        //     console.log('im pinned notes: ', this.notes);
-        //     this.notes = noteService.getPinnedNotes
-        // },
+    // computed: {
+    //     // pinnedNotesToShow(){
+    //     //     console.log('im pinned notes: ', this.notes);
+    //     //     this.notes = noteService.getPinnedNotes()
+    //     // },
         
-        // otherNotesToShow(){
-        //     console.log('im other notes: ', this.notes);
-        //     this.notes = noteService.getOtherNotes
-        //     return this.notes;
-        // },
-        notesToShow() {
-            // if (!this.filterBy) 
-            console.log('ORIGINAL NOTE TO SHOW: ', this.notes);
-            return this.notes;
-        }
-    },
+    //     // otherNotesToShow(){
+    //     //     console.log('im other notes: ', this.notes);
+    //     //     this.notes = noteService.getOtherNotes();
+
+    //     // },
+    //     notesToShow() {
+    //         console.log('ORIGINAL NOTE TO SHOW: ', this.notes);
+    //         return this.notes;
+    //     }
+    // },
     methods: {
-        setFilter(filterBy) {
-            this.filterBy = filterBy;
-        },
-        selectNote(note) {
-            this.chosenNote = note;
-        },
-        resetSelect() {
-            this.chosenNote = null;
+        methods: {
+            setAns(idx, ans) {
+                this.results.splice(idx, 1, ans)
+                // this.results[idx] = ans;
         }
     },
     created() {
@@ -62,10 +54,8 @@ export default {
             });
     },
     components: {
-    //     'note-filter': noteFilter,
-        noteList,
-        noteCreation
-    //     'note-compose': noteCompose,
-
+        noteInputText,
+        noteInputImg,
+        noteInputTodo
     }
-}
+}}

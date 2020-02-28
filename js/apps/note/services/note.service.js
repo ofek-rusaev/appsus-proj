@@ -26,13 +26,23 @@ function removeNote(noteId) {
 
 function getPinnedNotes() {
     return notesDB.map(note=> {
-        if (note.isPinned) return note
+        if (note.isPinned) {
+            console.log('in pinned fun:', note);
+            
+            return note;
+        }
     })
 }
 
 function getOtherNotes() {
+    console.log(notesDB,'ppppp');
+    
     return notesDB.map(note=> {
-        if (!note.isPinned) return note
+        if (!note.isPinned) {
+
+            console.log('in UNpinned fun:', note);
+            return note;
+        }
     })
 }
 

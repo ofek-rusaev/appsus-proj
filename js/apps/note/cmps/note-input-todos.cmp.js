@@ -1,5 +1,5 @@
 export default {
-    name:'noteText',
+    name:'noteInputTodo',
     template: `
         <input type="text" 
             :placeholder="info.placeholder" 
