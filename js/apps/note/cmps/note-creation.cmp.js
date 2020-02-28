@@ -1,4 +1,3 @@
-
 var inputText = {
     template: `
         <input type="text" 
@@ -14,47 +13,39 @@ var inputText = {
     }
 }
 
-// const noteCmps = [
-//     {
-//         name:'noteInputText',
-//         type:'text',
-//         info: {
-//             placeholder : "Add text"
-//         }
-//     },
-//     {
-//         name:'noteInputImg',
-//         type:'text',
-//         info: {
-//             placeholder : "Add image url"
-//         }
-//     },
-//     {
-//         name:'noteInputTotos',
-//         type:'text',
-//         info: {
-//             placeholder : "Separate by comma"
-//         }
-//     },
-// ]
+const noteCmps = [
+    {
+        name:'noteInputText',
+        type:'text',
+        info: {
+            placeholder : "Add text"
+        }
+    },
+    {
+        name:'noteInputImg',
+        type:'text',
+        info: {
+            placeholder : "Add image url"
+        }
+    },
+    {
+        name:'noteInputTotos',
+        type:'text',
+        info: {
+            placeholder : "Separate by comma"
+        }
+    },
+]
 
 export default {
     template: `
-        <section class="survey">
+        <section class="note-add">
             <h1>Add note</h1>
-            <ul>
-                <li v-for="(cmp, idx) in cmps">
-                    <component 
-                        :is="cmp.type" 
-                        :info="cmp.info"
-                        @changed="setAns(idx, $event)"></component>
                         <button>text</button>
                         <button>img</button>
                         <button>vid</button>
                         <button>aud</button>
                         <button>todo</button>
-                </li>
-            </ul>
             <hr />
             <pre>{{results}}</pre>
         </section>
