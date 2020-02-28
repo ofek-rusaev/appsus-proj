@@ -8,19 +8,18 @@ export default {
     name: 'app-note',
     template: `
     <section class="note-app">
+        <!-- <note-creation></note-creation> -->
+        <hr />
         <h1>Your Notes</h1>
         <note-list :notes="notes"></note-list>
-        <router-view></router-view>
-            <hr />
-            <!-- <pre>{{results}}</pre> -->
     </section>
     `,
     data() {
         return {
             notes: [],
-            // cmps: noteCmps
         }
     },
+
     created() {
         noteService.query()
             .then(notes => {
@@ -29,9 +28,6 @@ export default {
             });
     },
     components: {
-        // noteInputText,
-        // noteInputImg,
-        // noteInputTodo,
         noteList,
         noteService
     }

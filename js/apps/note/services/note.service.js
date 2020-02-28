@@ -101,7 +101,7 @@ function createNotes(){
             id: utilService.makeId(),
             type: 'noteImg',     
             isPinned: false,
-            info: { url: 'http://some-img/me', title: 'Me playing Mi'},
+            info: { url: 'https://www.w3.org/TR/2016/WD-html51-20160310/images/elo.png', title: 'Me playing Mi'},
             style: { backgroundColor: '#00d' }
         },
         {
