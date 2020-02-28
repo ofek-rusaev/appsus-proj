@@ -7,8 +7,9 @@
 @import "./apps/email/email-main.css";
 @import "./apps/note/note-main.css";
 body {
-    background-image: url('img/bcg.jpg');
+    background-color: whitesmoke;
     text-align: center;
+    margin: 0 0 0 0;
 }
 
 .all-container {

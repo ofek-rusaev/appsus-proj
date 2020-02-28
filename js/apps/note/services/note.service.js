@@ -16,6 +16,19 @@ export const noteService = {
     getPinnedNotes,
     getOtherNotes,
     toggleDoneAt,
+    changeColor
+}
+
+function changeColor(noteId, bcg) {
+    console.log(noteId)
+    console.log(bcg)
+    const note = notesDB.find(note => note.id === noteId);
+    console.log(note.style.backgroundColor)
+    note.style.backgroundColor = bcg;
+    console.log('after', note.style.backgroundColor)
+    storageService.store(NOTES_KEY, notesDB)
+
+    return Promise.resolve(note);
 }
 
 function removeNote(noteId) {
@@ -37,8 +50,6 @@ function getPinnedNotes() {
 }
 
 function getOtherNotes() {
-    console.log(notesDB, 'ppppp');
-
     return notesDB.map(note => {
         if (!note.isPinned) {
 

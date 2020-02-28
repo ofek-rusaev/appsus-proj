@@ -9,7 +9,7 @@ export default {
     name: 'note-list',
     template: `
     <section class="notes-container">
-        <div v-for="note in notes" :key="note.id" class="note" >
+        <div v-for="note in notes" :key="note.id" class="note" :style="{backgroundColor: note.style.backgroundColor}">
         <component 
                 :note="note"
                 :is="note.type" 
@@ -45,14 +45,9 @@ export default {
                 })
         },
         getColor(noteId) {
-            noteService.getById(noteId)
+            noteService.changeColor(noteId, this.backgroundColor)
                 .then(note => {
-                    console.log(this.backgroundColor)
-                    console.log(note.style.backgroundColor)
-                    note.style.backgroundColor = this.backgroundColorColor;
-                    console.log('after', note.style.backgroundColor)
-
-                    // return note;
+                    return this.note;
                 })
         }
     },
