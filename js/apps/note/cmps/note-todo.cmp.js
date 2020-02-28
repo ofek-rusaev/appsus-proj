@@ -5,7 +5,7 @@ export default {
         <div class="note-todo-container">
             <h2>{{info.label}}</h2>
             <div class="todo" v-for="todo in info.todos">
-                <p>{{todo.text}}</p>
+                <p>TODO: {{todo.txt}}</p>
                 <p>{{todo.doneAt}}</p>
             </div>
         </div>

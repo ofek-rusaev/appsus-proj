@@ -1,0 +1,13 @@
+.notes-container {
+    column-count: 3;
+    column-fill: auto;
+}
+
+.note {
+    /* width: ; */
+    /* height: 100px; */
+    background-color: rgb(250, 250, 124);
+    margin-bottom: 5px;
+    padding: 5px 20px;
+    break-inside: avoid;
+}

@@ -3,7 +3,7 @@ export default {
     template: `
     <section class="note-text">
         <div class="note-text-container">
-        <p>{{info.text}}</p>
+        <p>{{info.txt}}</p>
         </div>
         <!-- <div>
             <span class="fas fa-font visible"></span>
