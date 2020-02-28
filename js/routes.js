@@ -21,7 +21,6 @@ const routes = [{
         ]
     },
     { path: '/note', component: noteApp },
-    { path: '/survey', component: surveyPage },
 
 ];
 export default routes;
