@@ -25,9 +25,9 @@ export default {
         setFilter(filterBy) {
             this.filterBy = filterBy;
         },
-        emitSelected(email) {
-            this.$emit('selected', email)
-        }
+        // emitSelected(email) {
+        //     this.$emit('selected', email)
+        // }
     },
     components: {
         emailPreview,
@@ -35,18 +35,23 @@ export default {
         emailFilter
     },
     created() {
-        if (this.$route.path.includes('/starred')) {
-            emailService.filterStarred()
-                .then(emails => {
-                    console.log
-                    this.emails = emails;
-                })
-        };
         if (this.$route.path.includes('/inbox')) {
             emailService.query()
                 .then(emails => {
-                    console.log
                     this.emails = emails;
+                })
+        };
+        if (this.$route.path.includes('/starred')) {
+            emailService.filterStarred()
+                .then(emails => {
+                    this.emails = emails;
+                })
+        };
+
+        if (this.$route.path.includes('/drafts')) {
+            emailService.filterDrafts()
+                .then(drafts => {
+                    this.emails = drafts;
                 })
         }
     }

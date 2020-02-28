@@ -2,7 +2,7 @@ export default {
     template: `
     <section class="email-filter">
         <input type="search" 
-            placeholder="Start typing email title.." 
+            placeholder="Search your email here..." 
             v-model="filterBy.from" 
             @input="emitFilter"
         />

@@ -16,7 +16,9 @@ export const emailService = {
     saveEmail,
     addEmail,
     updateEmail,
-    filterStarred
+    filterStarred,
+    draftEmail,
+    filterDrafts
 }
 
 function getNextPrevEmailIds(emailId) {
@@ -47,8 +49,15 @@ function saveEmail(email) {
 }
 
 function addEmail(email) {
-    console.log('add')
     email.id = utilService.makeId()
+    emailsDB.unshift(email);
+    storageService.store(EMAILS_KEY, emailsDB)
+    return Promise.resolve(emailsDB)
+}
+
+function draftEmail(email) {
+    email.id = utilService.makeId()
+    email.isDraft = true;
     emailsDB.unshift(email);
     storageService.store(EMAILS_KEY, emailsDB)
     return Promise.resolve(emailsDB)
@@ -65,13 +74,18 @@ function addToStarred(emailId) {
     const email = getById(emailId);
     const idx = emailsDB.findIndex(email => email.id === emailId)
     emailsDB[idx].isStar = true;
-    console.log('keren', emailsDB[idx])
     storageService.store(EMAILS_KEY, emailsDB)
 }
 
 function filterStarred() {
     const starred = emailsDB.filter(email => email.isStar)
+    console.log(starred)
     return Promise.resolve(starred);
+}
+
+function filterDrafts() {
+    const draftted = emailsDB.filter(email => email.isDraft)
+    return Promise.resolve(draftted);
 }
 
 
@@ -86,7 +100,9 @@ function query() {
 
     }
     emailsDB = emails;
-    return Promise.resolve(emailsDB);
+    console.log(emailsDB)
+    const notDrafts = emailsDB.filter(email => !email.isDraft)
+    return Promise.resolve(notDrafts);
 }
 
 function getById(emailId) {
@@ -110,6 +126,9 @@ function getEmptyEmail() {
         subject: '',
         body: '',
         isRead: false,
+        isDraft: false,
+        body: '',
+        isSent: true,
         sentAt: new Date()
     }
 }
@@ -123,6 +142,8 @@ function createEmails() {
             isStar: false,
             subject: 'Hello Mate',
             isRead: false,
+            isDraft: false,
+            isSent: true,
             body: utilService.makeLorem(300),
             sentAt: new Date()
         },
@@ -134,6 +155,8 @@ function createEmails() {
             isStar: false,
             subject: 'Dont you worry child',
             isRead: false,
+            isDraft: false,
+            isSent: true,
             body: utilService.makeLorem(200),
             sentAt: new Date()
         }

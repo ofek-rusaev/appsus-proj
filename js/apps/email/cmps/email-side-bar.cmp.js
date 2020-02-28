@@ -9,7 +9,7 @@ export default {
     <router-link to="/email/inbox"><div>Inbox</div></router-link>
     <router-link to="/email/starred"><div>Starred</div></router-link>
     <router-link to="/email/inbox"><div>Sent Mail</div></router-link>
-    <router-link to="/email/inbox"><div>Drafts</div></router-link>
+    <router-link to="/email/drafts"><div>Drafts</div></router-link>
     </section>`,
     components: {
         emailList,
