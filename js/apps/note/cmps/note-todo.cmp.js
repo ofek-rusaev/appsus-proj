@@ -1,3 +1,5 @@
+import {noteService} from '../services/note.service.js';
+
 export default {
     name:'noteTodo',
     template: `
@@ -5,8 +7,9 @@ export default {
         <div class="note-todo-container">
             <h2>{{info.label}}</h2>
             <div class="todo" v-for="todo in info.todos">
-                <p>TODO: {{todo.txt}}</p>
-                <p>{{todo.doneAt}}</p>
+
+                <p :class="{done:todo.doneAt, undone:!todo.doneAt}" @click="todoToggle(todo.id)">TODO: {{todo.txt}}</p>
+                <!-- <p>{{todo.doneAt}}</p> -->
             </div>
         </div>
         <!-- <div>
@@ -15,4 +18,16 @@ export default {
     </section>
     `,
     props: ['info'],
+    data() {
+        return {
+            noteID: this.info
+        }
+    },
+    methods: {
+        todoToggle(todoId) {
+            console.log(this.info)
+            noteService.query();
+            noteService.toggleDoneAt(todoId, this.noteId);
+        }
+    }
 }
