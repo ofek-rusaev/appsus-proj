@@ -10,8 +10,10 @@ export default {
         <div class="flex">Bcc:<input type="text" v-model="email.bcc"></div>
         <div class="flex">Subject:<input type="text" v-model="email.subject"></div>
         <div class="flex"><textarea name="message" rows="10" cols="30" v-model="email.body"></textarea></div>
-        <div class="email-bottom flex">
-           <button @click="saveEmail">Send</button><span>🗑️</span>
+        <div class="email-bottom">
+         <div class="email-bottom-right"><button @click="sendEmail">Send</button>
+         <button @click="saveToDrafts" title="Save to drafts"><img src="img/draft.png"/></button></div>
+         <div class="email-bottom-left"><button><img src="img/trash.png"/></button></div>
         </div>
     </section>`,
 
@@ -21,14 +23,22 @@ export default {
         }
     },
     methods: {
-        saveEmail() {
-            const email = {...this.email };
+        sendEmail() {
             emailService.addEmail(this.email)
                 .then(email => {
                     this.email = emailService.getEmptyEmail()
                     return this.email;
                 })
             this.$router.push('/email/inbox')
+        },
+        saveToDrafts() {
+            console.log('hi')
+            emailService.draftEmail(this.email)
+                .then(email => {
+                    this.email = emailService.getEmptyEmail()
+                    return this.email;
+                })
+            this.$router.push('/email/drafts')
         }
     },
     created() {

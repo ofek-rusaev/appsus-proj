@@ -8,15 +8,15 @@ export const emailService = {
     getNextPrevEmailIds,
     query,
     getEmptyEmail,
-    sendEmail,
     getById,
     createEmails,
     deleteEmail,
     addToStarred,
-    saveEmail,
     addEmail,
     updateEmail,
-    filterStarred
+    filterStarred,
+    draftEmail,
+    filterDrafts
 }
 
 function getNextPrevEmailIds(emailId) {
@@ -41,14 +41,16 @@ function deleteEmail(emailId) {
     storageService.store(EMAILS_KEY, emailsDB)
 }
 
-function saveEmail(email) {
-    if (email.id) return updateEmail(email)
-    else return addEmail(email);
+function addEmail(email) {
+    email.id = utilService.makeId()
+    emailsDB.unshift(email);
+    storageService.store(EMAILS_KEY, emailsDB)
+    return Promise.resolve(emailsDB)
 }
 
-function addEmail(email) {
-    console.log('add')
+function draftEmail(email) {
     email.id = utilService.makeId()
+    email.isDraft = true;
     emailsDB.unshift(email);
     storageService.store(EMAILS_KEY, emailsDB)
     return Promise.resolve(emailsDB)
@@ -65,15 +67,19 @@ function addToStarred(emailId) {
     const email = getById(emailId);
     const idx = emailsDB.findIndex(email => email.id === emailId)
     emailsDB[idx].isStar = true;
-    console.log('keren', emailsDB[idx])
     storageService.store(EMAILS_KEY, emailsDB)
 }
 
 function filterStarred() {
     const starred = emailsDB.filter(email => email.isStar)
+    console.log(starred)
     return Promise.resolve(starred);
 }
 
+function filterDrafts() {
+    const draftted = emailsDB.filter(email => email.isDraft)
+    return Promise.resolve(draftted);
+}
 
 function query() {
     var emails = storageService.load(EMAILS_KEY);
@@ -86,7 +92,8 @@ function query() {
 
     }
     emailsDB = emails;
-    return Promise.resolve(emailsDB);
+    const notDrafts = emailsDB.filter(email => !email.isDraft)
+    return Promise.resolve(notDrafts);
 }
 
 function getById(emailId) {
@@ -94,11 +101,6 @@ function getById(emailId) {
     return Promise.resolve(email);
 }
 
-function sendEmail(email) {
-    emailsDB.unshift(email);
-    storageService.store(EMAILS_KEY, emailsDB)
-    return Promise.resolve(emailsDB);
-}
 
 function getEmptyEmail() {
     return {
@@ -110,6 +112,9 @@ function getEmptyEmail() {
         subject: '',
         body: '',
         isRead: false,
+        isDraft: false,
+        body: '',
+        isSent: true,
         sentAt: new Date()
     }
 }
@@ -117,23 +122,40 @@ function getEmptyEmail() {
 function createEmails() {
     var emails = [{
             id: utilService.makeId(),
-            from: 'Dudu',
+            from: 'Dudu Bunker',
             cc: '',
             bcc: '',
             isStar: false,
             subject: 'Hello Mate',
             isRead: false,
+            isDraft: false,
+            isSent: true,
             body: utilService.makeLorem(300),
             sentAt: new Date()
         },
         {
             id: utilService.makeId(),
-            from: 'God',
+            from: 'Audrey Hephborn',
+            cc: '',
+            bcc: '',
+            isStar: false,
+            subject: 'Paris is always a good idea',
+            isRead: false,
+            isDraft: false,
+            isSent: true,
+            body: utilService.makeLorem(300),
+            sentAt: new Date()
+        },
+        {
+            id: utilService.makeId(),
+            from: 'God from heaven',
             cc: '',
             bcc: '',
             isStar: false,
             subject: 'Dont you worry child',
             isRead: false,
+            isDraft: false,
+            isSent: true,
             body: utilService.makeLorem(200),
             sentAt: new Date()
         }

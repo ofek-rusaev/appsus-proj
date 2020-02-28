@@ -2,20 +2,32 @@ export default {
     template: `
     <section class="email-filter">
         <input type="search" 
-            placeholder="Start typing email title.." 
-            v-model="filterBy.from" 
-            @input="emitFilter"
+            placeholder="Search your email here..." 
+            v-model="filterByTxt " 
+            @input="emitFilterText"
         />
+        <select v-model="filterByStatus">
+            <option>All</option>
+            <option>Read</option>
+            <option>Unread</option>
+            @change="emitFilterStatus"
+    </select>
     </section>
     `,
     data() {
         return {
-            filterBy: { from: '' }
+            filterByTxt: '',
+            filterByStatus: ''
         }
     },
     methods: {
-        emitFilter() {
-            this.$emit('set-filter', {...this.filterBy })
+        emitFilterText() {
+            this.$emit('filterTxt', {...this.filterByTxt })
+        },
+        emitFilterStatus() {
+            this.$emit('filterStatus', {...this.filterByStatus })
         }
     }
 }
+
+// || filterBy.subject || filterBy.body
