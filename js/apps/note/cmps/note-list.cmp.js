@@ -10,7 +10,7 @@ export default {
     name: 'note-list',
     template: `
     <section class="notes-container">
-        <div v-for="note in notes" :key="note.id">
+        <div v-for="note in notes" :key="note.id" class="note">
         <component 
             :is="note.type" 
             :info="note.info">

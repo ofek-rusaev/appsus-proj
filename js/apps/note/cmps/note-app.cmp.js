@@ -9,16 +9,14 @@ export default {
     template: `
     <section class="note-app">
         <!-- <note-creation></note-creation> -->
+        <hr />
         <h1>Your Notes</h1>
         <note-list :notes="notes"></note-list>
-            <hr />
-            <!-- <pre>{{results}}</pre> -->
     </section>
     `,
     data() {
         return {
-            notes: null,
-            // cmps: noteCmps
+            notes: [],
         }
     },
     // computed: {
@@ -37,13 +35,6 @@ export default {
     //         return this.notes;
     //     }
     // },
-    // methods: {
-    //     methods: {
-    //         setAns(idx, ans) {
-    //             this.results.splice(idx, 1, ans)
-    //             // this.results[idx] = ans;
-    //     }
-    // },
     created() {
         noteService.query()
             .then(notes => {
@@ -52,9 +43,6 @@ export default {
             });
     },
     components: {
-        // noteInputText,
-        // noteInputImg,
-        // noteInputTodo,
         noteList,
         noteService
     }
