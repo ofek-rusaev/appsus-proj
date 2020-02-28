@@ -1,7 +1,8 @@
-import {noteService} from '../services/note.service.js';
+import { noteService } from '../services/note.service.js';
 import noteInputText from './note-input-text.cmp.js';
 import noteInputImg from './note-input-img.cmp.js';
 import noteInputTodo from './note-input-todos.cmp.js';
+import noteList from './note-list.cmp.js';
 
 export default {
     template: `
@@ -27,7 +28,7 @@ export default {
     //     //     console.log('im pinned notes: ', this.notes);
     //     //     this.notes = noteService.getPinnedNotes()
     //     // },
-        
+
     //     // otherNotesToShow(){
     //     //     console.log('im other notes: ', this.notes);
     //     //     this.notes = noteService.getOtherNotes();
@@ -42,20 +43,22 @@ export default {
         methods: {
             setAns(idx, ans) {
                 this.results.splice(idx, 1, ans)
-                // this.results[idx] = ans;
+                    // this.results[idx] = ans;
+            }
+        },
+        created() {
+            noteService.query()
+                .then(notes => {
+                    console.log('notes created: ', notes);
+
+                    this.notes = notes
+                });
+        },
+        components: {
+            noteInputText,
+            noteInputImg,
+            noteInputTodo,
+            noteList
         }
-    },
-    created() {
-        noteService.query()
-            .then(notes => {
-                console.log('notes created: ', notes);
-                
-                this.notes = notes
-            });
-    },
-    components: {
-        noteInputText,
-        noteInputImg,
-        noteInputTodo
     }
-}}
+}

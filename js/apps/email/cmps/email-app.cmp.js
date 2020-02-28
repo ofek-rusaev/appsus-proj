@@ -25,7 +25,7 @@ export default {
     },
     components: {
         emailList,
-        emailSideBar,
+        emailSideBar
 
     }
 }

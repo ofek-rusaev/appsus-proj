@@ -6,6 +6,8 @@ import emailDetails from './apps/email/cmps/email-details.cmp.js'
 import emailCompose from './apps/email/cmps/email-compose.cmp.js'
 import emailList from './apps/email/cmps/email-list.cmp.js'
 // import emailPreview from './apps/email/cmps/email-preview.cmp.js'
+import surveyPage from './apps/note/cmps/note-test.cmp.js'
+
 
 
 const routes = [{
@@ -21,5 +23,7 @@ const routes = [{
         ]
     },
     { path: '/note', component: noteApp },
+    { path: '/survey', component: surveyPage },
+
 ];
 export default routes;
