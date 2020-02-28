@@ -100,7 +100,6 @@ function query() {
 
     }
     emailsDB = emails;
-    console.log(emailsDB)
     const notDrafts = emailsDB.filter(email => !email.isDraft)
     return Promise.resolve(notDrafts);
 }

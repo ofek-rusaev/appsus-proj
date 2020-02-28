@@ -2,6 +2,7 @@ import { emailService } from '../services/email.service.js'
 import emailList from './email-list.cmp.js'
 import emailSideBar from './email-side-bar.cmp.js'
 
+
 export default {
     template: `
     <section class="all-container" :key="this.$route.path">
@@ -13,18 +14,7 @@ export default {
     data() {
         return {
             emails: [],
-            chosenEmail: null,
-            filterBy: { from: '' }
-
-        }
-    },
-    computed: {
-        emailsToShow() {
-            if (!this.filterBy.from) return this.emails;
-            return this.emails.filter(email => {
-                var currEmail = email.from.toLowerCase();
-                return currEmail.includes(this.filterBy.from.toLowerCase())
-            })
+            // chosenEmail: null,
         }
     },
     created() {
@@ -35,7 +25,7 @@ export default {
     },
     components: {
         emailList,
-        emailSideBar
+        emailSideBar,
 
     }
 }

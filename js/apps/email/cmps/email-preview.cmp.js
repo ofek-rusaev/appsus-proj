@@ -19,7 +19,7 @@ export default {
         <td class="email-item">{{email.body}}</td>
         </div>
         <div class="email-date">
-        <td :class="{read: this.email.isRead, unread: !this.email.isRead}">{{formattedTime}}}</td>
+        <td :class="{read: this.email.isRead, unread: !this.email.isRead}">{{formattedTime}}</td>
         <div v-if="isClicked">
         <button @click="deleteEmail(email.id)"><img src="img/trash.png"/></button>
         <router-link :to="'inbox/'+email.id"><button><img src="img/extand.png"/></button></router-link>
