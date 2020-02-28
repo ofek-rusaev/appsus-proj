@@ -13,7 +13,8 @@ export const noteService = {
     changePinned,
     createNote,
     getPinnedNotes,
-    getOtherNotes
+    getOtherNotes,
+    toggleDoneAt
 }
 
 function removeNote(noteId) {
@@ -115,8 +116,8 @@ function createNotes(){
             isPinned: false,
             info: { label: 'How was it:',
                 todos: [
-                    { txt: 'Do that', doneAt: null }, 
-                       { txt: 'Do this', doneAt: 187111111 }
+                    {id: utilService.makeId(), txt: 'Do that', doneAt: null }, 
+                       {id: utilService.makeId(),txt: 'Do this', doneAt: 187111111 }
                 ]},
             style: { backgroundColor: '#00d' },
         },
@@ -139,4 +140,16 @@ function createNote(noteInfo) {
         style: noteInfo.style
     }
     return Promise.resolve(note);
+}
+
+function toggleDoneAt(todoId, noteId) {
+    console.log('note id:', noteId);
+    
+    const note = notesDB.find(note=> note.id === noteId)
+    const todo = note.find(todo=> todo.id === todoId)
+    todo.doneAt = (todo.doneAt)? null : Date.now() 
+    console.log();
+    
+    storageService.store(NOTES_KEY, notesDB);
+    return Promise.resolve(todo);
 }
