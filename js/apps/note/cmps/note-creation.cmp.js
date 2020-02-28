@@ -14,14 +14,29 @@ var inputText = {
     }
 }
 
-const surveyCmps = [
-    {
-        type:'inputText',
-        info: {
-            placeholder : "Your name"
-        }
-    }
-]
+// const noteCmps = [
+//     {
+//         name:'noteInputText',
+//         type:'text',
+//         info: {
+//             placeholder : "Add text"
+//         }
+//     },
+//     {
+//         name:'noteInputImg',
+//         type:'text',
+//         info: {
+//             placeholder : "Add image url"
+//         }
+//     },
+//     {
+//         name:'noteInputTotos',
+//         type:'text',
+//         info: {
+//             placeholder : "Separate by comma"
+//         }
+//     },
+// ]
 
 export default {
     template: `
@@ -47,7 +62,7 @@ export default {
     data() {
         return {
             results: [],
-            cmps: surveyCmps
+            cmps: noteCmps
         }
     },
     created() {

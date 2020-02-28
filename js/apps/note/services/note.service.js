@@ -106,12 +106,12 @@ function createNotes(){
         },
         {
             id: utilService.makeId(),
-            type: "noteTodos",
+            type: 'noteTodo',
             isPinned: false,
-            info: { label: "How was it:",
+            info: { label: 'How was it:',
                 todos: [
-                    { txt: "Do that", doneAt: null }, 
-                       { txt: "Do this", doneAt: 187111111 }
+                    { txt: 'Do that', doneAt: null }, 
+                       { txt: 'Do this', doneAt: 187111111 }
                 ]},
             style: { backgroundColor: '#00d' },
         }
