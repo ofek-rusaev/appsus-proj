@@ -2,37 +2,39 @@ var inputText = {
     template: `
         <input type="text" 
             :placeholder="info.placeholder" 
-            v-model="txt" 
-            @change="$emit('changed', txt)" />
+            v-model="type" 
+            @submit="$emit('changed', txt)"/>
     `,
     props: ['info'],
     data() {
         return {
             txt: ''
         }
+    },
+    methods: {
+
     }
 }
 
-const noteCmps = [
-    {
-        name:'noteInputText',
-        type:'text',
+const noteCmps = [{
+        name: 'noteInputText',
+        type: 'text',
         info: {
-            placeholder : "Add text"
+            placeholder: "Add text"
         }
     },
     {
-        name:'noteInputImg',
-        type:'text',
+        name: 'noteInputImg',
+        type: 'text',
         info: {
-            placeholder : "Add image url"
+            placeholder: "Add image url"
         }
     },
     {
-        name:'noteInputTotos',
-        type:'text',
+        name: 'noteInputTotos',
+        type: 'text',
         info: {
-            placeholder : "Separate by comma"
+            placeholder: "Separate by comma"
         }
     },
 ]

@@ -9,9 +9,7 @@ export default {
                 <p>{{todo.doneAt}}</p>
             </div>
         </div>
-        <!-- <div>
-            <span class="fas fa-font visible"></span>
-        </div> -->
+  
     </section>
     `,
     props: ['info'],
