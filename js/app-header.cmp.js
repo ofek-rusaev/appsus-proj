@@ -11,7 +11,6 @@ export default {
         <router-link to="/note">
         missKeep
         </router-link>
-        <button @click="goBack">GO BACK</button>
         </div>
     `,
     methods: {

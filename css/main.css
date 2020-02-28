@@ -7,7 +7,7 @@
 @import "./apps/email/email-main.css";
 @import "./apps/note/note-main.css";
 body {
-    background-color: white;
+    background-color: #e8e8e8;
     text-align: center;
     margin: 0 0 0 0;
 }
