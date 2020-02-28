@@ -1,14 +1,14 @@
 import {noteService} from '../services/note.service.js';
 // import noteInputText from './note-input-text.cmp.js';
 // import noteInputImg from './note-input-img.cmp.js';
-// import noteInputTodo from './note-input-todos.cmp.js';
+import noteCreation from './note-creation.cmp.js';
 import noteList from './note-list.cmp.js';
 
 export default {
     name: 'app-note',
     template: `
     <section class="note-app">
-        <!-- <note-creation></note-creation> -->
+        <note-creation></note-creation>
         <hr />
         <h1>Your Notes</h1>
         <note-list :notes="notes"></note-list>
@@ -44,6 +44,7 @@ export default {
     },
     components: {
         noteList,
+        noteCreation,
         noteService
     }
 }
