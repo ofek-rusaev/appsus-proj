@@ -1,14 +1,15 @@
 export default {
     template: `
-        <div class="app-header">
+    <div class="app-header">
+    <div class="logo">Appsus</div>
         <router-link to="/" exact>
         Home
         </router-link>
-        <router-link to="/email" exact>
-        Emails
+        <router-link to="/email/inbox" exact>
+        misterEmail
         </router-link>
         <router-link to="/note">
-        Notes
+        missKeep
         </router-link>
         <button @click="goBack">GO BACK</button>
         </div>

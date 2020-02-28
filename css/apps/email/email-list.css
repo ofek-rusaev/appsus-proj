@@ -3,6 +3,16 @@
     flex-direction: column;
 }
 
+.email-filter {
+    margin: 0 auto;
+    width: 60%;
+    text-align: center;
+    background-color: white;
+    padding: 10px;
+    border: 3px grey solid;
+    display: flex;
+}
+
 .td {
     width: 30px;
 }

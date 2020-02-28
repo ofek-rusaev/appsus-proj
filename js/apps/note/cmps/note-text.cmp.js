@@ -5,7 +5,7 @@ export default {
         <div class="note-text-container">
         <p>{{info.txt}}</p>
         </div>
-        <img src="img/text.png"/>
+        <img src="img/text.svg"/>
     </section>
       `,
     props: ['info'],

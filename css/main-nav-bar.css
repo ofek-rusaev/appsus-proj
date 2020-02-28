@@ -1,6 +1,7 @@
 .app-header {
     margin: 0;
-    background-color: lightgrey;
+    background-color: #822E81;
+    color: white;
     display: flex;
     justify-content: flex-end;
     top: 0;
@@ -10,4 +11,8 @@
     text-decoration: none;
     color: black;
     padding: 20px;
+}
+
+.logo {
+    margin: 0 auto;
 }

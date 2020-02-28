@@ -5,6 +5,28 @@
     margin-bottom: 5px;
 } */
 
+.note-add {
+    margin: 0 auto;
+    width: 60%;
+    text-align: center;
+    background-color: white;
+    padding: 10px;
+    border: 3px grey solid;
+    display: flex;
+}
+
+.main-input {
+    display: flex;
+    width: 80%;
+    justify-content: flex-start;
+    font-size: 20px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
 label {
     cursor: pointer;
 }

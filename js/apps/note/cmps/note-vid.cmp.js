@@ -6,7 +6,7 @@ export default {
             <iframe class="video" :src="'https://www.youtube.com/embed/'+info.txt">
             </iframe>    
         </div>
-        <img src="img/video.png"/>
+        <img src="img/video.svg"/>
 
     </section>
     `,

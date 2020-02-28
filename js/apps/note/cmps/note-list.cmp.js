@@ -15,18 +15,18 @@ export default {
                 :is="note.type" 
                 :info="note.info">
        </component>
-            <div>
+            <!-- <div> -->
             <button><img class="notes-container-image" src="img/pin.png"/></button>
             <button @click="removeNote(note.id)"><img class="notes-container-image" src="img/trash.png"/></button>
             <button><img class="notes-container-image" src="img/email.png"/></button>
             <button><img class="notes-container-image" src="img/edit.png"/></button>
-            <input type="color" id="color" v-model="backgroundColor" hidden @change="getColor(note.id)"/>
+            <input type="color" id="color" v-model="backgroundColor"  @change="getColor(note.id)"/>
             <label for="color"><img class="notes-container-image" src="img/color.png"/></label>
             </div>
 
 
             
-        </div>
+        <!-- </div> -->
     </section>
     `,
     // @mouseover="hover = true" @mouseleave="hover = false"
@@ -45,6 +45,7 @@ export default {
                 })
         },
         getColor(noteId) {
+            console.log(noteId)
             noteService.changeColor(noteId, this.backgroundColor)
                 .then(note => {
                     return this.note;

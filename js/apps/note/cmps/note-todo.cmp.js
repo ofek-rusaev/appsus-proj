@@ -10,7 +10,7 @@ export default {
                 <p :class="{done:todo.doneAt, undone:!todo.doneAt}" @click="todoToggle">TODO: {{todo.txt}}</p>
             </div>
         </div>
-        <img src="img/todo.png"/>
+        <img src="img/todo.svg"/>
 
     </section>
     `,

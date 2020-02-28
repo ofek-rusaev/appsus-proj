@@ -3,15 +3,17 @@ import { noteService } from '../services/note.service.js';
 export default {
     template: `
         <section class="note-add">
-            <input type="text" :placeholder="updatePlaceholder" v-model="userText" @keyup.enter="addNote"/>            
-                <input type="radio" id="text" name="text" v-model="type" value="noteText" class="radio">
-                <label for="text"><img src="img/text.png"/></label>
+            <input type="text" class="main-input" :placeholder="updatePlaceholder" v-model="userText" @keyup.enter="addNote"/>            
+            <div class="button-container">    
+             <input type="radio" id="text" name="text" v-model="type" value="noteText" class="radio">
+                <label for="text"><img src="img/text.svg"/></label>
                 <input type="radio" id="img" name="text" v-model="type" value="noteImg" class="radio">
-                <label for="img"><img src="img/image.png"/></label>
+                <label for="img"><img src="img/image.svg"/></label>
                 <input type="radio" id="todo" name="text" v-model="type" value="noteTodo" class="radio">
-                <label for="todo"><img src="img/todo.png"/></label>
+                <label for="todo"><img src="img/todo.svg"/></label>
                 <input type="radio" id="video" name="text" v-model="type" value="noteVid" class="radio">
-                <label for="video"><img src="img/video.png"/></label>
+                <label for="video"><img src="img/video.svg"/></label>
+                </div>
         </section>
     `,
     data() {
