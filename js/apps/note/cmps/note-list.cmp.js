@@ -10,25 +10,49 @@ export default {
     template: `
     <section class="notes-container">
         <div v-for="note in notes" :key="note.id" class="note" >
-            <component 
+        <component 
                 :note="note"
                 :is="note.type" 
                 :info="note.info">
-            </component>
-            <button>{{note.type}}</button>
-            <button @click="removeNote(note.id)">Delete</button>
-            <button>Send email</button>
-            <button>Edit</button>
-            <button>Change BGC</button>
+       </component>
+            <div>
+            <button><img class="notes-container-image" src="img/pin.png"/></button>
+            <button @click="removeNote(note.id)"><img class="notes-container-image" src="img/trash.png"/></button>
+            <button><img class="notes-container-image" src="img/email.png"/></button>
+            <button><img class="notes-container-image" src="img/edit.png"/></button>
+            <input type="color" id="color" v-model="backgroundColor" hidden @change="getColor(note.id)"/>
+            <label for="color"><img class="notes-container-image" src="img/color.png"/></label>
+            </div>
+
+
+            
         </div>
     </section>
     `,
+    // @mouseover="hover = true" @mouseleave="hover = false"
     props: ['notes'],
+    data() {
+        return {
+            hover: true,
+            backgroundColor: ''
+        }
+    },
     methods: {
         removeNote(noteId) {
             noteService.removeNote(noteId)
                 .then(() => {
                     console.log(`Note ${noteId} deleted successfully`);
+                })
+        },
+        getColor(noteId) {
+            noteService.getById(noteId)
+                .then(note => {
+                    console.log(this.backgroundColor)
+                    console.log(note.style.backgroundColor)
+                    note.style.backgroundColor = this.backgroundColorColor;
+                    console.log('after', note.style.backgroundColor)
+
+                    // return note;
                 })
         }
     },

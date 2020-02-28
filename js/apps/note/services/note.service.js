@@ -15,7 +15,7 @@ export const noteService = {
     createNote,
     getPinnedNotes,
     getOtherNotes,
-    toggleDoneAt
+    toggleDoneAt,
 }
 
 function removeNote(noteId) {
@@ -54,6 +54,7 @@ function changePinned(noteId) {
     notesDB[idx].isPinned = !notesDB[idx].isPinned;
     console.log('un/pin', notesDB[idx])
     storageService.store(NOTES_KEY, notesDB)
+    return note;
 }
 
 function query() {
