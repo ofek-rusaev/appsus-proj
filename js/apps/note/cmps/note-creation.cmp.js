@@ -40,30 +40,24 @@ const noteCmps = [
 export default {
     template: `
         <section class="note-add">
-            <h1>Add note</h1>
-                        <button>text</button>
-                        <button>img</button>
-                        <button>vid</button>
-                        <button>aud</button>
-                        <button>todo</button>
-            <hr />
-            <pre>{{results}}</pre>
+            <input type="text" />            
+                <input type="radio" id="text" name="text" v-model="type" value="other">
+                <label for="text">Text</label><br>
+                <input type="radio" id="img" name="text" v-model="type" value="other">
+                <label for="img">Image</label><br>
+                <input type="radio" id="todo" name="text" v-model="type" value="other">
+                <label for="todo">Todo</label>
+                <input type="radio" id="video" name="text" v-model="type" value="other">
+                <label for="video">Video</label>
         </section>
     `,
     data() {
         return {
-            results: [],
-            cmps: noteCmps
+            type: ''
         }
     },
     created() {
-        this.results = new Array(this.cmps.length)
-    },
-    methods: {
-        setAns(idx, ans) {
-            this.results.splice(idx, 1, ans)
-            // this.results[idx] = ans;
-        }
+        // this.results = new Array(this.cmps.length)
     },
     components: {
         inputText
