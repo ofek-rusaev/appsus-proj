@@ -13,6 +13,11 @@
 }
 
 .note-img img{
+    /* height: 150px; */
+    width: 250px;
+}
+
+.note-vid iframe {
     height: 150px;
-    width: 150px;
+    width: 250px;
 }

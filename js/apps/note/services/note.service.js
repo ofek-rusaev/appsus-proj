@@ -119,6 +119,13 @@ function createNotes(){
                        { txt: 'Do this', doneAt: 187111111 }
                 ]},
             style: { backgroundColor: '#00d' },
+        },
+        {
+            id: utilService.makeId(),
+            type: 'noteVid',
+            isPinned: false,
+            info: { txt: ''},
+            style: { backgroundColor: '#00d' },
         }
     ]
     return Promise.resolve(notes)
