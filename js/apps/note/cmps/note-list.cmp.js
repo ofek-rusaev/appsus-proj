@@ -5,13 +5,17 @@ import noteTodo from './note-todo.cmp.js';
 import noteVid from './note-vid.cmp.js';
 import actionBtns from './action-btns.cmp.js';
 import {eventBus} from '../../../event-bus.service.js'
+import noteFilter from './note-filter.cmp.js'
+
 
 
 export default {
     name: 'note-list',
     template: `
+    <section>
+    <note-filter @filterTxt="setFilterTxt"></note-filter>
     <section class="notes-container">
-        <div v-for="note in notes" :key="note.id" class="note" @mouseover="hover = true" @mouseleave="hover = false" :style="{backgroundColor: note.style.backgroundColor}">
+        <div v-for="note in notesToShow" :key="note.id" class="note" @mouseover="hover = true" @mouseleave="hover = false" :style="{backgroundColor: note.style.backgroundColor}">
         <div v-if="noteEdit">
         <input type="text" v-model="note.info.txt" @keyup.enter="updateNote(note.id, note.info.txt)"/>
         </div>
@@ -38,7 +42,8 @@ export default {
         return {
             hover: false,
             backgroundColor: '',
-            noteEdit: false
+            noteEdit: false,
+            filterBy: ''
         }
     },
     watch: {
@@ -48,7 +53,18 @@ export default {
                      console.log('NOTES CHANGED! To:', newVal);
                     //  this.emitFilter();
             },
+    },
+    computed: {
+        removeTask(noteId) {
+            this.removeNote(noteId)
         },
+        notesToShow() {
+            if (!this.filterBy) return this.notes;
+            return this.notes.filter(note => {
+                const txt = Object.values(this.filterBy).join('');
+                return note.info.txt.includes(txt)
+            })
+        }
     },
     methods: {
         removeNote(noteId) {
@@ -61,7 +77,9 @@ export default {
                     eventBus.$emit('show-msg',msg)
                 })
         },
-
+        setFilterTxt(filterBy) {
+            this.filterBy = filterBy;
+        },
         pinTheNote(noteId) {
             noteService.changePinned(noteId)
                 .then(pin => {
@@ -90,6 +108,7 @@ export default {
         noteTodo,
         noteVid,
         actionBtns,
-        noteService
+        noteService,
+        noteFilter
     },
-}
+}}
