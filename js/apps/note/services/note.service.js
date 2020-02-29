@@ -17,7 +17,8 @@ export const noteService = {
     getUnpinnedNotes,
     toggleDoneAt,
     changeColor,
-    queryUnpin
+    queryUnpin,
+    query
 }
 
 function changeColor(noteId, bcg) {
@@ -57,6 +58,11 @@ function changePinned(noteId) {
     note.isPinned = !note.isPinned;
     storageService.store(NOTES_KEY, notesDB)
     return Promise.resolve(note);
+}
+
+function query() {
+    queryPin();
+    queryUnpin();
 }
 
 function queryPin() {
