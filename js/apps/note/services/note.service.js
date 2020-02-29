@@ -121,6 +121,10 @@ function getById(noteId) {
     return Promise.resolve(note);
 }
 
+function saveTodoNote() {
+
+}
+
 function saveNote(note) {
     notesDB.unshift(note);
     storageService.store(NOTES_KEY, notesDB)

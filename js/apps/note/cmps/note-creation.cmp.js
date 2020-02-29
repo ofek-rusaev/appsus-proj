@@ -42,6 +42,39 @@ export default {
 
     },
     methods: {
+        // addNote() {
+        //     noteService.query()
+        //     this.note = noteService.getEmptyNote();
+        //     this.note.type = this.type;
+        //     this.note.info.txt = this.userText;
+        //     noteService.saveNote(this.note)
+        //         .then(note => {
+        //             if (this.note.type === 'noteTodo') {
+        //                 const newTodos = this.note.info.txt.split(',')
+        //                 console.log('todos: ', todos);
+                        
+        //                 this.note = noteService.getEmptyTodoNote();
+        //                 console.log('GOT ENMTPY TODO TMPLATE: ',this.note)
+        //                 this.note.isPinned = false;
+        //                 this.note.info = {label: 'To Do', todos: [{txt: ''}]};
+        //                 for (let i = 0; i < newTodos.length; i++) {
+        //                     for (let j = i; j < todos.length;) {
+        //                         this.note.info.txt[j] = todos[i]
+        //                         j++;
+        //                     }
+        //                 }
+        //                 for (let i = 0; i < todos.length; i++) {
+        //                     for (let j = i; j < todos.length;) {
+        //                         this.note.info.txt[j] = todos[i]
+        //                         j++;
+        //                     }
+        //                 }
+        //             }
+        //             console.log(this.note);
+        //             return this.note;
+        //         })
+        //     return this.note;
+        // },
         addNote() {
             noteService.query()
                 // noteService.queryPin();
