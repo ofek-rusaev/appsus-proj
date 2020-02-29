@@ -1,4 +1,5 @@
 import { noteService } from '../services/note.service.js';
+import {eventBus} from '../../../event-bus.service.js'
 
 export default {
     template: `
@@ -43,6 +44,14 @@ export default {
     },
     methods: {
         addNote() {
+            if (!this.userText) {
+                const msg = {
+                    txt: `Not note added, please add text.`,
+                    type: 'danger',
+                }
+                eventBus.$emit('show-msg',msg)
+                return;
+            }
             noteService.query()
             this.note = noteService.getEmptyNote();
             this.note.type = this.type;
@@ -50,6 +59,11 @@ export default {
                 this.note = noteService.setTodoNote(this.userText)
                 noteService.saveNote(this.note)
                 .then(note => {
+                    const msg = {
+                        txt: `Note added successfully.`,
+                        type: 'success',
+                    }
+                    eventBus.$emit('show-msg',msg)
                     return this.note
                 })
             }
@@ -59,6 +73,11 @@ export default {
             this.note.info.txt = this.userText;
             noteService.saveNote(this.note)
             .then(note => {
+                const msg = {
+                    txt: `Note added successfully.`,
+                    type: 'success',
+                }
+                eventBus.$emit('show-msg',msg)
                 return this.note
             })}
         },

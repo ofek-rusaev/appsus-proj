@@ -1,5 +1,5 @@
 import { emailService } from "../services/email.service.js";
-
+import {eventBus} from '../../../event-bus.service.js'
 
 export default {
     name: 'email-preview',
@@ -56,6 +56,11 @@ export default {
         },
         deleteEmail(emailId) {
             emailService.deleteEmail(emailId);
+            const msg = {
+                txt: `Email deleted successfully.`,
+                type: 'success',
+            }
+            eventBus.$emit('show-msg',msg)
         },
         starEmail(emailId) {
             this.clickedStar = !this.clickedStar;

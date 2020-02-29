@@ -3,6 +3,8 @@ import noteText from './note-text.cmp.js';
 import noteImg from './note-img.cmp.js';
 import noteTodo from './note-todo.cmp.js';
 import noteVid from './note-vid.cmp.js';
+import actionBtns from './action-btns.cmp.js';
+import { eventBus } from '../../../event-bus.service.js'
 import noteFilter from './note-filter.cmp.js'
 
 
@@ -22,17 +24,18 @@ export default {
                 :is="note.type" 
                 :info="note.info">
        </component>
-       
-       <div >
-       <button @click="pinTheNote(note.id)"><img class="notes-container-image" src="img/pin.png"/></button>
-       <button @click="removeNote(note.id)"><img class="notes-container-image" src="img/trash.png"/></button>
-       <button><img class="notes-container-image" src="img/email.png"/></button>
-       <button @click="editNote(note.id)"><img class="notes-container-image" src="img/edit.png"/></button>
-       <input type="color" id="color" v-model="backgroundColor"  @change="getColor(note.id)"/>
-       <label for="color"><img class="notes-container-image" src="img/color.png"/></label>
+            <!-- <action-btns :note="note"></action-btns> -->
+            <!-- <div v-if="hover"> -->
+            <div>
+            <button @click="pinTheNote(note.id)"><img class="notes-container-image" src="img/pin.png"/></button>
+            <button @click="removeNote(note.id)"><img class="notes-container-image" src="img/trash.png"/></button>
+            <button @click="emailNote(note.id)"><img class="notes-container-image" src="img/email.png"/></button>
+            <button @click="editNote(note.id)"><img class="notes-container-image" src="img/edit.png"/></button>
+            <input type="color" id="color" v-model="backgroundColor"  @change="getColor(note.id)"/>
+            <label for="color"><img class="notes-container-image" src="img/color.png"/></label>
+            </div>
        </div>
-       </div>
-       </section>
+   
     </section>`,
     props: ['notes'],
     data() {
@@ -45,53 +48,65 @@ export default {
     },
     watch: {
         notes: {
+            deep: true,
             handler(newVal) {
                 console.log('NOTES CHANGED! To:', newVal);
                 //  this.emitFilter();
             },
-            deep: true
         },
-    },
-    computed: {
-        notesToShow() {
-            if (!this.filterBy) return this.notes;
-            return this.notes.filter(note => {
-                const txt = Object.values(this.filterBy).join('');
-                return note.info.txt.includes(txt)
-            })
-        }
-    },
-    methods: {
-        removeNote(noteId) {
-            noteService.removeNote(noteId)
-                .then(() => {
-                    console.log(`Note ${noteId} deleted successfully`);
+        computed: {
+            notesToShow() {
+                if (!this.filterBy) return this.notes;
+                return this.notes.filter(note => {
+                    const txt = Object.values(this.filterBy).join('');
+                    return note.info.txt.includes(txt)
                 })
+            }
         },
-        setFilterTxt(filterBy) {
-            this.filterBy = filterBy;
+        methods: {
+            removeNote(noteId) {
+                noteService.removeNote(noteId)
+                    .then(() => {
+                        const msg = {
+                            txt: `Note ${noteId} deleted successfully.`,
+                            type: 'success',
+                        }
+                        eventBus.$emit('show-msg', msg)
+                    })
+            },
+            setFilterTxt(filterBy) {
+                this.filterBy = filterBy;
+            },
+            pinTheNote(noteId) {
+                noteService.changePinned(noteId)
+                    .then(pin => {
+                        return this.note;
+                    })
+            },
+            editNote() {
+                this.noteEdit = !this.noteEdit
+            },
+            updateNote(noteId, txt) {
+                noteService.updateNote(noteId, txt)
+                    .then(note => {
+                        const msg = {
+                            txt: `Note ${noteId} updated successfully.`,
+                            type: 'success',
+                        }
+                        eventBus.$emit('show-msg', msg)
+                        return this.note
+                    })
+                noteService.query()
+                    .then(() => { return txt })
+            }
         },
-        pinTheNote(noteId) {
-            noteService.changePinned(noteId)
-                .then(pin => {
-                    return this.note;
-                })
+        components: {
+            noteText,
+            noteImg,
+            noteTodo,
+            noteVid,
+            actionBtns,
+            noteFilter
         },
-        editNote() {
-            this.noteEdit = !this.noteEdit
-        },
-        updateNote(noteId, txt) {
-            noteService.updateNote(noteId, txt)
-                .then(note => { return this.note })
-            noteService.query()
-                .then(() => { return txt })
-        }
-    },
-    components: {
-        noteText,
-        noteImg,
-        noteTodo,
-        noteVid,
-        noteFilter
-    },
+    }
 }
