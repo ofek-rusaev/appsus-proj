@@ -11,9 +11,7 @@ export default {
     <section class="notes-container">
         <div v-for="note in notes" :key="note.id" class="note" :style="{backgroundColor: note.style.backgroundColor}">
         <div v-if="noteEdit">
-        <section>
-        <input type="text" v-model="note.info.txt" @keyup.enter="updateNote(note.id, note.info.txt)"/>
-        </section>
+        <input type="text" v-model="note.info.txt" @click="showId(note.id)" @keyup.enter="updateNote(note.id, note.info.txt)"/>
         </div>
         <component 
                 :note="note"
@@ -37,12 +35,13 @@ export default {
         return {
             hover: true,
             backgroundColor: '',
-            noteEdit: false,
-            note: {},
-            noteInfoTxt: ''
+            noteEdit: false
         }
     },
     methods: {
+        showId(id) {
+            console.log(id);
+        },
         removeNote(noteId) {
             noteService.removeNote(noteId)
                 .then(() => {
@@ -66,13 +65,11 @@ export default {
         },
         updateNote(noteId, txt) {
             console.log('hi');
+            console.log(noteId, txt)
             noteService.updateNote(noteId, txt)
-                .then(
-                    note => {
-
-                        return this.noteInfoTxt;
-                    })
+                .then(note => { return this.note })
         }
+
     },
     components: {
         noteText,

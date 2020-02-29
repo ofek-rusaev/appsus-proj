@@ -22,11 +22,13 @@ export const noteService = {
     updateNote
 }
 
-function updateNote(noteId, newNote) {
-    // const note = notesDB.find(note => note.id === noteId);
+function updateNote(noteId, txt) {
+    console.log(noteId, txt)
+    const note = notesDB.find(note => note.id === noteId)
     const idx = notesDB.findIndex(note => note.id === noteId)
     if (idx === -1) return Promise.reject('DID NOT REMOVE CAR')
-    notesDB.splice(idx, 1, newNote);
+    note.info.txt = txt;
+    notesDB.splice(idx, 1, note);
     storageService.store(NOTES_KEY, notesDB)
     return Promise.resolve(note)
 
