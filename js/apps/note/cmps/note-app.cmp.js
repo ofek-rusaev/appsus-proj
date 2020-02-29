@@ -19,14 +19,14 @@ export default {
             notesUnpin: [],
         }
     },
-    methods: {
+    computed: {
         pinnedNotes() {
-            this.notes = noteService.query();
+            this.notesPin = noteService.queryPin();
             console.log(this.note);
             
         },
         unPinnedNotes() {
-            this.notes = noteService.query2();
+            this.notesUnpin = noteService.queryUnpin();
             console.log(this.note);
         },
     },
