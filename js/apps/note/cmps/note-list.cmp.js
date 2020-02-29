@@ -3,13 +3,17 @@ import noteText from './note-text.cmp.js';
 import noteImg from './note-img.cmp.js';
 import noteTodo from './note-todo.cmp.js';
 import noteVid from './note-vid.cmp.js';
+import noteFilter from './note-filter.cmp.js'
+
 
 
 export default {
     name: 'note-list',
     template: `
+    <section>
+    <note-filter @filterTxt="setFilterTxt"></note-filter>
     <section class="notes-container">
-        <div v-for="note in notes" :key="note.id" class="note" @mouseover="hover = true" @mouseleave="hover = false" :style="{backgroundColor: note.style.backgroundColor}">
+        <div v-for="note in notesToShow" :key="note.id" class="note" @mouseover="hover = true" @mouseleave="hover = false" :style="{backgroundColor: note.style.backgroundColor}">
         <div v-if="noteEdit">
         <input type="text" v-model="note.info.txt" @keyup.enter="updateNote(note.id, note.info.txt)"/>
         </div>
@@ -18,37 +22,52 @@ export default {
                 :is="note.type" 
                 :info="note.info">
        </component>
+       
+       <div v-if="hover">
+       <button @click="pinTheNote(note.id)"><img class="notes-container-image" src="img/pin.png"/></button>
+       <button @click="removeTask(note.id)"><img class="notes-container-image" src="img/trash.png"/></button>
+       <button><img class="notes-container-image" src="img/email.png"/></button>
+       <button @click="editNote(note.id)"><img class="notes-container-image" src="img/edit.png"/></button>
+       <input type="color" id="color" v-model="backgroundColor"  @change="getColor(note.id)"/>
+       <label for="color"><img class="notes-container-image" src="img/color.png"/></label>
        </div>
-            <div v-if="hover">
-            <button @click="pinTheNote(note.id)"><img class="notes-container-image" src="img/pin.png"/></button>
-            <button @click="removeTask(note.id)"><img class="notes-container-image" src="img/trash.png"/></button>
-            <button><img class="notes-container-image" src="img/email.png"/></button>
-            <button @click="editNote(note.id)"><img class="notes-container-image" src="img/edit.png"/></button>
-            <input type="color" id="color" v-model="backgroundColor"  @change="getColor(note.id)"/>
-            <label for="color"><img class="notes-container-image" src="img/color.png"/></label>
-            </div>
-   
+       </div>
+       </section>
     </section>`,
     props: ['notes'],
     data() {
         return {
             hover: false,
             backgroundColor: '',
-            noteEdit: false
+            noteEdit: false,
+            filterBy: ''
         }
     },
     watch: {
         notes: {
-                handler(newVal) {
-                     console.log('NOTES CHANGED! To:', newVal);
-                    //  this.emitFilter();
-                },
-                deep: true
-            } ,
-         },
+            handler(newVal) {
+                console.log('NOTES CHANGED! To:', newVal);
+                //  this.emitFilter();
+            },
+            deep: true
+        },
+    },
     computed: {
         removeTask(noteId) {
             this.removeNote(noteId)
+        },
+        notesToShow() {
+            if (!this.filterBy) return this.notes;
+            // this.emails.filter(email => {
+            //     const status = Object.values(this.filterType).join('')
+            //     console.log(status)
+            // })
+
+            return this.notes.filter(note => {
+                const txt = Object.values(this.filterBy).join('');
+                console.log('keren', note)
+                return note.info.txt.includes(txt)
+            })
         }
     },
     methods: {
@@ -58,7 +77,9 @@ export default {
                     console.log(`Note ${noteId} deleted successfully`);
                 })
         },
-
+        setFilterTxt(filterBy) {
+            this.filterBy = filterBy;
+        },
         pinTheNote(noteId) {
             noteService.changePinned(noteId)
                 .then(pin => {
@@ -80,6 +101,7 @@ export default {
         noteImg,
         noteTodo,
         noteVid,
-        noteService
+        noteService,
+        noteFilter
     },
 }
