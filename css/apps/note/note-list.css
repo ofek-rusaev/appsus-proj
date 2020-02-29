@@ -39,3 +39,15 @@
     text-decoration: none;
     cursor: pointer;
 }
+
+@media (max-width: 920px) {
+    .notes-container {
+        column-count: 2;
+    }
+}
+
+@media (max-width: 500px) {
+    .notes-container {
+        column-count: 1;
+    }
+}
