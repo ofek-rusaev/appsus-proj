@@ -130,6 +130,10 @@ function getById(noteId) {
     return Promise.resolve(note);
 }
 
+function saveTodoNote() {
+
+}
+
 function saveNote(note) {
     note.id = utilService.makeId();
     notesDB.unshift(note);

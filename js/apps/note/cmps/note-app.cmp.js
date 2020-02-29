@@ -20,6 +20,22 @@ export default {
             notesUnPinned: []
         }
     },
+    // watch: {
+    //     notesPinned: {
+    //         handler(newVal) {
+    //              console.log('NOTES CHANGED! To:', newVal);
+    //             //  this.emitFilter();
+    //         },
+    //         deep: true
+    //     } ,
+    //     notesUnPinned: {
+    //         handler(newVal) {
+    //              console.log('NOTES CHANGED! To:', newVal);
+    //             //  this.emitFilter();
+    //         },
+    //         deep: true
+    //     } ,
+    //  },
     created() {
         noteService.queryPin()
             .then(notes => {

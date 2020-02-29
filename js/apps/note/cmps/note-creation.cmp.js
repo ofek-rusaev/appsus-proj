@@ -42,37 +42,84 @@ export default {
 
     },
     methods: {
+        // addNote() {
+        //     noteService.query()
+        //     this.note = noteService.getEmptyNote();
+        //     this.note.type = this.type;
+        //     this.note.info.txt = this.userText;
+        //     noteService.saveNote(this.note)
+        //         .then(note => {
+        //             if (this.note.type === 'noteTodo') {
+        //                 const newTodos = this.note.info.txt.split(',')
+        //                 console.log('todos: ', todos);
+                        
+        //                 this.note = noteService.getEmptyTodoNote();
+        //                 console.log('GOT ENMTPY TODO TMPLATE: ',this.note)
+        //                 this.note.isPinned = false;
+        //                 this.note.info = {label: 'To Do', todos: [{txt: ''}]};
+        //                 for (let i = 0; i < newTodos.length; i++) {
+        //                     for (let j = i; j < todos.length;) {
+        //                         this.note.info.txt[j] = todos[i]
+        //                         j++;
+        //                     }
+        //                 }
+        //                 for (let i = 0; i < todos.length; i++) {
+        //                     for (let j = i; j < todos.length;) {
+        //                         this.note.info.txt[j] = todos[i]
+        //                         j++;
+        //                     }
+        //                 }
+        //             }
+        //             console.log(this.note);
+        //             return this.note;
+        //         })
+        //     return this.note;
+        // },
         addNote() {
-            noteService.query()
-            // noteService.queryPin();
-            // noteService.queryUnpin();
+            noteService.query();
+            if (this.note.type === 'noteTodo') {
+                noteService.saveTodoNote(userText);
+            }
             this.note = noteService.getEmptyNote();
             this.note.type = this.type;
             this.note.info.txt = this.userText;
             noteService.saveNote(this.note)
                 .then(note => {
                     if (this.note.type === 'noteTodo') {
-                        const todos = this.note.info.txt.split(',')
+                        const newTodos = this.note.info.txt.split(',')
+                        console.log('todos: ', todos);
+                        
                         this.note = noteService.getEmptyTodoNote();
+                        console.log('GOT ENMTPY TODO TMPLATE: ',this.note)
                         this.note.isPinned = false;
-                        console.log(todos)
-                        this.note.info.label = 'To Do';
-                        for (let i = 0; i < todos.length; i++) {
-                            for (let j = i; j < todos.length;) {
-                                this.note.info.txt[j] = todos[i]
-                                j++;
-                            }
+                        this.note.info = {label: 'To Do', todos: [{txt: ''}]};
+                        for (let i = 0; i < newTodos.length; i++) {
+                            this.note.info.todos[i].txt =  newTodos[i];
+                            console.log(this.note.info.todos[i].txt);
+                            console.log(this.note);
+                            
+                            // for (let j = i; j < todos.length;) {
+                            //     this.note.info.txt[j] = todos[i]
+                            //     j++;
+                            // }
                         }
+                        // for (let i = 0; i < todos.length; i++) {
+                        //     for (let j = i; j < todos.length;) {
+                        //         this.note.info.txt[j] = todos[i]
+                        //         j++;
+                        //     }
+                        // }
                     }
+                    console.log(this.note);
                     return this.note;
                 })
             return this.note;
 
         },
-        saveNote() {
-            noteService.saveNote(this.note)
-                .then((savedNote) => {})
-        },
+        // saveNote() { // TODO: DELETE - NOT IN USE
+        //     noteService.saveNote(this.note)
+        //         .then((savedNote) => {})
+        // },
 
     }
 }
