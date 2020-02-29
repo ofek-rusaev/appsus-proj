@@ -57,9 +57,23 @@ function changePinned(noteId) {
     return Promise.resolve(note);
 }
 
+// function query() {
+//     queryPin();
+//     queryUnpin();
+// }
+
 function query() {
-    queryPin();
-    queryUnpin();
+    var notes = storageService.load(NOTES_KEY);
+    if (!notes) {
+        return createEmails().then(newNotes => {
+            notes = newNotes;
+            storageService.store(NOTES_KEY, notes)
+            return notes;
+        })
+
+    }
+    notesDB = notes;
+    return Promise.resolve(notesDB);
 }
 
 function queryPin() {
@@ -67,10 +81,12 @@ function queryPin() {
     if (!notes) {
         return createNotes().then(newNotes => {
             notes = newNotes;
+            console.log('queryPin: ', notes);
+            
             storageService.store(NOTES_KEY, notes)
             return notes;
         })
-
+        
     }
     notesDB = notes;
     const pinned = getPinnedNotes();
@@ -83,6 +99,7 @@ function queryUnpin() {
     if (!notes) {
         return createNotes().then(newNotes => {
             notes = newNotes;
+            console.log('queryUnpin: ', notes);
             storageService.store(NOTES_KEY, notes)
             return notes;
         })

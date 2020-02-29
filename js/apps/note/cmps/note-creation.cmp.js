@@ -44,6 +44,8 @@ export default {
     methods: {
         addNote() {
             noteService.query()
+            // noteService.queryPin();
+            // noteService.queryUnpin();
             this.note = noteService.getEmptyNote();
             this.note.type = this.type;
             this.note.info.txt = this.userText;
