@@ -35,7 +35,7 @@ export default {
             <label for="color"><img class="notes-container-image" src="img/color.png"/></label>
             </div>
        </div>
-   
+   </section>
     </section>`,
     props: ['notes'],
     data() {
@@ -48,65 +48,65 @@ export default {
     },
     watch: {
         notes: {
-            deep: true,
             handler(newVal) {
                 console.log('NOTES CHANGED! To:', newVal);
                 //  this.emitFilter();
             },
+            deep: true,
         },
-        computed: {
-            notesToShow() {
-                if (!this.filterBy) return this.notes;
-                return this.notes.filter(note => {
-                    const txt = Object.values(this.filterBy).join('');
-                    return note.info.txt.includes(txt)
+    },
+    computed: {
+        notesToShow() {
+            if (!this.filterBy) return this.notes;
+            return this.notes.filter(note => {
+                const txt = Object.values(this.filterBy).join('');
+                return note.info.txt.includes(txt)
+            })
+        }
+    },
+    methods: {
+        removeNote(noteId) {
+            noteService.removeNote(noteId)
+                .then(() => {
+                    const msg = {
+                        txt: `Note ${noteId} deleted successfully.`,
+                        type: 'success',
+                    }
+                    eventBus.$emit('show-msg', msg)
                 })
-            }
         },
-        methods: {
-            removeNote(noteId) {
-                noteService.removeNote(noteId)
-                    .then(() => {
-                        const msg = {
-                            txt: `Note ${noteId} deleted successfully.`,
-                            type: 'success',
-                        }
-                        eventBus.$emit('show-msg', msg)
-                    })
-            },
-            setFilterTxt(filterBy) {
-                this.filterBy = filterBy;
-            },
-            pinTheNote(noteId) {
-                noteService.changePinned(noteId)
-                    .then(pin => {
-                        return this.note;
-                    })
-            },
-            editNote() {
-                this.noteEdit = !this.noteEdit
-            },
-            updateNote(noteId, txt) {
-                noteService.updateNote(noteId, txt)
-                    .then(note => {
-                        const msg = {
-                            txt: `Note ${noteId} updated successfully.`,
-                            type: 'success',
-                        }
-                        eventBus.$emit('show-msg', msg)
-                        return this.note
-                    })
-                noteService.query()
-                    .then(() => { return txt })
-            }
+        setFilterTxt(filterBy) {
+            this.filterBy = filterBy;
         },
-        components: {
-            noteText,
-            noteImg,
-            noteTodo,
-            noteVid,
-            actionBtns,
-            noteFilter
+        pinTheNote(noteId) {
+            noteService.changePinned(noteId)
+                .then(pin => {
+                    return this.note;
+                })
         },
-    }
+        editNote() {
+            this.noteEdit = !this.noteEdit
+        },
+        updateNote(noteId, txt) {
+            noteService.updateNote(noteId, txt)
+                .then(note => {
+                    const msg = {
+                        txt: `Note ${noteId} updated successfully.`,
+                        type: 'success',
+                    }
+                    eventBus.$emit('show-msg', msg)
+                    return this.note
+                })
+            noteService.query()
+                .then(() => { return txt })
+        }
+    },
+    components: {
+        noteText,
+        noteImg,
+        noteTodo,
+        noteVid,
+        actionBtns,
+        noteFilter
+    },
 }

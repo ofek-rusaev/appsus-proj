@@ -1,6 +1,6 @@
 .email-preview {
     display: flex;
-    width: 108%;
+    width: 100%;
     background-color: white;
     border-bottom: lightgray 1px solid;
     cursor: pointer;
@@ -39,8 +39,8 @@ a:-webkit-any-link {
 }
 
 .email-content {
-    width: 40vw;
-    padding: 30px 10px;
+    width: 100%;
+    padding: 25px 0 0 0;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -48,12 +48,12 @@ a:-webkit-any-link {
 
 .email-sender {
     width: 10vw;
-    padding: 20px 10px;
+    padding: 10px 0 10px 0;
 }
 
 .email-title {
-    width: 200px;
-    padding: 20px 10px;
+    width: 70%;
+    padding: 15px 0 0 7px;
 }
 
 .email-content-extended {
