@@ -9,16 +9,16 @@ export default {
     name: 'note-list',
     template: `
     <section class="notes-container">
-        <div v-for="note in notes" :key="note.id" class="note" :style="{backgroundColor: note.style.backgroundColor}">
+        <div v-for="note in notes" :key="note.id" class="note" @mouseover="hover = true" @mouseleave="hover = false" :style="{backgroundColor: note.style.backgroundColor}">
         <div v-if="noteEdit">
-        <input type="text" v-model="note.info.txt" @click="showId(note.id)" @keyup.enter="updateNote(note.id, note.info.txt)"/>
+        <input type="text" v-model="note.info.txt" @keyup.enter="updateNote(note.id, note.info.txt)"/>
         </div>
         <component 
                 :note="note"
                 :is="note.type" 
                 :info="note.info">
        </component>
-            <!-- <div> -->
+            <div v-if="hover">
             <button @click="pinTheNote(note.id)"><img class="notes-container-image" src="img/pin.png"/></button>
             <button @click="removeNote(note.id)"><img class="notes-container-image" src="img/trash.png"/></button>
             <button><img class="notes-container-image" src="img/email.png"/></button>
@@ -29,19 +29,16 @@ export default {
    
     </section>
     `,
-    // @mouseover="hover = true" @mouseleave="hover = false"
+    // 
     props: ['notes'],
     data() {
         return {
-            hover: true,
+            hover: false,
             backgroundColor: '',
             noteEdit: false
         }
     },
     methods: {
-        showId(id) {
-            console.log(id);
-        },
         removeNote(noteId) {
             noteService.removeNote(noteId)
                 .then(() => {
@@ -64,12 +61,11 @@ export default {
             this.noteEdit = !this.noteEdit
         },
         updateNote(noteId, txt) {
-            console.log('hi');
-            console.log(noteId, txt)
             noteService.updateNote(noteId, txt)
                 .then(note => { return this.note })
+            noteService.query()
+                .then(() => { return txt })
         }
-
     },
     components: {
         noteText,
