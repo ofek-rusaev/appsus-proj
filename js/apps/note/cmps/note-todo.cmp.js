@@ -17,7 +17,6 @@ export default {
     props: ['info', 'note'],
     methods: {
         todoToggle(idx) {
-            console.log(idx)
             noteService.query();
             noteService.toggleDoneAt(this.info.todos[idx].id, this.note.id);
         }

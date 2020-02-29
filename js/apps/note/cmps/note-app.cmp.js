@@ -9,7 +9,9 @@ export default {
         <note-creation></note-creation>
         <hr />
         <h1>Your Notes</h1>
+        <div>Pinned</div>
         <note-list :notes="notesPinned"></note-list>
+        <hr/>
         <note-list :notes="notesUnPinned"></note-list>
 
    </section>
@@ -39,13 +41,10 @@ export default {
     created() {
         noteService.queryPin()
             .then(notes => {
-                console.log('pin out', notes)
-
                 this.notesPinned = notes
             })
         noteService.queryUnpin()
             .then(notes => {
-                console.log('unpin out', notes)
                 this.notesUnPinned = notes
             })
     },

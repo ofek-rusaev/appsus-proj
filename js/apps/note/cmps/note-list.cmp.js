@@ -10,6 +10,11 @@ export default {
     template: `
     <section class="notes-container">
         <div v-for="note in notes" :key="note.id" class="note" :style="{backgroundColor: note.style.backgroundColor}">
+        <div v-if="noteEdit">
+        <section>
+        <input type="text" v-model="note.info.txt" @keyup.enter="updateNote(note.id, note.info.txt)"/>
+        </section>
+        </div>
         <component 
                 :note="note"
                 :is="note.type" 
@@ -19,14 +24,11 @@ export default {
             <button @click="pinTheNote(note.id)"><img class="notes-container-image" src="img/pin.png"/></button>
             <button @click="removeNote(note.id)"><img class="notes-container-image" src="img/trash.png"/></button>
             <button><img class="notes-container-image" src="img/email.png"/></button>
-            <button><img class="notes-container-image" src="img/edit.png"/></button>
+            <button @click="editNote(note.id)"><img class="notes-container-image" src="img/edit.png"/></button>
             <input type="color" id="color" v-model="backgroundColor"  @change="getColor(note.id)"/>
             <label for="color"><img class="notes-container-image" src="img/color.png"/></label>
             </div>
-
-
-            
-        <!-- </div> -->
+   
     </section>
     `,
     // @mouseover="hover = true" @mouseleave="hover = false"
@@ -34,7 +36,10 @@ export default {
     data() {
         return {
             hover: true,
-            backgroundColor: ''
+            backgroundColor: '',
+            noteEdit: false,
+            note: {},
+            noteInfoTxt: ''
         }
     },
     methods: {
@@ -51,13 +56,22 @@ export default {
                 })
         },
         pinTheNote(noteId) {
-            console.log('pin')
             noteService.changePinned(noteId)
                 .then(pin => {
-                    console.log(noteId)
                     return this.note;
                 })
+        },
+        editNote() {
+            this.noteEdit = !this.noteEdit
+        },
+        updateNote(noteId, txt) {
+            console.log('hi');
+            noteService.updateNote(noteId, txt)
+                .then(
+                    note => {
 
+                        return this.noteInfoTxt;
+                    })
         }
     },
     components: {

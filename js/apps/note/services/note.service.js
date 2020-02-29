@@ -19,14 +19,23 @@ export const noteService = {
     changeColor,
     queryUnpin,
     query,
-    newQuery
+    updateNote
+}
+
+function updateNote(noteId, newNote) {
+    // const note = notesDB.find(note => note.id === noteId);
+    const idx = notesDB.findIndex(note => note.id === noteId)
+    if (idx === -1) return Promise.reject('DID NOT REMOVE CAR')
+    notesDB.splice(idx, 1, newNote);
+    storageService.store(NOTES_KEY, notesDB)
+    return Promise.resolve(note)
+
 }
 
 function changeColor(noteId, bcg) {
     const note = notesDB.find(note => note.id === noteId);
     note.style.backgroundColor = bcg;
     storageService.store(NOTES_KEY, notesDB)
-
     return Promise.resolve(note);
 }
 
@@ -40,13 +49,11 @@ function removeNote(noteId) {
 
 function getPinnedNotes() {
     const pinned = notesDB.filter(note => note.isPinned);
-    console.log('pinned', pinned)
     return Promise.resolve(pinned);
 }
 
 function getUnpinnedNotes() {
     const unpinned = notesDB.filter(note => note = (!note.isPinned))
-    console.log('unpinned', unpinned)
     return Promise.resolve(unpinned);
 }
 
@@ -81,12 +88,10 @@ function queryPin() {
     if (!notes) {
         return createNotes().then(newNotes => {
             notes = newNotes;
-            console.log('queryPin: ', notes);
-            
             storageService.store(NOTES_KEY, notes)
             return notes;
         })
-        
+
     }
     notesDB = notes;
     const pinned = getPinnedNotes();
@@ -99,7 +104,6 @@ function queryUnpin() {
     if (!notes) {
         return createNotes().then(newNotes => {
             notes = newNotes;
-            console.log('queryUnpin: ', notes);
             storageService.store(NOTES_KEY, notes)
             return notes;
         })
@@ -109,21 +113,6 @@ function queryUnpin() {
     const unpinned = getUnpinnedNotes();
     return Promise.resolve(unpinned);
 }
-
-function newQuery() {
-    var notes = storageService.load(NOTES_KEY);
-    if (!notes) {
-        return createNotes().then(newNotes => {
-            notes = newNotes;
-            storageService.store(NOTES_KEY, notes)
-            return notes;
-        })
-
-    }
-    notesDB = notes;
-    return Promise.resolve(notes);
-}
-
 
 function getById(noteId) {
     const note = notesDB.find(note => note.id === noteId)
@@ -135,10 +124,9 @@ function saveTodoNote() {
 }
 
 function saveNote(note) {
-    note.id = utilService.makeId();
     notesDB.unshift(note);
     storageService.store(NOTES_KEY, notesDB)
-    return Promise.resolve(notesDB);
+    return Promise.resolve(note);
 }
 
 function getEmptyNote() {
@@ -193,7 +181,7 @@ function createNotes() {
             id: utilService.makeId(),
             type: 'noteVid',
             isPinned: false,
-            info: { txt: '' },
+            info: { txt: 'https://www.youtube.com/watch?v=zY-ugO6SCBQ&list=RDzY-ugO6SCBQ&start_radio=1&t=0' },
             style: { backgroundColor: '#add8e6' },
         }
     ]

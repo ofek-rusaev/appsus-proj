@@ -60,7 +60,6 @@ export default {
             noteService.changePinned(noteId);
         },
         saveNote() {
-            console.log('Saving', this.note);
             noteService.saveNote(this.note)
                 .then((savedNote) => {
                     eventBus.$emit('showMsg', { txt: 'Saved a Car' + savedNote.id })
