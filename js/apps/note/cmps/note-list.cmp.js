@@ -26,7 +26,7 @@ export default {
        </component>
             <!-- <action-btns :note="note"></action-btns> -->
             <!-- <div v-if="hover"> -->
-            <div>
+            <div class="buttons-container-edit">
             <button @click="pinTheNote(note.id)"><img class="notes-container-image" src="img/pin.png"/></button>
             <button @click="removeNote(note.id)"><img class="notes-container-image" src="img/trash.png"/></button>
             <button @click="emailNote(note.id)"><img class="notes-container-image" src="img/email.png"/></button>

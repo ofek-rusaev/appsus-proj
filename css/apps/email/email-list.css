@@ -122,3 +122,7 @@
 .email-bottom-left {
     display: flex;
 }
+
+.buttons-container-edit {
+    margin-top: -18px;
+}
