@@ -18,6 +18,8 @@ export default {
     methods: {
         todoToggle() {
             noteService.query();
+            // noteService.queryUnpin();
+            // noteService.queryPin();
             const KEY = Object.keys(this.info.todos)
             noteService.toggleDoneAt(this.info.todos[0].id, this.note.id);
         }
