@@ -135,14 +135,14 @@ function createNotes() {
             type: 'noteText',
             isPinned: true,
             info: { txt: 'Fullstack Me Baby!' },
-            style: { backgroundColor: '#00d' },
+            style: { backgroundColor: '#FFFF00' },
         },
         {
             id: utilService.makeId(),
             type: 'noteImg',
             isPinned: false,
             info: { txt: 'https://www.w3.org/TR/2016/WD-html51-20160310/images/elo.png', title: 'Me playing Mi' },
-            style: { backgroundColor: '#00d' }
+            style: { backgroundColor: '#FFFF00' }
         },
         {
             id: utilService.makeId(),
@@ -155,14 +155,14 @@ function createNotes() {
                     { id: utilService.makeId(), txt: 'Do this', doneAt: 187111111 }
                 ]
             },
-            style: { backgroundColor: '#00d' },
+            style: { backgroundColor: '#FFC0CB' },
         },
         {
             id: utilService.makeId(),
             type: 'noteVid',
             isPinned: false,
             info: { txt: '' },
-            style: { backgroundColor: '#00d' },
+            style: { backgroundColor: '#add8e6' },
         }
     ]
     return Promise.resolve(notes)
