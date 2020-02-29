@@ -1,6 +1,6 @@
-import routes from './routes.js'
-import appHeader from './app-header.cmp.js'
-import userMsg from './user-msg.cmp.js'
+import routes from './routes.js';
+import appHeader from './general-cmps/app-header.cmp.js';
+import userMsg from './general-cmps/user-msg.cmp.js';
 // import noteApp from './apps/note/cmps/note-app.cmp.js'
 // import userMsg from './cmps/user-msg.cmp.js'
 
