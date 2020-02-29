@@ -38,6 +38,15 @@ export default {
             noteEdit: false
         }
     },
+    watch: {
+        notes: {
+                handler(newVal) {
+                     console.log('NOTES CHANGED! To:', newVal);
+                    //  this.emitFilter();
+                },
+                deep: true
+            } ,
+         },
     methods: {
         showId(id) {
             console.log(id);
