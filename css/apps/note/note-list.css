@@ -12,6 +12,12 @@
     break-inside: avoid;
 }
 
+.search-note {
+    height: 30px;
+    width: 50%;
+    margin-bottom: 20px;
+}
+
 .note-img-container {
     /* height: 150px; */
     /* width: 250px; */
