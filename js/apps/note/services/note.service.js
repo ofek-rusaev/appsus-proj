@@ -4,7 +4,7 @@ const NOTES_KEY = 'notes';
 var notesDB = [];
 
 export const noteService = {
-    query,
+    queryPin,
     getEmptyNote,
     getEmptyTodoNote,
     saveNote,
@@ -17,7 +17,7 @@ export const noteService = {
     getUnpinnedNotes,
     toggleDoneAt,
     changeColor,
-    query2
+    queryUnpin
 }
 
 function changeColor(noteId, bcg) {
@@ -42,6 +42,7 @@ function removeNote(noteId) {
 
 function getPinnedNotes() {
     const pinned = notesDB.filter(note => note.isPinned);
+    console.log('unpinned', pinned)
     return Promise.resolve(pinned);
 }
 
@@ -58,7 +59,7 @@ function changePinned(noteId) {
     return Promise.resolve(note);
 }
 
-function query() {
+function queryPin() {
     var notes = storageService.load(NOTES_KEY);
     if (!notes) {
         return createNotes().then(newNotes => {
@@ -74,7 +75,7 @@ function query() {
 }
 
 
-function query2() {
+function queryUnpin() {
     var notes = storageService.load(NOTES_KEY);
     if (!notes) {
         return createNotes().then(newNotes => {

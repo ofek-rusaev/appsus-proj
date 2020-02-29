@@ -9,19 +9,35 @@ export default {
         <note-creation></note-creation>
         <hr />
         <h1>Your Notes</h1>
-        <note-list :notes="notes"></note-list>
+        <note-list :notes="notesPin"></note-list>
+        <note-list :notes="notesUnpin"></note-list>
    </section>
     `,
     data() {
         return {
-            notes: [],
+            notesPin: [],
+            notesUnpin: [],
         }
     },
-
+    methods: {
+        pinnedNotes() {
+            this.notes = noteService.query();
+            console.log(this.note);
+            
+        },
+        unPinnedNotes() {
+            this.notes = noteService.query2();
+            console.log(this.note);
+        },
+    },
     created() {
-        noteService.query()
-            .then(notes => {
-                this.notes = notes
+        noteService.queryPin()
+        .then(notes => {
+            this.notesPin = notes
+            }),
+        noteService.queryUnpin()
+        .then(notes => {
+            this.notesUnpin = notes
             })
     },
     // noteService.query2()
