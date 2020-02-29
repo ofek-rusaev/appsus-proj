@@ -1,11 +1,11 @@
-import { noteService } from '../services/note.service.js'
+import {eventBus} from '../../../general-services/event-bus.service.js';
+import { noteService } from '../services/note.service.js';
 import noteText from './note-text.cmp.js';
 import noteImg from './note-img.cmp.js';
 import noteTodo from './note-todo.cmp.js';
 import noteVid from './note-vid.cmp.js';
 import actionBtns from './action-btns.cmp.js';
-import {eventBus} from '../../../event-bus.service.js'
-import noteFilter from './note-filter.cmp.js'
+import noteFilter from './note-filter.cmp.js';
 
 
 

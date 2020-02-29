@@ -1,5 +1,5 @@
-import { emailService } from '../services/email.service.js'
-import {eventBus} from '../../../event-bus.service.js'
+import { emailService } from '../services/email.service.js';
+import {eventBus} from '../../../general-services/event-bus.service.js';
 
 export default {
     name: 'email-compose',
