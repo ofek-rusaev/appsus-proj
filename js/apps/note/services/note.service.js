@@ -6,7 +6,7 @@ var notesDB = [];
 export const noteService = {
     queryPin,
     getEmptyNote,
-    getEmptyTodoNote,
+    setTodoNote,
     saveNote,
     getById,
     createNotes,
@@ -141,12 +141,18 @@ function getEmptyNote() {
     }
 }
 
-function getEmptyTodoNote() {
+function setTodoNote(todosTxt) {
+    let todos = todosTxt.split(',');
+    let formattedTodos = [];
+    for (let i = 0; i < todos.length; i++) {
+        var newTodo = {id: utilService.makeId(), txt: todos[i], doneAt: null}; 
+        formattedTodos.push(newTodo);
+    }
     return {
         id: utilService.makeId(),
-        type: '',
+        type: 'noteTodo',
         isPinned: false,
-        info: { label: '', todos: [{ id: utilService.makeId(), txt: '', doneAt: null }] },
+        info: { label: '', todos: formattedTodos},
         style: ''
     }
 }
