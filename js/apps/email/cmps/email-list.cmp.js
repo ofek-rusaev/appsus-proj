@@ -25,8 +25,6 @@ export default {
             if (!this.filterBy) return this.emails;
             return this.emails.filter(email => {
                 // var currEmail = email.from.toLowerCase();
-                console.log('emailfrom', email.from)
-                console.log('letters', Object.values(this.filterBy).join(''))
                 const keren = Object.values(this.filterBy).join('');
                 return email.from.includes(keren)
             })

@@ -44,8 +44,8 @@ export default {
     methods: {
         addNote() {
             noteService.query()
-            // noteService.queryPin();
-            // noteService.queryUnpin();
+                // noteService.queryPin();
+                // noteService.queryUnpin();
             this.note = noteService.getEmptyNote();
             this.note.type = this.type;
             this.note.info.txt = this.userText;
@@ -55,7 +55,6 @@ export default {
                         const todos = this.note.info.txt.split(',')
                         this.note = noteService.getEmptyTodoNote();
                         this.note.isPinned = false;
-                        console.log(todos)
                         this.note.info.label = 'To Do';
                         for (let i = 0; i < todos.length; i++) {
                             for (let j = i; j < todos.length;) {
@@ -73,6 +72,5 @@ export default {
             noteService.saveNote(this.note)
                 .then((savedNote) => {})
         },
-
     }
 }

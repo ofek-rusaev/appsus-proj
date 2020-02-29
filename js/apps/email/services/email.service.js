@@ -72,7 +72,6 @@ function addToStarred(emailId) {
 
 function filterStarred() {
     const starred = emailsDB.filter(email => email.isStar)
-    console.log(starred)
     return Promise.resolve(starred);
 }
 

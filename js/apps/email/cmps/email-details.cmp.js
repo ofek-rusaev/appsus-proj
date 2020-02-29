@@ -18,8 +18,7 @@ export default {
         if (emailId) {
             emailService.getById(emailId)
                 .then(email => {
-                    console.log(email)
-                        // DEEP copy
+                    // DEEP copy
                     const copyemail = JSON.parse(JSON.stringify(email))
                     this.email = copyemail;
                     return this.email;

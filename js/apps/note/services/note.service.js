@@ -19,14 +19,20 @@ export const noteService = {
     changeColor,
     queryUnpin,
     query,
-    newQuery
+    updateNote
+}
+
+function updateNote(noteId) {
+    const note = notesDB.find(note => note.id === noteId);
+    storageService.store(NOTES_KEY, notesDB)
+    return Promise.resolve(note)
+
 }
 
 function changeColor(noteId, bcg) {
     const note = notesDB.find(note => note.id === noteId);
     note.style.backgroundColor = bcg;
     storageService.store(NOTES_KEY, notesDB)
-
     return Promise.resolve(note);
 }
 
@@ -40,13 +46,11 @@ function removeNote(noteId) {
 
 function getPinnedNotes() {
     const pinned = notesDB.filter(note => note.isPinned);
-    console.log('pinned', pinned)
     return Promise.resolve(pinned);
 }
 
 function getUnpinnedNotes() {
     const unpinned = notesDB.filter(note => note = (!note.isPinned))
-    console.log('unpinned', unpinned)
     return Promise.resolve(unpinned);
 }
 
@@ -81,12 +85,10 @@ function queryPin() {
     if (!notes) {
         return createNotes().then(newNotes => {
             notes = newNotes;
-            console.log('queryPin: ', notes);
-            
             storageService.store(NOTES_KEY, notes)
             return notes;
         })
-        
+
     }
     notesDB = notes;
     const pinned = getPinnedNotes();
@@ -99,7 +101,6 @@ function queryUnpin() {
     if (!notes) {
         return createNotes().then(newNotes => {
             notes = newNotes;
-            console.log('queryUnpin: ', notes);
             storageService.store(NOTES_KEY, notes)
             return notes;
         })
@@ -109,21 +110,6 @@ function queryUnpin() {
     const unpinned = getUnpinnedNotes();
     return Promise.resolve(unpinned);
 }
-
-function newQuery() {
-    var notes = storageService.load(NOTES_KEY);
-    if (!notes) {
-        return createNotes().then(newNotes => {
-            notes = newNotes;
-            storageService.store(NOTES_KEY, notes)
-            return notes;
-        })
-
-    }
-    notesDB = notes;
-    return Promise.resolve(notes);
-}
-
 
 function getById(noteId) {
     const note = notesDB.find(note => note.id === noteId)

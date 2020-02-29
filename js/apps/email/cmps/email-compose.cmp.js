@@ -32,7 +32,6 @@ export default {
             this.$router.push('/email/inbox')
         },
         saveToDrafts() {
-            console.log('hi')
             emailService.draftEmail(this.email)
                 .then(email => {
                     this.email = emailService.getEmptyEmail()
@@ -49,7 +48,6 @@ export default {
                     const copyEmail = JSON.parse(JSON.stringify(email))
                     this.email = copyEmail
                     this.email.subject = 'Re: ' + this.email.subject;
-                    console.log(this.email.subject)
                 })
         }
 

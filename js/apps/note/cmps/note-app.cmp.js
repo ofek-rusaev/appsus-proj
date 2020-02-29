@@ -23,13 +23,10 @@ export default {
     created() {
         noteService.queryPin()
             .then(notes => {
-                console.log('pin out', notes)
-
                 this.notesPinned = notes
             })
         noteService.queryUnpin()
             .then(notes => {
-                console.log('unpin out', notes)
                 this.notesUnPinned = notes
             })
     },
