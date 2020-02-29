@@ -53,9 +53,6 @@ export default {
         },
     },
     computed: {
-        removeTask(noteId) {
-            this.removeNote(noteId)
-        },
         notesToShow() {
             if (!this.filterBy) return this.notes;
             return this.notes.filter(note => {
@@ -95,7 +92,6 @@ export default {
         noteImg,
         noteTodo,
         noteVid,
-        noteService,
         noteFilter
     },
 }
