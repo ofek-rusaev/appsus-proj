@@ -23,7 +23,6 @@ export const noteService = {
 }
 
 function updateNote(noteId, txt) {
-    console.log(noteId, txt)
     const note = notesDB.find(note => note.id === noteId)
     const idx = notesDB.findIndex(note => note.id === noteId)
     if (idx === -1) return Promise.reject('DID NOT REMOVE CAR')
@@ -31,7 +30,6 @@ function updateNote(noteId, txt) {
     notesDB.splice(idx, 1, note);
     storageService.store(NOTES_KEY, notesDB)
     return Promise.resolve(note)
-
 }
 
 function changeColor(noteId, bcg) {
@@ -66,11 +64,6 @@ function changePinned(noteId) {
     return Promise.resolve(note);
 }
 
-// function query() {
-//     queryPin();
-//     queryUnpin();
-// }
-
 function query() {
     var notes = storageService.load(NOTES_KEY);
     if (!notes) {
@@ -79,7 +72,6 @@ function query() {
             storageService.store(NOTES_KEY, notes)
             return notes;
         })
-
     }
     notesDB = notes;
     return Promise.resolve(notesDB);
@@ -93,7 +85,6 @@ function queryPin() {
             storageService.store(NOTES_KEY, notes)
             return notes;
         })
-
     }
     notesDB = notes;
     const pinned = getPinnedNotes();
@@ -109,7 +100,6 @@ function queryUnpin() {
             storageService.store(NOTES_KEY, notes)
             return notes;
         })
-
     }
     notesDB = notes;
     const unpinned = getUnpinnedNotes();
@@ -119,10 +109,6 @@ function queryUnpin() {
 function getById(noteId) {
     const note = notesDB.find(note => note.id === noteId)
     return Promise.resolve(note);
-}
-
-function saveTodoNote() {
-
 }
 
 function saveNote(note) {

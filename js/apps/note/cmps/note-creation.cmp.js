@@ -63,8 +63,8 @@ export default {
             })}
         },
     },
-    saveNote() {
-        noteService.saveNote(this.note)
-            .then((savedNote) => {})
-    },
+    // saveNote() {
+    //     noteService.saveNote(this.note)
+    //         .then((savedNote) => {})
+    // },
 }

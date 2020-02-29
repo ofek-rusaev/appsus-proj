@@ -18,24 +18,37 @@ export default {
                 :is="note.type" 
                 :info="note.info">
        </component>
+       </div>
             <div v-if="hover">
             <button @click="pinTheNote(note.id)"><img class="notes-container-image" src="img/pin.png"/></button>
-            <button @click="removeNote(note.id)"><img class="notes-container-image" src="img/trash.png"/></button>
+            <button @click="removeTask(note.id)"><img class="notes-container-image" src="img/trash.png"/></button>
             <button><img class="notes-container-image" src="img/email.png"/></button>
             <button @click="editNote(note.id)"><img class="notes-container-image" src="img/edit.png"/></button>
             <input type="color" id="color" v-model="backgroundColor"  @change="getColor(note.id)"/>
             <label for="color"><img class="notes-container-image" src="img/color.png"/></label>
             </div>
    
-    </section>
-    `,
-    // 
+    </section>`,
     props: ['notes'],
     data() {
         return {
             hover: false,
             backgroundColor: '',
             noteEdit: false
+        }
+    },
+    watch: {
+        notes: {
+                handler(newVal) {
+                     console.log('NOTES CHANGED! To:', newVal);
+                    //  this.emitFilter();
+                },
+                deep: true
+            } ,
+         },
+    computed: {
+        removeTask(noteId) {
+            this.removeNote(noteId)
         }
     },
     methods: {
@@ -45,12 +58,7 @@ export default {
                     console.log(`Note ${noteId} deleted successfully`);
                 })
         },
-        getColor(noteId) {
-            noteService.changeColor(noteId, this.backgroundColor)
-                .then(note => {
-                    return this.note;
-                })
-        },
+
         pinTheNote(noteId) {
             noteService.changePinned(noteId)
                 .then(pin => {
