@@ -8,13 +8,13 @@
     /* height: 100px; */
     background-color: rgb(250, 250, 124);
     margin-bottom: 5px;
-    padding: 5px 20px;
+    padding: 15px 20px;
     break-inside: avoid;
 }
 
 .note-img-container {
     /* height: 150px; */
-    width: 250px;
+    /* width: 250px; */
 }
 
 .note-text img,
