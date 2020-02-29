@@ -10,7 +10,7 @@ export default {
         <hr />
         <h1>Your Notes</h1>
         <note-list :notes="notes"></note-list>
-    </section>
+   </section>
     `,
     data() {
         return {
@@ -21,10 +21,15 @@ export default {
     created() {
         noteService.query()
             .then(notes => {
-                console.log('notes created: ', notes);
                 this.notes = notes
-            });
+            })
     },
+    // noteService.query2()
+    // .then(notes => {
+    //     this.notes = notes
+    // })
+
+    // },
     components: {
         noteList,
         noteCreation,

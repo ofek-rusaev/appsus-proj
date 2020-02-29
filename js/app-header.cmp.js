@@ -8,7 +8,7 @@ export default {
         <router-link to="/email/inbox" exact>
         misterEmail
         </router-link>
-        <router-link to="/note">
+        <router-link to="/note/main">
         missKeep
         </router-link>
         </div>

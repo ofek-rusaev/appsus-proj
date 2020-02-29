@@ -10,6 +10,7 @@ body {
     background-color: #e8e8e8;
     text-align: center;
     margin: 0 0 0 0;
+    font: inherit;
 }
 
 .all-container {

@@ -14,9 +14,10 @@ export const noteService = {
     changePinned,
     createNote,
     getPinnedNotes,
-    getOtherNotes,
+    getUnpinnedNotes,
     toggleDoneAt,
-    changeColor
+    changeColor,
+    query2
 }
 
 function changeColor(noteId, bcg) {
@@ -40,32 +41,21 @@ function removeNote(noteId) {
 }
 
 function getPinnedNotes() {
-    return notesDB.map(note => {
-        if (note.isPinned) {
-            console.log('in pinned fun:', note);
-
-            return note;
-        }
-    })
+    const pinned = notesDB.filter(note => note.isPinned);
+    return Promise.resolve(pinned);
 }
 
-function getOtherNotes() {
-    return notesDB.map(note => {
-        if (!note.isPinned) {
-
-            console.log('in UNpinned fun:', note);
-            return note;
-        }
-    })
+function getUnpinnedNotes() {
+    const unpinned = notesDB.filter(note => !note.inPinned)
+    console.log('unpinned', unpinned)
+    return Promise.resolve(unpinned);
 }
 
 function changePinned(noteId) {
-    const note = getById(noteId);
-    const idx = notesDB.findIndex(note => note.id === noteId)
-    notesDB[idx].isPinned = !notesDB[idx].isPinned;
-    console.log('un/pin', notesDB[idx])
+    const note = notesDB.find(note => noteId === note.id)
+    note.isPinned = !note.isPinned;
     storageService.store(NOTES_KEY, notesDB)
-    return note;
+    return Promise.resolve(note);
 }
 
 function query() {
@@ -79,8 +69,26 @@ function query() {
 
     }
     notesDB = notes;
-    return Promise.resolve(notesDB);
+    const pinned = getPinnedNotes();
+    return Promise.resolve(pinned);
 }
+
+
+function query2() {
+    var notes = storageService.load(NOTES_KEY);
+    if (!notes) {
+        return createNotes().then(newNotes => {
+            notes = newNotes;
+            storageService.store(NOTES_KEY, notes)
+            return notes;
+        })
+
+    }
+    notesDB = notes;
+    const unpinned = getUnpinnedNotes();
+    return Promise.resolve(unpinned);
+}
+
 
 function getById(noteId) {
     const note = notesDB.find(note => note.id === noteId)

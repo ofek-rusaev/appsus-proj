@@ -1,7 +1,7 @@
 .emails-container {
     display: flex;
     flex-direction: column;
-    width: calc(100% - 250px);
+    width: calc(100% - 300px);
 }
 
 .email-filter {
@@ -12,6 +12,7 @@
     padding: 10px;
     border: 3px grey solid;
     display: flex;
+    margin-bottom: 20px;
 }
 
 .td {

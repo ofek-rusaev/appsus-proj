@@ -12,7 +12,7 @@ new Vue({
     template: `
         <section class="email-app">
         <app-header></app-header>
-            <h1>Welcome</h1>
+            <h1>Welcome To Appsus</h1>
             <!-- <user-msg></user-msg> -->
             <!-- <note-app></note-app> -->
             <router-view></router-view>

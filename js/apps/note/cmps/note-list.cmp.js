@@ -16,7 +16,7 @@ export default {
                 :info="note.info">
        </component>
             <!-- <div> -->
-            <button><img class="notes-container-image" src="img/pin.png"/></button>
+            <button @click="pinTheNote(note.id)"><img class="notes-container-image" src="img/pin.png"/></button>
             <button @click="removeNote(note.id)"><img class="notes-container-image" src="img/trash.png"/></button>
             <button><img class="notes-container-image" src="img/email.png"/></button>
             <button><img class="notes-container-image" src="img/edit.png"/></button>
@@ -45,11 +45,19 @@ export default {
                 })
         },
         getColor(noteId) {
-            console.log(noteId)
             noteService.changeColor(noteId, this.backgroundColor)
                 .then(note => {
                     return this.note;
                 })
+        },
+        pinTheNote(noteId) {
+            console.log('pin')
+            noteService.changePinned(noteId)
+                .then(pin => {
+                    console.log(noteId)
+                    return this.note;
+                })
+
         }
     },
     components: {
@@ -57,7 +65,6 @@ export default {
         noteImg,
         noteTodo,
         noteVid,
-        // noteCreation,
         noteService
-    }
+    },
 }

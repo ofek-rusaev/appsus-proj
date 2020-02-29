@@ -55,17 +55,17 @@ export default {
                         this.note.isPinned = false;
                         console.log(todos)
                         this.note.info.label = 'To Do';
-                        for (var i = 0; i < todos.length; i++) {
-                            this.note.info.todos[i].txt = todos[i];
-                            console.log(this.note.info.todos[i].txt)
-                        }
-                        return this.note;
+                        // for (var i = 0; i < todos.length; i++) {
+                        //     this.note.info.todos[i].txt = todos[i];
+                        //     console.log(this.note.info.todos[i].txt)
+                        // }
                     }
                     return this.note;
                 })
+            return this.note;
+
         },
         saveNote() {
-            console.log('Saving', this.note);
             noteService.saveNote(this.note)
                 .then((savedNote) => {})
         },

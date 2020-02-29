@@ -83,6 +83,5 @@ export default {
         noteInputText,
         noteInputImg,
         noteInputTodo
-        // noteCreation,
     }
 }
