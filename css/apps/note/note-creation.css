@@ -7,12 +7,12 @@
 
 .note-add {
     margin: 0 auto;
-    width: 60%;
+    width: 75%;
     text-align: center;
     background-color: white;
     padding: 10px;
-    border: 3px grey solid;
     display: flex;
+    margin-bottom: 20px;
 }
 
 .main-input {
