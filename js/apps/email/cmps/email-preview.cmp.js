@@ -15,8 +15,9 @@ export default {
         <div :class="className"  class="email-title" @click="changeBodyClass(email.id)">
         <td :class="{read: this.email.isRead, unread: !this.email.isRead}">{{email.subject}}</td>
         </div>
+        <!-- <div> -->
         <div :class="className" @click="changeBodyClass(email.id)">
-        <td class="email-item">{{email.body}}</td>
+        <td class="email-item">{{email.body}}<span v-if="isHidden">...</span></td>
         </div>
         <div class="email-date">
         <td :class="{read: this.email.isRead, unread: !this.email.isRead}">{{formattedTime}}</td>
@@ -36,7 +37,8 @@ export default {
             time: new Date(),
             className: 'email-content',
             isClicked: false,
-            clickedStar: false
+            clickedStar: false,
+            isHidden: false,
         }
     },
     methods: {
@@ -66,11 +68,24 @@ export default {
             this.clickedStar = !this.clickedStar;
             emailService.addToStarred(emailId);
         },
+        // toggleTextLength() {
+        //     this.isClicked = !this.isClicked;
+        // },
     },
     computed: {
         formattedTime() {
             var ampm = this.time.getHours() >= 12 ? 'PM' : 'AM';
             return this.time.getHours() + ":" + this.time.getMinutes() + ":" + this.time.getSeconds() + ' ' + ampm
         },
+        // formattedTxt() {
+        //     if (this.email.body.length > 20 && !this.isClicked) {
+        //       this.isHidden = true;
+        //       return this.email.body.substring(0,20);
+        //     } else {
+        //       this.isHidden = false;
+        //       return this.email.body;
+        //     }
+        //   }
     },
+    
 }
