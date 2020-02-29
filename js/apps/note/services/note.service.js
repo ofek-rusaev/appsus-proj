@@ -18,16 +18,13 @@ export const noteService = {
     toggleDoneAt,
     changeColor,
     queryUnpin,
-    query
+    query,
+    newQuery
 }
 
 function changeColor(noteId, bcg) {
-    console.log(noteId)
-    console.log(bcg)
     const note = notesDB.find(note => note.id === noteId);
-    console.log(note.style.backgroundColor)
     note.style.backgroundColor = bcg;
-    console.log('after', note.style.backgroundColor)
     storageService.store(NOTES_KEY, notesDB)
 
     return Promise.resolve(note);
@@ -43,13 +40,13 @@ function removeNote(noteId) {
 
 function getPinnedNotes() {
     const pinned = notesDB.filter(note => note.isPinned);
-    console.log('Pinned', pinned)
+    console.log('pinned', pinned)
     return Promise.resolve(pinned);
 }
 
 function getUnpinnedNotes() {
-    const unpinned = notesDB.filter(note => !note.inPinned)
-    console.log('Unpinned', unpinned)
+    const unpinned = notesDB.filter(note => note = (!note.isPinned))
+    console.log('unpinned', unpinned)
     return Promise.resolve(unpinned);
 }
 
@@ -113,6 +110,20 @@ function queryUnpin() {
     return Promise.resolve(unpinned);
 }
 
+function newQuery() {
+    var notes = storageService.load(NOTES_KEY);
+    if (!notes) {
+        return createNotes().then(newNotes => {
+            notes = newNotes;
+            storageService.store(NOTES_KEY, notes)
+            return notes;
+        })
+
+    }
+    notesDB = notes;
+    return Promise.resolve(notes);
+}
+
 
 function getById(noteId) {
     const note = notesDB.find(note => note.id === noteId)
@@ -152,14 +163,14 @@ function createNotes() {
             type: 'noteText',
             isPinned: true,
             info: { txt: 'Fullstack Me Baby!' },
-            style: { backgroundColor: '#00d' },
+            style: { backgroundColor: '#FFFF00' },
         },
         {
             id: utilService.makeId(),
             type: 'noteImg',
             isPinned: false,
             info: { txt: 'https://www.w3.org/TR/2016/WD-html51-20160310/images/elo.png', title: 'Me playing Mi' },
-            style: { backgroundColor: '#00d' }
+            style: { backgroundColor: '#FFFF00' }
         },
         {
             id: utilService.makeId(),
@@ -172,14 +183,14 @@ function createNotes() {
                     { id: utilService.makeId(), txt: 'Do this', doneAt: 187111111 }
                 ]
             },
-            style: { backgroundColor: '#00d' },
+            style: { backgroundColor: '#FFC0CB' },
         },
         {
             id: utilService.makeId(),
             type: 'noteVid',
             isPinned: false,
             info: { txt: '' },
-            style: { backgroundColor: '#00d' },
+            style: { backgroundColor: '#add8e6' },
         }
     ]
     return Promise.resolve(notes)

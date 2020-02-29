@@ -57,10 +57,12 @@ export default {
                         this.note.isPinned = false;
                         console.log(todos)
                         this.note.info.label = 'To Do';
-                        // for (var i = 0; i < todos.length; i++) {
-                        //     this.note.info.todos[i].txt = todos[i];
-                        //     console.log(this.note.info.todos[i].txt)
-                        // }
+                        for (let i = 0; i < todos.length; i++) {
+                            for (let j = i; j < todos.length;) {
+                                this.note.info.txt[j] = todos[i]
+                                j++;
+                            }
+                        }
                     }
                     return this.note;
                 })
