@@ -23,9 +23,9 @@ export default {
                 :info="note.info">
        </component>
        
-       <div v-if="hover">
+       <div >
        <button @click="pinTheNote(note.id)"><img class="notes-container-image" src="img/pin.png"/></button>
-       <button @click="removeTask(note.id)"><img class="notes-container-image" src="img/trash.png"/></button>
+       <button @click="removeNote(note.id)"><img class="notes-container-image" src="img/trash.png"/></button>
        <button><img class="notes-container-image" src="img/email.png"/></button>
        <button @click="editNote(note.id)"><img class="notes-container-image" src="img/edit.png"/></button>
        <input type="color" id="color" v-model="backgroundColor"  @change="getColor(note.id)"/>
@@ -58,14 +58,8 @@ export default {
         },
         notesToShow() {
             if (!this.filterBy) return this.notes;
-            // this.emails.filter(email => {
-            //     const status = Object.values(this.filterType).join('')
-            //     console.log(status)
-            // })
-
             return this.notes.filter(note => {
                 const txt = Object.values(this.filterBy).join('');
-                console.log('keren', note)
                 return note.info.txt.includes(txt)
             })
         }

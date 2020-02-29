@@ -6,14 +6,8 @@ export default {
             v-model="filterByTxt" 
             @input="emitFilterText"
         />
-        <select @change="emitFilterType" v-model="filterByType">
-            <option>Text</option>
-            <option>Todo</option>
-            <option>Video</option>
-    
-    </select>
-    </section>
-    `,
+        </section>
+        `,
     data() {
         return {
             filterByTxt: '',
@@ -33,3 +27,9 @@ export default {
 }
 
 // || filterBy.subject || filterBy.body
+//     <select @change="emitFilterType" v-model="filterByType">
+//         <option>Text</option>
+//         <option>Todo</option>
+//         <option>Video</option>
+
+// </select>
