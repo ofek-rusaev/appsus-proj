@@ -12,7 +12,7 @@ export default {
         <div v-for="note in notes" :key="note.id" class="note" :style="{backgroundColor: note.style.backgroundColor}">
         <div v-if="noteEdit">
         <section>
-        <input type="text" v-model="note.info.txt" @keyup.enter="updateNote(note.id)"/>
+        <input type="text" v-model="note.info.txt" @keyup.enter="updateNote(note.id, note.info.txt)"/>
         </section>
         </div>
         <component 
@@ -37,7 +37,9 @@ export default {
         return {
             hover: true,
             backgroundColor: '',
-            noteEdit: false
+            noteEdit: false,
+            note: {},
+            noteInfoTxt: ''
         }
     },
     methods: {
@@ -62,14 +64,14 @@ export default {
         editNote() {
             this.noteEdit = !this.noteEdit
         },
-        updateNote(noteId) {
+        updateNote(noteId, txt) {
             console.log('hi');
-            // noteService.getById(noteId)
-            //     .then(
-            //         note => {
-            //             this.note.info.txt = 
+            noteService.updateNote(noteId, txt)
+                .then(
+                    note => {
 
-            //     )
+                        return this.noteInfoTxt;
+                    })
         }
     },
     components: {

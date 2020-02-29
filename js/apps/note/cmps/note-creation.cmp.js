@@ -51,26 +51,23 @@ export default {
             this.note.info.txt = this.userText;
             noteService.saveNote(this.note)
                 .then(note => {
-                    if (this.note.type === 'noteTodo') {
-                        const todos = this.note.info.txt.split(',')
-                        this.note = noteService.getEmptyTodoNote();
-                        this.note.isPinned = false;
-                        this.note.info.label = 'To Do';
-                        for (let i = 0; i < todos.length; i++) {
-                            for (let j = i; j < todos.length;) {
-                                this.note.info.txt[j] = todos[i]
-                                j++;
-                            }
-                        }
-                    }
+                    // if (this.note.type === 'noteTodo') {
+                    //     const todos = this.note.info.txt.split(',')
+                    //     this.note = noteService.getEmptyTodoNote();
+                    //     this.note.isPinned = false;
+                    //     this.note.info.label = 'To Do';
+                    //     for (let i = 0; i < todos.length; i++) {
+                    //         for (let j = i; j < todos.length;) {
+                    //             this.note.info.txt[j] = todos[i]
+                    //             j++;
+                    //         }
+                    //     }
                     return this.note;
                 })
-            return this.note;
-
         },
-        saveNote() {
-            noteService.saveNote(this.note)
-                .then((savedNote) => {})
-        },
-    }
+    },
+    saveNote() {
+        noteService.saveNote(this.note)
+            .then((savedNote) => {})
+    },
 }

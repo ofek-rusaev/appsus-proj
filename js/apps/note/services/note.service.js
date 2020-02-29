@@ -22,8 +22,11 @@ export const noteService = {
     updateNote
 }
 
-function updateNote(noteId) {
-    const note = notesDB.find(note => note.id === noteId);
+function updateNote(noteId, newNote) {
+    // const note = notesDB.find(note => note.id === noteId);
+    const idx = notesDB.findIndex(note => note.id === noteId)
+    if (idx === -1) return Promise.reject('DID NOT REMOVE CAR')
+    notesDB.splice(idx, 1, newNote);
     storageService.store(NOTES_KEY, notesDB)
     return Promise.resolve(note)
 
@@ -117,10 +120,9 @@ function getById(noteId) {
 }
 
 function saveNote(note) {
-    note.id = utilService.makeId();
     notesDB.unshift(note);
     storageService.store(NOTES_KEY, notesDB)
-    return Promise.resolve(notesDB);
+    return Promise.resolve(note);
 }
 
 function getEmptyNote() {
@@ -175,7 +177,7 @@ function createNotes() {
             id: utilService.makeId(),
             type: 'noteVid',
             isPinned: false,
-            info: { txt: '' },
+            info: { txt: 'https://www.youtube.com/watch?v=zY-ugO6SCBQ&list=RDzY-ugO6SCBQ&start_radio=1&t=0' },
             style: { backgroundColor: '#add8e6' },
         }
     ]
