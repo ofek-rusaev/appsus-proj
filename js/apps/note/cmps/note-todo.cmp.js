@@ -6,8 +6,8 @@ export default {
         <section class="note-todo">
         <div class="note-todo-container">
             <h2>{{info.txt}}</h2>
-            <div class="todo" v-for="todo in info.todos" >
-                <p :class="{done:todo.doneAt, undone:!todo.doneAt}" @click="todoToggle">TODO: {{todo.txt}}</p>
+            <div class="todo" v-for="(todo, idx) in info.todos" >
+                <p :class="{done:todo.doneAt, undone:!todo.doneAt}" @click="todoToggle(idx)">TODO:{{todo.txt}}</p>
             </div>
         </div>
         <img src="img/todo.svg"/>
@@ -16,10 +16,10 @@ export default {
     `,
     props: ['info', 'note'],
     methods: {
-        todoToggle() {
+        todoToggle(idx) {
+            console.log(idx)
             noteService.query();
-            const KEY = Object.keys(this.info.todos)
-            noteService.toggleDoneAt(this.info.todos[0].id, this.note.id);
+            noteService.toggleDoneAt(this.info.todos[idx].id, this.note.id);
         }
     }
 }
