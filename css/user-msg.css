@@ -5,9 +5,11 @@
     top: 0;
     right: 10px;
  }
+
  .msg-container.success {
    background-color: lightgreen;
  }
+
  .msg-container.danger {
    background-color: red;
  }
@@ -16,6 +18,7 @@
  .fade-leave-active {
    transition: opacity 0.5s;
  }
+ 
  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
    opacity: 0;
  }
