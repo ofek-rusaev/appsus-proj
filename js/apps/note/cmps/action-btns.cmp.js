@@ -3,7 +3,7 @@ export default {
     name: 'action-btns',
     template:  `
     <section class="action-btns">
-    <button @click="pinTheNote(note.id)"><img class="notes-container-image" src="img/pin.png"/></button>
+    <button @click="pinTheNote(note.id)"><img class="notes-container-image pin" src="img/pin.png"/></button>
     <button @click="removeNote(note.id)"><img class="notes-container-image" src="img/trash.png"/></button>
     <button @click="emailNote(note.id)"><img class="notes-container-image" src="img/email.png"/></button>
     <button @click="editNote(note.id)"><img class="notes-container-image" src="img/edit.png"/></button>

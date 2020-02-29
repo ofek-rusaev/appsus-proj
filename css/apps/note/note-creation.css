@@ -18,6 +18,7 @@
 .pinned {
     height: 40px;
     margin-bottom: 20px;
+    transform: rotate(45deg);
 }
 
 .main-input {
@@ -50,4 +51,8 @@ label img {
 
 .notes-container-image {
     height: 20px;
+}
+
+.notes-container-image .pin{
+    transform: rotate(45deg);
 }
