@@ -6,11 +6,11 @@ export default {
             v-model="filterByTxt " 
             @input="emitFilterText"
         />
-        <select v-model="filterByStatus">
+        <select @change="emitFilterStatus" v-model="filterByStatus">
             <option>All</option>
             <option>Read</option>
             <option>Unread</option>
-            @change="emitFilterStatus"
+    
     </select>
     </section>
     `,
@@ -22,10 +22,12 @@ export default {
     },
     methods: {
         emitFilterText() {
-            this.$emit('filterTxt', {...this.filterByTxt })
+            console.log(this.filterByTxt)
+            this.$emit('filterTxt', this.filterByTxt)
         },
         emitFilterStatus() {
-            this.$emit('filterStatus', {...this.filterByStatus })
+            console.log(this.filterByStatus)
+            this.$emit('filterStatus', this.filterByStatus)
         }
     }
 }
