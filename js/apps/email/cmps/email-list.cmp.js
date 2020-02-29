@@ -8,8 +8,8 @@ export default {
     name: 'email-list',
     template: `
     <section class="emails-container">
-    <email-filter @filterTxt="setFilter" @filterStatus="setFilter"></email-filter>
-    <div class="email-preview" v-for="(email, idx) in emails" :emails="emailsToShow">
+    <email-filter @filterTxt="setFilterTxt" @filterStatus="setFilterStatus"></email-filter>
+    <div class="email-preview" v-for="(email, idx) in emailsToShow">
     <email-preview :key="idx" :email="email" ></email-preview>
     </div> 
     </section>
@@ -17,22 +17,30 @@ export default {
     data() {
         return {
             emails: [],
+            filterType: 'All',
             filterBy: ''
         }
     },
     computed: {
         emailsToShow() {
-            if (!this.filterBy) return this.emails;
+            if (!this.filterBy && this.filterType === 'All') return this.emails;
+            // this.emails.filter(email => {
+            //     const status = Object.values(this.filterType).join('')
+            //     console.log(status)
+            // })
+
             return this.emails.filter(email => {
-                // var currEmail = email.from.toLowerCase();
-                const keren = Object.values(this.filterBy).join('');
-                return email.from.includes(keren)
+                const txt = Object.values(this.filterBy).join('');
+                return email.from.includes(txt) || email.subject.includes(txt) || email.body.includes(txt)
             })
         }
     },
     methods: {
-        setFilter(filterBy) {
+        setFilterTxt(filterBy) {
             this.filterBy = filterBy;
+        },
+        setFilterStatus(filterType) {
+            this.filterType = filterType;
         }
     },
     components: {
