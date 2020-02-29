@@ -35,7 +35,7 @@ export default {
             <label for="color"><img class="notes-container-image" src="img/color.png"/></label>
             </div>
        </div>
-   
+       </section>
     </section>`,
     props: ['notes'],
     data() {
@@ -48,16 +48,14 @@ export default {
     },
     watch: {
         notes: {
-            deep: true,
-                handler(newVal) {
-                     console.log('NOTES CHANGED! To:', newVal);
-                    //  this.emitFilter();
+            handler(newVal) {
+                console.log('NOTES CHANGED! To:', newVal);
+                //  this.emitFilter();
             },
+            deep: true,
+        },
     },
     computed: {
-        removeTask(noteId) {
-            this.removeNote(noteId)
-        },
         notesToShow() {
             if (!this.filterBy) return this.notes;
             return this.notes.filter(note => {
@@ -108,7 +106,6 @@ export default {
         noteTodo,
         noteVid,
         actionBtns,
-        noteService,
         noteFilter
     },
-}}
+}

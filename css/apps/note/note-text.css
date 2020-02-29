@@ -1,0 +1,9 @@
+.note-text-container {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.note-text-container-extended {
+    text-overflow: unset;
+}
