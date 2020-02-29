@@ -15,6 +15,11 @@
     margin-bottom: 20px;
 }
 
+.pinned {
+    height: 40px;
+    margin-bottom: 20px;
+}
+
 .main-input {
     display: flex;
     width: 80%;

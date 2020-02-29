@@ -9,7 +9,7 @@ export default {
         <note-creation></note-creation>
         <hr />
         <h1>Your Notes</h1>
-        <div>Pinned</div>
+        <img class="pinned" src="img/pinned.svg" />
         <note-list :notes="notesPinned"></note-list>
         <hr/>
         <note-list :notes="notesUnPinned"></note-list>
