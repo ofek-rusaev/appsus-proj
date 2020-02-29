@@ -4,7 +4,7 @@ import noteImg from './note-img.cmp.js';
 import noteTodo from './note-todo.cmp.js';
 import noteVid from './note-vid.cmp.js';
 import actionBtns from './action-btns.cmp.js';
-import {eventBus} from '../../../event-bus.service.js'
+import { eventBus } from '../../../event-bus.service.js'
 import noteFilter from './note-filter.cmp.js'
 
 
@@ -35,7 +35,7 @@ export default {
             <label for="color"><img class="notes-container-image" src="img/color.png"/></label>
             </div>
        </div>
-       </section>
+   </section>
     </section>`,
     props: ['notes'],
     data() {
@@ -72,7 +72,7 @@ export default {
                         txt: `Note ${noteId} deleted successfully.`,
                         type: 'success',
                     }
-                    eventBus.$emit('show-msg',msg)
+                    eventBus.$emit('show-msg', msg)
                 })
         },
         setFilterTxt(filterBy) {
@@ -89,13 +89,14 @@ export default {
         },
         updateNote(noteId, txt) {
             noteService.updateNote(noteId, txt)
-                .then(note => { 
+                .then(note => {
                     const msg = {
                         txt: `Note ${noteId} updated successfully.`,
                         type: 'success',
                     }
-                    eventBus.$emit('show-msg',msg)
-                    return this.note })
+                    eventBus.$emit('show-msg', msg)
+                    return this.note
+                })
             noteService.query()
                 .then(() => { return txt })
         }

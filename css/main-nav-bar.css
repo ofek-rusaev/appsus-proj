@@ -3,8 +3,10 @@
     background-color: #822E81;
     color: white;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     top: 0;
+    height: 50px;
+    align-items: center;
 }
 
 .app-header a {
@@ -14,5 +16,5 @@
 }
 
 .logo {
-    margin: 0 auto;
+    font-size: 30px;
 }
