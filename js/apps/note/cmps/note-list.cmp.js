@@ -15,7 +15,7 @@ export default {
     <section>
     <note-filter @filterTxt="setFilterTxt"></note-filter>
     <section class="notes-container">
-        <div v-for="note in notesToShow" :key="note.id" class="note" @mouseover="hover = true" @mouseleave="hover = false" :style="{backgroundColor: note.style.backgroundColor}">
+        <div v-for="note in notesToShow" :key="note.id" class="note" :style="{backgroundColor: note.style.backgroundColor}">
         <div v-if="noteEdit">
         <input type="text" v-model="note.info.txt" @keyup.enter="updateNote(note.id, note.info.txt)"/>
         </div>
@@ -59,8 +59,9 @@ export default {
         notesToShow() {
             if (!this.filterBy) return this.notes;
             return this.notes.filter(note => {
-                const txt = Object.values(this.filterBy).join('');
-                return note.info.txt.includes(txt)
+                const txt = Object.values(this.filterBy).join('').toLowerCase();
+                console.log(txt)
+                return note.info.txt.includes(txt.toLowerCase())
             })
         }
     },

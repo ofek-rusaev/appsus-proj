@@ -31,6 +31,7 @@ export default {
 
             return this.emails.filter(email => {
                 const txt = Object.values(this.filterBy).join('');
+                console.log(txt)
                 return email.from.includes(txt) || email.subject.includes(txt) || email.body.includes(txt)
             })
         }
