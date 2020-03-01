@@ -123,7 +123,7 @@ function getEmptyNote() {
         type: '',
         isPinned: false,
         info: { txt: '' },
-        style: ''
+        style: { backgroundColor: '' },
     }
 }
 
@@ -131,15 +131,15 @@ function setTodoNote(todosTxt) {
     let todos = todosTxt.split(',');
     let formattedTodos = [];
     for (let i = 0; i < todos.length; i++) {
-        var newTodo = {id: utilService.makeId(), txt: todos[i], doneAt: null}; 
+        var newTodo = { id: utilService.makeId(), txt: todos[i], doneAt: null };
         formattedTodos.push(newTodo);
     }
     return {
         id: utilService.makeId(),
         type: 'noteTodo',
         isPinned: false,
-        info: { label: 'Your todo list:', todos: formattedTodos},
-        style: ''
+        info: { label: 'Your todo list:', todos: formattedTodos },
+        style: { backgroundColor: '' },
     }
 }
 

@@ -1,4 +1,4 @@
-import {eventBus} from '../../../general-services/event-bus.service.js';
+import { eventBus } from '../../../general-services/event-bus.service.js';
 import { noteService } from '../services/note.service.js';
 import noteText from './note-text.cmp.js';
 import noteImg from './note-img.cmp.js';
@@ -31,7 +31,7 @@ export default {
             <button @click="removeNote(note.id)"><img class="notes-container-image" src="img/trash.png"/></button>
             <button @click="emailNote(note.id)"><img class="notes-container-image" src="img/email.png"/></button>
             <button @click="editNote(note.id)"><img class="notes-container-image" src="img/edit.png"/></button>
-            <input type="color" id="color" v-model="backgroundColor"  @change="getColor(note.id)"/>
+            <input type="color" id="color" v-model="backgroundColor" @change="getColor(note.id)"/>
             <label for="color"><img class="notes-container-image" src="img/color.png"/></label>
             </div>
        </div>
@@ -73,7 +73,7 @@ export default {
                         txt: `Note ${noteId} deleted successfully.`,
                         type: 'success',
                     }
-                    eventBus.$emit('show-msg',msg)
+                    eventBus.$emit('show-msg', msg)
                 })
         },
         setFilterTxt(filterBy) {
@@ -88,15 +88,22 @@ export default {
         editNote() {
             this.noteEdit = !this.noteEdit
         },
+        getColor(noteId) {
+            noteService.changeColor(noteId, this.backgroundColor)
+                .then(note => {
+                    return this.note
+                })
+        },
         updateNote(noteId, txt) {
             noteService.updateNote(noteId, txt)
-                .then(note => { 
+                .then(note => {
                     const msg = {
                         txt: `Note ${noteId} updated successfully.`,
                         type: 'success',
                     }
-                    eventBus.$emit('show-msg',msg)
-                    return this.note })
+                    eventBus.$emit('show-msg', msg)
+                    return this.note
+                })
             noteService.query()
                 .then(() => { return txt })
         }
@@ -108,5 +115,5 @@ export default {
         noteVid,
         actionBtns,
         noteFilter
-    },
+    }
 }
