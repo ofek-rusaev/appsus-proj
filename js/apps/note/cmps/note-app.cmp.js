@@ -6,13 +6,13 @@ export default {
     name: 'app-note',
     template: `
     <section class="note-app">
-        <note-creation></note-creation>
+        <note-creation @render="render"></note-creation>
         <hr />
         <h1>Your Notes</h1>
         <img class="pinned" src="img/pinned.svg" />
-        <note-list :notes="notesPinned"></note-list>
+        <note-list @render="render" :notes="notesPinned"></note-list>
         <hr/>
-        <note-list :notes="notesUnPinned"></note-list>
+        <note-list @render="render" :notes="notesUnPinned"></note-list>
 
    </section>
     `,
@@ -20,6 +20,18 @@ export default {
         return {
             notesPinned: [],
             notesUnPinned: []
+        }
+    },
+    methods: {
+        render() {
+            noteService.queryPin()
+                .then(notes => {
+                    this.notesPinned = notes
+                })
+            noteService.queryUnpin()
+                .then(notes => {
+                    this.notesUnPinned = notes
+                })
         }
     },
     // watch: {
@@ -39,6 +51,7 @@ export default {
     //     } ,
     //  },
     created() {
+
         noteService.queryPin()
             .then(notes => {
                 this.notesPinned = notes

@@ -1,5 +1,5 @@
 import { noteService } from '../services/note.service.js';
-import {eventBus} from '../../../general-services/event-bus.service.js';
+import { eventBus } from '../../../general-services/event-bus.service.js';
 
 export default {
     template: `
@@ -49,7 +49,8 @@ export default {
                     txt: `Not note added, please add text.`,
                     type: 'danger',
                 }
-                eventBus.$emit('show-msg',msg)
+                eventBus.$emit('show-msg', msg)
+                this.$emit('render')
                 return;
             }
             noteService.query()
@@ -58,28 +59,30 @@ export default {
             if (this.note.type === 'noteTodo') {
                 this.note = noteService.setTodoNote(this.userText)
                 noteService.saveNote(this.note)
-                .then(note => {
-                    const msg = {
-                        txt: `Note added successfully.`,
-                        type: 'success',
-                    }
-                    eventBus.$emit('show-msg',msg)
-                    return this.note
-                })
+                    .then(note => {
+                        const msg = {
+                            txt: `Note added successfully.`,
+                            type: 'success',
+                        }
+                        eventBus.$emit('show-msg', msg)
+                        this.$emit('render')
+                        return this.note
+                    })
+            } else {
+                this.note = noteService.getEmptyNote();
+                this.note.type = this.type;
+                this.note.info.txt = this.userText;
+                noteService.saveNote(this.note)
+                    .then(note => {
+                        const msg = {
+                            txt: `Note added successfully.`,
+                            type: 'success',
+                        }
+                        eventBus.$emit('show-msg', msg)
+                        this.$emit('render')
+                        return this.note
+                    })
             }
-            else {
-            this.note = noteService.getEmptyNote();
-            this.note.type = this.type;
-            this.note.info.txt = this.userText;
-            noteService.saveNote(this.note)
-            .then(note => {
-                const msg = {
-                    txt: `Note added successfully.`,
-                    type: 'success',
-                }
-                eventBus.$emit('show-msg',msg)
-                return this.note
-            })}
         },
     },
     // saveNote() {

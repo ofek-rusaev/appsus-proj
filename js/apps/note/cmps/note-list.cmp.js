@@ -74,6 +74,7 @@ export default {
                         type: 'success',
                     }
                     eventBus.$emit('show-msg', msg)
+                    this.$emit('render')
                 })
         },
         setFilterTxt(filterBy) {
@@ -82,6 +83,7 @@ export default {
         pinTheNote(noteId) {
             noteService.changePinned(noteId)
                 .then(pin => {
+                    this.$emit('render')
                     return this.note = pin
                 })
         },
@@ -93,6 +95,7 @@ export default {
                 .then(note => {
                     return this.note = note
                 })
+            this.$emit('render')
         },
         updateNote(noteId, txt) {
             noteService.updateNote(noteId, txt)
@@ -104,10 +107,17 @@ export default {
                     eventBus.$emit('show-msg', msg)
                     return this.note
                 })
-            noteService.query()
-                .then(() => { return txt })
+            this.editNote();
+            this.$emit('render')
+                // noteService.query()
+                //     .then(() => {
+                //         this.$emit('render')
+                //         this.editNote();
+                //         return txt
+                //     })
         }
     },
+
     components: {
         noteText,
         noteImg,
