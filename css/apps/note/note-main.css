@@ -1,3 +1,11 @@
 @import "./note-list.css";
 @import "./note-creation.css";
 @import "./note-preview.css";
+
+.note-filter{
+    margin: 10px;
+}
+
+.note-app {
+    margin: 5px;
+}

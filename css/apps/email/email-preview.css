@@ -4,6 +4,8 @@
     background-color: white;
     border-bottom: lightgray 1px solid;
     cursor: pointer;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .email-preview a {

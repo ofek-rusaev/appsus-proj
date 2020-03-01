@@ -5,9 +5,9 @@ export default {
     template: `
         <section class="note-todo">
         <div class="note-todo-container">
-            <h2>{{info.txt}}</h2>
+            <h2>{{info.label}}</h2>
             <div class="todo" v-for="(todo, idx) in info.todos" >
-                <p :class="{done:todo.doneAt, undone:!todo.doneAt}" @click="todoToggle(idx)">TODO:{{todo.txt}}</p>
+                <p :class="{done:todo.doneAt, undone:!todo.doneAt}" @click="todoToggle(idx)">🔹 {{todo.txt}}</p>
             </div>
         </div>
         <img src="img/todo.svg"/>

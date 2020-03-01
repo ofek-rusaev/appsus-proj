@@ -1,5 +1,5 @@
 import { noteService } from '../services/note.service.js';
-import {eventBus} from '../../../event-bus.service.js'
+import {eventBus} from '../../../general-services/event-bus.service.js';
 
 export default {
     template: `

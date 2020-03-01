@@ -1,11 +1,11 @@
-import { noteService } from '../services/note.service.js'
+import {eventBus} from '../../../general-services/event-bus.service.js';
+import { noteService } from '../services/note.service.js';
 import noteText from './note-text.cmp.js';
 import noteImg from './note-img.cmp.js';
 import noteTodo from './note-todo.cmp.js';
 import noteVid from './note-vid.cmp.js';
 import actionBtns from './action-btns.cmp.js';
-import { eventBus } from '../../../event-bus.service.js'
-import noteFilter from './note-filter.cmp.js'
+import noteFilter from './note-filter.cmp.js';
 
 
 
@@ -27,7 +27,7 @@ export default {
             <!-- <action-btns :note="note"></action-btns> -->
             <!-- <div v-if="hover"> -->
             <div class="buttons-container-edit">
-            <button @click="pinTheNote(note.id)"><img class="notes-container-image" src="img/pin.png"/></button>
+            <button @click="pinTheNote(note.id)"><img class="notes-container-image pin" src="img/pin.png"/></button>
             <button @click="removeNote(note.id)"><img class="notes-container-image" src="img/trash.png"/></button>
             <button @click="emailNote(note.id)"><img class="notes-container-image" src="img/email.png"/></button>
             <button @click="editNote(note.id)"><img class="notes-container-image" src="img/edit.png"/></button>
@@ -35,7 +35,7 @@ export default {
             <label for="color"><img class="notes-container-image" src="img/color.png"/></label>
             </div>
        </div>
-   </section>
+       </section>
     </section>`,
     props: ['notes'],
     data() {
@@ -73,7 +73,7 @@ export default {
                         txt: `Note ${noteId} deleted successfully.`,
                         type: 'success',
                     }
-                    eventBus.$emit('show-msg', msg)
+                    eventBus.$emit('show-msg',msg)
                 })
         },
         setFilterTxt(filterBy) {
@@ -90,14 +90,13 @@ export default {
         },
         updateNote(noteId, txt) {
             noteService.updateNote(noteId, txt)
-                .then(note => {
+                .then(note => { 
                     const msg = {
                         txt: `Note ${noteId} updated successfully.`,
                         type: 'success',
                     }
-                    eventBus.$emit('show-msg', msg)
-                    return this.note
-                })
+                    eventBus.$emit('show-msg',msg)
+                    return this.note })
             noteService.query()
                 .then(() => { return txt })
         }

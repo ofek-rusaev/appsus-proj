@@ -1,5 +1,5 @@
-import { storageService } from './storage.service.js'
-import { utilService } from './util.service.js'
+import { storageService } from '../../../general-services/storage.service.js';
+import { utilService } from '../../../general-services/util.service.js';
 const NOTES_KEY = 'notes';
 var notesDB = [];
 
@@ -138,7 +138,7 @@ function setTodoNote(todosTxt) {
         id: utilService.makeId(),
         type: 'noteTodo',
         isPinned: false,
-        info: { label: '', todos: formattedTodos},
+        info: { label: 'Your todo list:', todos: formattedTodos},
         style: ''
     }
 }
