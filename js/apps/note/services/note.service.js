@@ -87,8 +87,8 @@ function queryPin() {
         })
     }
     notesDB = notes;
-    const pinned = getPinnedNotes();
-    return Promise.resolve(pinned);
+    return getPinnedNotes();
+
 }
 
 
@@ -102,8 +102,8 @@ function queryUnpin() {
         })
     }
     notesDB = notes;
-    const unpinned = getUnpinnedNotes();
-    return Promise.resolve(unpinned);
+    return getUnpinnedNotes();
+
 }
 
 function getById(noteId) {

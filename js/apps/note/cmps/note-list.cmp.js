@@ -31,8 +31,8 @@ export default {
             <button @click="removeNote(note.id)"><img class="notes-container-image" src="img/trash.png"/></button>
             <button @click="emailNote(note.id)"><img class="notes-container-image" src="img/email.png"/></button>
             <button @click="editNote(note.id)"><img class="notes-container-image" src="img/edit.png"/></button>
-            <input type="color" id="color" v-model="backgroundColor" @change="getColor(note.id)"/>
-            <label for="color"><img class="notes-container-image" src="img/color.png"/></label>
+            
+            <label for="color"><input hidden type="color" id="color" v-model="backgroundColor" @change="getColor(note.id)"/><img class="notes-container-image" src="img/color.png"/></label>
             </div>
        </div>
        </section>
@@ -82,7 +82,7 @@ export default {
         pinTheNote(noteId) {
             noteService.changePinned(noteId)
                 .then(pin => {
-                    return this.note;
+                    return this.note = pin
                 })
         },
         editNote() {
@@ -91,7 +91,7 @@ export default {
         getColor(noteId) {
             noteService.changeColor(noteId, this.backgroundColor)
                 .then(note => {
-                    return this.note
+                    return this.note = note
                 })
         },
         updateNote(noteId, txt) {
