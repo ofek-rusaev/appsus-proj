@@ -47,6 +47,10 @@ label {
 
 label img {
     height: 30px;
+    opacity: 50%;
+}
+label img:hover {
+    opacity: 100%;
 }
 
 .notes-container-image {

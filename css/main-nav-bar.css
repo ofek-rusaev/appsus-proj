@@ -1,6 +1,8 @@
 .app-header {
     margin: 0;
-    background-color: #822E81;
+    /* background-color: #822E81; */
+    /* background-color: #0C46F2; */
+    background-color: #113340;
     color: white;
     display: flex;
     justify-content: space-between;
