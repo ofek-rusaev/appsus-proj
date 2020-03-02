@@ -85,10 +85,11 @@ a:-webkit-any-link {
     /* width: 100%; */
     
     
-    min-width: 100px;
+    min-width: 220px;
     /* padding: 35px 0 0 25px; */
     padding: 25px 0 0 0;
 }
+
 .email-content-expended {
     /* width: 60%; */
     max-width: 640px;

@@ -6,7 +6,7 @@ export default {
     template: `
     <section class="email-preview" :class="{'open-email-preview': this.isClicked}" @click="changeBodyClass(email.id)">
         <div class="email-main-section" >
-            <div @click="starEmail(email.id)" class="star">
+            <div @click.stop="starEmail(email.id)" class="star">
                 <div v-if="clickedStar"><img src="img/color2.png"/></div>
                 <div v-else><img src="img/emptystar.png"/></div>
             </div>
