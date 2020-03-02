@@ -11,17 +11,14 @@ export default {
     data() {
         return {
             filterByTxt: '',
-            filterByType: ''
         }
     },
     methods: {
         emitFilterText() {
-            console.log(this.filterByTxt)
             this.$emit('filterTxt', this.filterByTxt)
         },
-        emitFilterType() {
-            console.log(this.filterByType)
-            this.$emit('filterType', this.filterByType)
+        emitFilterText() {
+            this.$emit('filterTxt', this.filterByTxt)
         }
     }
 }

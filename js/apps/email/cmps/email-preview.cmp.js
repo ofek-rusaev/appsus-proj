@@ -1,5 +1,5 @@
 import { emailService } from "../services/email.service.js";
-import {eventBus} from '../../../general-services/event-bus.service.js';
+import { eventBus } from '../../../general-services/event-bus.service.js';
 
 export default {
     name: 'email-preview',
@@ -62,15 +62,13 @@ export default {
                 txt: `Email deleted successfully.`,
                 type: 'success',
             }
-            eventBus.$emit('show-msg',msg)
+            eventBus.$emit('show-msg', msg)
         },
         starEmail(emailId) {
             this.clickedStar = !this.clickedStar;
             emailService.addToStarred(emailId);
         },
-        // toggleTextLength() {
-        //     this.isClicked = !this.isClicked;
-        // },
+
     },
     computed: {
         formattedTime() {
@@ -87,5 +85,5 @@ export default {
         //     }
         //   }
     },
-    
+
 }

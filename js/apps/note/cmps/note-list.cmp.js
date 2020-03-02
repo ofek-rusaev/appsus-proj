@@ -23,15 +23,12 @@ export default {
                 :is="note.type" 
                 :info="note.info">
        </component>
-            <!-- <action-btns :note="note"></action-btns> -->
-            <!-- <div v-if="hover"> -->
             <div class="buttons-container-edit">
             <button @click="pinTheNote(note.id)"><img :class="pinClassName" src="img/pin.png"/></button>
             <!-- <button @click="pinTheNote(note.id)"><img class="notes-container-image pin pinned-active" src="img/pin.png"/></button> -->
             <button @click="removeNote(note.id)"><img class="notes-container-image" src="img/trash.png"/></button>
             <button @click="emailNote(note.id)"><img class="notes-container-image" src="img/email.png"/></button>
             <button @click="editNote(note.id)"><img class="notes-container-image" src="img/edit.png"/></button>
-            
             <label for="color"><input hidden type="color" id="color" v-model="backgroundColor" @change="getColor(note.id)"/><img class="notes-container-image" src="img/color.png"/></label>
             </div>
        </div>
@@ -44,6 +41,7 @@ export default {
             backgroundColor: '',
             noteEdit: false,
             filterBy: '',
+            filterType: '',
             pinClassName: 'notes-container-image pin'
         }
 
@@ -52,9 +50,9 @@ export default {
         notesToShow() {
             if (!this.filterBy) return this.notes;
             return this.notes.filter(note => {
-                const txt = Object.values(this.filterBy).join('').toLowerCase();
-                console.log(txt)
-                return note.info.txt.includes(txt.toLowerCase())
+                const txt = Object.values(this.filterBy).join('');
+                const txtLowerCase = txt.toLowerCase();
+                return note.info.txt.toLowerCase().includes(txtLowerCase)
             })
         }
     },
@@ -113,12 +111,16 @@ export default {
                 })
             this.editNote();
             this.$emit('render')
-                // noteService.query()
-                //     .then(() => {
-                //         this.$emit('render')
-                //         this.editNote();
-                //         return txt
-                //     })
+        },
+        render() {
+            noteService.queryPin()
+                .then(notes => {
+                    this.notesPinned = notes
+                })
+            noteService.queryUnpin()
+                .then(notes => {
+                    this.notesUnPinned = notes
+                })
         }
     },
 
@@ -127,7 +129,6 @@ export default {
         noteImg,
         noteTodo,
         noteVid,
-        // actionBtns,
         noteFilter
     }
 }

@@ -147,14 +147,21 @@ function createNotes() {
     var notes = [{
             id: utilService.makeId(),
             type: 'noteText',
-            isPinned: true,
+            isPinned: false,
             info: { txt: 'Fullstack Me Baby!' },
             style: { backgroundColor: '#fff591' },
         },
         {
             id: utilService.makeId(),
+            type: 'noteText',
+            isPinned: true,
+            info: { txt: 'Queen Audrey!' },
+            style: { backgroundColor: '#fff591' },
+        },
+        {
+            id: utilService.makeId(),
             type: 'noteImg',
-            isPinned: false,
+            isPinned: true,
             info: { txt: 'https://www.w3.org/TR/2016/WD-html51-20160310/images/elo.png', title: 'Me playing Mi' },
             style: { backgroundColor: '#beebe9' }
         },
