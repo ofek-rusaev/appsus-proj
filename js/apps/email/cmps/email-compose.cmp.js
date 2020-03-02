@@ -25,6 +25,7 @@ export default {
     },
     methods: {
         sendEmail() {
+            emailService.query();
             emailService.addEmail(this.email)
                 .then(email => {
                     this.email = emailService.getEmptyEmail()
