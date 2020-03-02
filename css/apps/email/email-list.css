@@ -82,6 +82,7 @@
 }
 
 .new-mail {
+    margin: 40px 20px;
     background-color: white;
     width: 100%;
     border: grey 2px solid;
@@ -92,17 +93,21 @@
 .new-msg {
     background-color: black;
     color: white;
+    padding: 7px;
     font-weight: 700;
     border: grey 2px solid;
 }
 
 .txt-input {
     width: 100%;
+    margin-bottom: 10px;
 }
 
 .email-bottom {
-    margin: 0 auto;
+    width: 100%;
     display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
 }
 
 .email-bottom button {
@@ -124,12 +129,13 @@
 }
 
 .buttons-container-edit {
-    margin-top: -18px;
+    margin-top: -22px;
 }
 
-.buttons-container-edit button{
+.buttons-container-edit button {
     opacity: 50%;
 }
-.buttons-container-edit button:hover{
+
+.buttons-container-edit button:hover {
     opacity: 100%;
 }

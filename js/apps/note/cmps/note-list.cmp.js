@@ -17,7 +17,7 @@ export default {
     <section class="notes-container">
         <div v-for="note in notesToShow" :key="note.id" class="note" :style="{backgroundColor: note.style.backgroundColor}">
         <div v-if="noteEdit">
-        <input type="text" v-model="note.info.txt" @keyup.enter="updateNote(note.id, note.info.txt)"/>
+        <input type="text" class="edit-text-input" v-model="note.info.txt" @keyup.enter="updateNote(note.id, note.info.txt)"/>
         </div>
         <component 
                 :note="note"

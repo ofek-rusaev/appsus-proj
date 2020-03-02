@@ -12,6 +12,13 @@
     border: #113340 2px solid;
 }
 
+.edit-text-input {
+    background: whitesmoke;
+    width: 50%;
+    /* height: 20%; */
+    padding: 10px;
+}
+
 .search-note {
     height: 30px;
     width: 50%;
