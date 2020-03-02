@@ -5,23 +5,25 @@ export default {
     name: 'email-preview',
     template: `
     <section class="email-preview">
-        <!-- <div class="email-details"> -->
+
             <div @click="starEmail(email.id)" class="star">
                 <div v-if="clickedStar"><img src="img/color2.png"/></div>
                 <div v-else><img src="img/emptystar.png"/></div>
             </div>
+
             <div class="email-sender" @click="changeBodyClass(email.id)">
                 <td :class="{read: this.email.isRead, unread: !this.email.isRead}">{{email.from}}</td>
             </div>
-            <!-- <div class="email-info-media"> -->
+
             <div :class="className"  class="email-title" @click="changeBodyClass(email.id)">
                 <td :class="{read: this.email.isRead, unread: !this.email.isRead}">{{email.subject}}</td>
             </div>
-            <!-- <div> -->
-            <div :class="className" @click="changeBodyClass(email.id)">
-                <td class="email-item">{{email.body}}<span v-if="isHidden">...</span></td>
+
+            <div :class="className" @click="toggleTextLength">
+            <!-- <div :class="className" @click="changeBodyClass(email.id)"> -->
+                <td class="email-item">{{formattedTxt}}<span v-if="isHidden">...</span></td>
             </div>
-           <!-- </div> -->
+
             <div class="email-date">
                 <td :class="{read: this.email.isRead, unread: !this.email.isRead}">{{formattedTime}}</td>
                 <div v-if="isClicked">
@@ -39,6 +41,7 @@ export default {
             time: new Date(),
             className: 'email-content',
             isClicked: false,
+            // isClicked: false,
             clickedStar: false,
             isHidden: false,
         }
@@ -70,22 +73,23 @@ export default {
             this.clickedStar = !this.clickedStar;
             emailService.addToStarred(emailId);
         },
-
+        toggleTextLength() {
+            this.isClicked = !this.isClicked;
+        }
     },
     computed: {
         formattedTime() {
-            // var ampm = this.time.getHours() >= 12 ? 'PM' : 'AM';
             return this.time.getHours() + ":" + this.time.getMinutes() + ":" + this.time.getSeconds()
         },
-        // formattedTxt() {
-        //     if (this.email.body.length > 20 && !this.isClicked) {
-        //       this.isHidden = true;
-        //       return this.email.body.substring(0,20);
-        //     } else {
-        //       this.isHidden = false;
-        //       return this.email.body;
-        //     }
-        //   }
+        formattedTxt() {
+            if (this.email.body.length > 20 && !this.isClicked) {
+                this.isHidden = true;
+                return this.email.body.substring(0, 20);
+            } else {
+                this.isHidden = false;
+                return this.email.body;
+            }
+        }
     },
 
 }
