@@ -7,9 +7,9 @@
 .note {
     background-color: #F2C288;
     margin-bottom: 20px;
-    padding: 10px 0 0 0;
+    padding: 0.8em 0 0.8em 0.8em;
     break-inside: avoid;
-    border: #113340 2px solid;
+    /* border: #113340 2px solid; */
 }
 
 .edit-text-input {
@@ -42,6 +42,16 @@
     height: 20px;
     display: flex;
     opacity: 50%;
+}
+
+.buttons-container-edit button .pin{
+    transform: rotate(45deg);
+}
+
+.pinned-active{
+    /* filter: sepia(100%); */
+    filter: invert(100%); 
+    opacity: 100%;
 }
 
 .note-vid iframe {

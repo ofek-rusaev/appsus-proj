@@ -4,7 +4,6 @@ import noteText from './note-text.cmp.js';
 import noteImg from './note-img.cmp.js';
 import noteTodo from './note-todo.cmp.js';
 import noteVid from './note-vid.cmp.js';
-import actionBtns from './action-btns.cmp.js';
 import noteFilter from './note-filter.cmp.js';
 
 
@@ -17,17 +16,18 @@ export default {
     <section class="notes-container">
         <div v-for="note in notesToShow" :key="note.id" class="note" :style="{backgroundColor: note.style.backgroundColor}">
         <div v-if="noteEdit">
-        <input type="text" class="edit-text-input" v-model="note.info.txt" @keyup.enter="updateNote(note.id, note.info.txt)"/>
+        <input type="text" v-model="note.info.txt"  @render="@keyup.enter="updateNote(note.id, note.info.txt)"/>
         </div>
-        <component 
+        <component  @render="render" 
                 :note="note"
                 :is="note.type" 
                 :info="note.info">
        </component>
+            <!-- <action-btns :note="note"></action-btns> -->
+            <!-- <div v-if="hover"> -->
             <div class="buttons-container-edit">
-            <button @click="pinTheNote(note.id)">
-            <img v-if="pinned" class="notes-container-image pin" src="img/redpin.png"/>
-            <img v-else class="notes-container-image pin" src="img/pin.png"/></button>
+            <button @click="pinTheNote(note.id)"><img :class="pinClassName" src="img/pin.png"/></button>
+            <!-- <button @click="pinTheNote(note.id)"><img class="notes-container-image pin pinned-active" src="img/pin.png"/></button> -->
             <button @click="removeNote(note.id)"><img class="notes-container-image" src="img/trash.png"/></button>
             <button @click="emailNote(note.id)"><img class="notes-container-image" src="img/email.png"/></button>
             <button @click="editNote(note.id)"><img class="notes-container-image" src="img/edit.png"/></button>
@@ -44,8 +44,17 @@ export default {
             backgroundColor: '',
             noteEdit: false,
             filterBy: '',
-            pinned: false
+            pinClassName: 'notes-container-image pin'
         }
+    },
+    watch: {
+        notes: {
+            handler(newVal) {
+                // console.log('NOTES CHANGED! To:', newVal);
+                //  this.emitFilter();
+            },
+            deep: true,
+        },
     },
     computed: {
         notesToShow() {
@@ -55,19 +64,19 @@ export default {
                 console.log(txt)
                 return note.info.txt.includes(txt.toLowerCase())
             })
-        },
-        render() {
-            noteService.queryPin()
-                .then(notes => {
-                    this.notesPinned = notes
-                })
-            noteService.queryUnpin()
-                .then(notes => {
-                    this.notesUnPinned = notes
-                })
         }
     },
     methods: {
+        changePinClass() {
+            if (this.className === 'notes-container-image pin') {
+                console.log('IF this.className: ', this.className);
+                
+                this.className = 'notes-container-image pin pinned-active';
+            } else {
+                this.className = 'notes-container-image pin';
+                console.log('ELSE this.className: ', this.className);
+            }
+        },
         removeNote(noteId) {
             noteService.removeNote(noteId)
                 .then(() => {
@@ -83,7 +92,7 @@ export default {
             this.filterBy = filterBy;
         },
         pinTheNote(noteId) {
-            this.pinned = !this.pinned;
+            this.changePinClass();
             noteService.changePinned(noteId)
                 .then(pin => {
                     this.$emit('render')
@@ -112,6 +121,12 @@ export default {
                 })
             this.editNote();
             this.$emit('render')
+                // noteService.query()
+                //     .then(() => {
+                //         this.$emit('render')
+                //         this.editNote();
+                //         return txt
+                //     })
         }
     },
 
@@ -120,7 +135,7 @@ export default {
         noteImg,
         noteTodo,
         noteVid,
-        actionBtns,
+        // actionBtns,
         noteFilter
     }
 }
