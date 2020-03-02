@@ -130,6 +130,9 @@
 .buttons-container-edit button{
     opacity: 50%;
 }
+.buttons-container-edit button .pin{
+    transform: rotate(45deg);
+}
 .buttons-container-edit button:hover{
     opacity: 100%;
 }
