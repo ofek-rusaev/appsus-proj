@@ -2,10 +2,13 @@ export default {
     template: `
     <section>
     <div class="app-header">
-    <router-link to="/" exact> <div class="logo">appsus.</div> </router-link>
+    <router-link to="/" exact> <div class="logo">Appsus.</div> </router-link>
     <div class="a-link">
         <router-link to="/" exact>
         Home
+        </router-link>
+        <router-link to="/book" exact>
+        MissBook
         </router-link>
         <router-link to="/email/inbox" exact>
         MisterEmail
@@ -19,6 +22,9 @@ export default {
         <section v-if="menuBtn" class="main-nav">
         <router-link to="/home/main" exact>
         Home
+        </router-link>
+        <router-link to="/book" exact>
+        MissBook
         </router-link>
         <router-link to="/email/inbox" exact>
         MisterEmail
