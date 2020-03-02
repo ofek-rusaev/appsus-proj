@@ -26,7 +26,7 @@ export default {
             <!-- <action-btns :note="note"></action-btns> -->
             <!-- <div v-if="hover"> -->
             <div class="buttons-container-edit">
-            <button @click="pinTheNote(note.id)"><img :class="pinClassName" src="img/pin.png"/></button>
+            <button @click="pinTheNote(note.id)"><img class="notes-container-image pin" v-bind:src="'img/' + imgSrc"/></button>
             <!-- <button @click="pinTheNote(note.id)"><img class="notes-container-image pin pinned-active" src="img/pin.png"/></button> -->
             <button @click="removeNote(note.id)"><img class="notes-container-image" src="img/trash.png"/></button>
             <button @click="emailNote(note.id)"><img class="notes-container-image" src="img/email.png"/></button>
@@ -44,7 +44,7 @@ export default {
             backgroundColor: '',
             noteEdit: false,
             filterBy: '',
-            pinClassName: 'notes-container-image pin'
+            imgSrc: 'pin.png'
         }
     },
     watch: {
@@ -57,6 +57,9 @@ export default {
         },
     },
     computed: {
+        pinIcon(noteId) {
+
+        },
         notesToShow() {
             if (!this.filterBy) return this.notes;
             return this.notes.filter(note => {
@@ -64,19 +67,18 @@ export default {
                 console.log(txt)
                 return note.info.txt.includes(txt.toLowerCase())
             })
-        }
+        },
     },
     methods: {
-        changePinClass() {
-            if (this.className === 'notes-container-image pin') {
-                console.log('IF this.className: ', this.className);
-                
-                this.className = 'notes-container-image pin pinned-active';
-            } else {
-                this.className = 'notes-container-image pin';
-                console.log('ELSE this.className: ', this.className);
-            }
-        },
+        // setImgSrc(noteId, ev){
+        //     console.log('IMG CLICKED ',ev.toElement.src);
+        //     if (ev.toElement.src === 'img/redpin.png') {
+        //         ev.toElement.src = 'img/pin.png';
+        //     }
+        //     if (ev.toElement.src === 'img/pin.png') {
+        //         ev.toElement.src = 'img/redpin.png';
+        //     }
+        // },
         removeNote(noteId) {
             noteService.removeNote(noteId)
                 .then(() => {
@@ -92,10 +94,11 @@ export default {
             this.filterBy = filterBy;
         },
         pinTheNote(noteId) {
-            this.changePinClass();
             noteService.changePinned(noteId)
                 .then(pin => {
                     this.$emit('render')
+                    // console.log(pin.isPinned);
+                    // this.imgSrc = 'redpin.png';
                     return this.note = pin
                 })
         },
@@ -129,13 +132,11 @@ export default {
                 //     })
         }
     },
-
     components: {
         noteText,
         noteImg,
         noteTodo,
         noteVid,
-        // actionBtns,
         noteFilter
     }
 }

@@ -48,12 +48,6 @@
     transform: rotate(45deg);
 }
 
-.pinned-active{
-    /* filter: sepia(100%); */
-    filter: invert(100%); 
-    opacity: 100%;
-}
-
 .note-vid iframe {
     height: 150px;
     width: 250px;
