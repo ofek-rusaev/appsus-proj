@@ -1,3 +1,63 @@
 @import "./book-details.css";
 @import "./book-list.css";
 @import "./book-preview.css";
+body {
+    background-color: lightyellow;
+    text-align: center;
+    font-family: monospace;
+}
+
+.books-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    text-align: center;
+    font-family: monospace;
+}
+
+.card {
+    margin-top: 20px;
+    border: 1px black solid;
+    cursor: pointer;
+    padding: 20px;
+}
+
+.card img {
+    width: 100%;
+}
+
+.card h4 {
+    text-transform: capitalize;
+}
+
+.red {
+    color: red;
+}
+
+.sale {
+    height: 100px;
+}
+
+.green {
+    color: green;
+}
+
+.book-app {
+    line-height: 1.7em;
+}
+
+.msg-container {
+    background-color: lightgray;
+    padding: 5px 10px;
+    position: fixed;
+    top: 0;
+    right: 10px;
+}
+
+.msg-container.success {
+    background-color: lightgreen;
+}
+
+.msg-container.danger {
+    background-color: red;
+}

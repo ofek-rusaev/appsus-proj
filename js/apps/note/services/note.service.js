@@ -167,19 +167,6 @@ function createNotes() {
         },
         {
             id: utilService.makeId(),
-            type: 'noteTodo',
-            isPinned: false,
-            info: {
-                label: 'How was it:',
-                todos: [
-                    { id: utilService.makeId(), txt: 'Do that', doneAt: null },
-                    { id: utilService.makeId(), txt: 'Do this', doneAt: 187111111 }
-                ]
-            },
-            style: { backgroundColor: '#FFC0CB' },
-        },
-        {
-            id: utilService.makeId(),
             type: 'noteVid',
             isPinned: false,
             info: { txt: 'https://www.youtube.com/watch?v=zY-ugO6SCBQ&list=RDzY-ugO6SCBQ&start_radio=1&t=0' },

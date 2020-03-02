@@ -16,6 +16,7 @@ export default {
     methods: {
         emitFilterText() {
             this.$emit('filterTxt', this.filterByTxt)
+
         },
         emitFilterText() {
             this.$emit('filterTxt', this.filterByTxt)

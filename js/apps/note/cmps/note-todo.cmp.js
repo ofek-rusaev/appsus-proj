@@ -19,7 +19,7 @@ export default {
         todoToggle(idx) {
             noteService.query();
             noteService.toggleDoneAt(this.info.todos[idx].id, this.note.id);
-            this.$emit('render')
+            this.$emit('rendernow')
         }
     }
 }

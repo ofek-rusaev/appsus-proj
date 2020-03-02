@@ -13,15 +13,16 @@ export default {
     template: `
     <section>
     <note-filter @filterTxt="setFilterTxt"></note-filter>
-    <section class="notes-container">
-        <div v-for="note in notesToShow" :key="note.id" class="note" :style="{backgroundColor: note.style.backgroundColor}">
+    <section class="notes-container" >
+        <div v-for="note in notesToShow"   :key="note.id" class="note" :style="{backgroundColor: note.style.backgroundColor}">
         <div v-if="noteEdit">
         <input type="text" v-model="note.info.txt"  class="edit-txt" @keyup.enter="updateNote(note.id, note.info.txt)"/>
         </div>
-        <component  @render="render" 
+        <component 
                 :note="note"
                 :is="note.type" 
-                :info="note.info">
+                :info="note.info"
+                @rendernow="render">
        </component>
             <div class="buttons-container-edit">
             <button @click="pinTheNote(note.id)"><img class="notes-container-image pin" v-bind:src="'img/' + imgSrc"/></button>
@@ -70,15 +71,6 @@ export default {
                 console.log('ELSE this.className: ', this.className);
             }
         },
-        // setImgSrc(noteId, ev){
-        //     console.log('IMG CLICKED ',ev.toElement.src);
-        //     if (ev.toElement.src === 'img/redpin.png') {
-        //         ev.toElement.src = 'img/pin.png';
-        //     }
-        //     if (ev.toElement.src === 'img/pin.png') {
-        //         ev.toElement.src = 'img/redpin.png';
-        //     }
-        // },
         removeNote(noteId) {
             noteService.removeNote(noteId)
                 .then(() => {
@@ -135,6 +127,9 @@ export default {
                     this.notesUnPinned = notes
                 })
         }
+    },
+    created() {
+        this.render();
     },
     components: {
         noteText,
