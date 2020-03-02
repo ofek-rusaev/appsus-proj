@@ -121,11 +121,11 @@ function getEmptyEmail() {
 function createEmails() {
     var emails = [{
             id: utilService.makeId(),
-            from: 'Dudu Bunker',
+            from: 'Arya Stark',
             cc: '',
             bcc: '',
             isStar: false,
-            subject: 'Hello Mate',
+            subject: 'A girl has no name.',
             isRead: false,
             isDraft: false,
             isSent: true,
@@ -134,7 +134,7 @@ function createEmails() {
         },
         {
             id: utilService.makeId(),
-            from: 'God',
+            from: 'God Almighty',
             cc: '',
             bcc: '',
             isStar: false,
@@ -147,7 +147,7 @@ function createEmails() {
         },
         {
             id: utilService.makeId(),
-            from: 'Phoebe',
+            from: 'Phoebe Buffay',
             cc: '',
             bcc: '',
             isStar: false,
@@ -183,7 +183,7 @@ function createEmails() {
             sentAt: new Date()
         }, {
             id: utilService.makeId(),
-            from: 'Joey',
+            from: 'Joey Tribiani',
             cc: '',
             bcc: '',
             isStar: false,
@@ -195,7 +195,7 @@ function createEmails() {
             sentAt: new Date()
         }, {
             id: utilService.makeId(),
-            from: 'Monica',
+            from: 'Monica Geller',
             cc: '',
             bcc: '',
             isStar: false,

@@ -22,6 +22,11 @@ body {
     margin-top: 30px;
 }
 
+@media (max-width: 980px) {
+    .all-container {
+        flex-direction: column;
+    }   
+}
 
 /**********helpers***********/
 

@@ -9,7 +9,7 @@ export default {
     template: `
     <section class="emails-container">
     <email-filter @filterTxt="setFilterTxt" @filterStatus="setFilterStatus"></email-filter>
-    <div class="email-preview" v-for="(email, idx) in emailsToShow">
+    <div v-for="(email, idx) in emailsToShow">
     <email-preview :key="idx" :email="email" ></email-preview>
     </div> 
     </section>
