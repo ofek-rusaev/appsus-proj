@@ -24,10 +24,10 @@
 }
 
 .logo {
-    font-size: 30px;
+    /* font-size: 30px; */
     margin-left: 35px;
     color: #ffffff;
     text-transform: capitalize;
-    font-size: 2rem;
+    font-size: 1.3rem;
     letter-spacing: 2px;
 }
