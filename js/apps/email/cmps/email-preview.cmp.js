@@ -4,7 +4,7 @@ import { eventBus } from '../../../general-services/event-bus.service.js';
 export default {
     name: 'email-preview',
     template: `
-    <section class="email-preview" :class="{'open-email-preview': this.isClicked}" >
+    <section class="email-preview" :class="{'open-email-preview': this.isClicked}" @click="changeBodyClass(email.id)">
         <div class="email-main-section" >
             <div @click="starEmail(email.id)" class="star">
                 <div v-if="clickedStar"><img src="img/color2.png"/></div>
@@ -49,20 +49,20 @@ export default {
         }
     },
     methods: {
-        // changeBodyClass(emailId) {
-        //     if (this.className === 'email-content') {
-        //         this.className = 'email-content-extended';
-        //         this.isClicked = true;
-        //         emailService.getById(emailId)
-        //             .then(email => {
-        //                 this.email.isRead = true;
-        //             })
-        //     } else {
-        //         this.className = 'email-content';
-        //         this.isClicked = false;
+        changeBodyClass(emailId) {
+            if (this.className === 'email-content') {
+                this.className = 'email-content-extended';
+                this.isClicked = true;
+                emailService.getById(emailId)
+                    .then(email => {
+                        this.email.isRead = true;
+                    })
+            } else {
+                this.className = 'email-content';
+                this.isClicked = false;
 
-        //     }
-        // },
+            }
+        },
         deleteEmail(emailId) {
             emailService.deleteEmail(emailId);
             const msg = {
