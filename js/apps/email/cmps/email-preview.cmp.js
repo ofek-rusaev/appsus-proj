@@ -86,9 +86,9 @@ export default {
         },
         formattedTxt() {
             if (!this.email.body) return this.email.body;
-            if (this.email.body.length > 50 && !this.isClicked) {
+            if (this.email.body.length > 30 && !this.isClicked) {
                 this.isHidden = true;
-                return this.email.body.substring(0, 50);
+                return this.email.body.substring(0, 30);
             } else {
                 this.isHidden = false;
                 return this.email.body;

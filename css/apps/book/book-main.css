@@ -1,10 +1,10 @@
 @import "./book-details.css";
 @import "./book-list.css";
 @import "./book-preview.css";
+
 body {
     background-color: lightyellow;
     text-align: center;
-    font-family: monospace;
 }
 
 .books-container {
@@ -12,7 +12,6 @@ body {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
     text-align: center;
-    font-family: monospace;
 }
 
 .card {
