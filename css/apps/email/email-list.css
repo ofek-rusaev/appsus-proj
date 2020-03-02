@@ -12,6 +12,7 @@
     padding: 10px;
     display: flex;
     margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 .input-filter {
@@ -37,9 +38,13 @@
     font-family: 'Times New Roman', Times, serif;
 }
 
+.email-side-bar {
+    margin-top: -2px;
+}
+
 .email-side-bar * {
     cursor: pointer;
-    padding: 5px 10px;
+    padding: 10px 10px;
     border-top-right-radius: 100px;
     border-bottom-right-radius: 100px;
 }
@@ -51,6 +56,8 @@
 .item {
     display: flex;
     box-sizing: border-box;
+    margin-top: -15px;
+    margin-left: 7px;
 }
 
 .txt-side-bar {
@@ -71,14 +78,16 @@
 .compose {
     box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302), 0 1px 3px 1px rgba(60, 64, 67, 0.149);
     background: white;
-    padding: 15px 10px;
-    font-size: 0.85rem;
+    padding: 10px 20px;
+    font-size: 1rem;
     border-radius: 50px;
     border: 0;
     color: #5f6368;
     cursor: pointer;
     margin: 20px;
     transition: all 0.4s;
+    margin-top: 68px;
+    margin-left: 6px;
 }
 
 .new-mail {
