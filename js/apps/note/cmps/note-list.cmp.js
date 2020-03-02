@@ -24,7 +24,7 @@ export default {
                 :info="note.info">
        </component>
             <div class="buttons-container-edit">
-            <button @click="pinTheNote(note.id)"><img :class="pinClassName" src="img/pin.png"/></button>
+            <button @click="pinTheNote(note.id)"><img class="notes-container-image pin" v-bind:src="'img/' + imgSrc"/></button>
             <!-- <button @click="pinTheNote(note.id)"><img class="notes-container-image pin pinned-active" src="img/pin.png"/></button> -->
             <button @click="removeNote(note.id)"><img class="notes-container-image" src="img/trash.png"/></button>
             <button @click="emailNote(note.id)"><img class="notes-container-image" src="img/email.png"/></button>
@@ -41,12 +41,20 @@ export default {
             backgroundColor: '',
             noteEdit: false,
             filterBy: '',
+            <<
+            << << < HEAD
             filterType: '',
-            pinClassName: 'notes-container-image pin'
+            pinClassName: 'notes-container-image pin' ===
+                === =
+                imgSrc: 'pin.png' >>>
+                >>> > efacded325fecbc0737a7c4a7e822e610d1caaa4
         }
 
     },
     computed: {
+        pinIcon(noteId) {
+
+        },
         notesToShow() {
             if (!this.filterBy) return this.notes;
             return this.notes.filter(note => {
@@ -54,7 +62,7 @@ export default {
                 const txtLowerCase = txt.toLowerCase();
                 return note.info.txt.toLowerCase().includes(txtLowerCase)
             })
-        }
+        },
     },
     methods: {
         changePinClass() {
@@ -67,6 +75,15 @@ export default {
                 console.log('ELSE this.className: ', this.className);
             }
         },
+        // setImgSrc(noteId, ev){
+        //     console.log('IMG CLICKED ',ev.toElement.src);
+        //     if (ev.toElement.src === 'img/redpin.png') {
+        //         ev.toElement.src = 'img/pin.png';
+        //     }
+        //     if (ev.toElement.src === 'img/pin.png') {
+        //         ev.toElement.src = 'img/redpin.png';
+        //     }
+        // },
         removeNote(noteId) {
             noteService.removeNote(noteId)
                 .then(() => {
@@ -82,10 +99,11 @@ export default {
             this.filterBy = filterBy;
         },
         pinTheNote(noteId) {
-            this.changePinClass();
             noteService.changePinned(noteId)
                 .then(pin => {
                     this.$emit('render')
+                        // console.log(pin.isPinned);
+                        // this.imgSrc = 'redpin.png';
                     return this.note = pin
                 })
         },
@@ -123,7 +141,6 @@ export default {
                 })
         }
     },
-
     components: {
         noteText,
         noteImg,

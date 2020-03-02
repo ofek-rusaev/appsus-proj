@@ -148,3 +148,34 @@
 .buttons-container-edit button:hover {
     opacity: 100%;
 }
+
+@media (max-width: 980px) {
+    .emails-container{
+        width: 97vw;
+    }
+    .email-side-bar{
+        display: flex;
+    }
+    .compose{
+        margin-top: 0;
+    }
+    .item{
+        margin-top: -9px;
+    }
+}
+
+@media (max-width: 760px) {
+    .item{
+        margin-left: 0;
+    }
+    .email-side-bar * {
+        padding: 7px 7px;
+    }
+}
+
+@media (max-width: 600px) {
+    .email-side-bar * {
+        padding: 5px 5px;
+    }
+
+}

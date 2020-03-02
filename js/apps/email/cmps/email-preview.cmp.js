@@ -4,33 +4,35 @@ import { eventBus } from '../../../general-services/event-bus.service.js';
 export default {
     name: 'email-preview',
     template: `
-     <section class="email-preview">
-     <div @click="starEmail(email.id)" class="star">
-     <div v-if="clickedStar"><img src="img/color2.png"/></div>
-     <div v-else><img src="img/emptystar.png"/></div>
-     </div>
-        <div class="email-sender" @click="changeBodyClass(email.id)">
-        <td :class="{read: this.email.isRead, unread: !this.email.isRead}">{{email.from}}</td>
+    <section class="email-preview">
+        <!-- <div class="email-details"> -->
+            <div @click="starEmail(email.id)" class="star">
+                <div v-if="clickedStar"><img src="img/color2.png"/></div>
+                <div v-else><img src="img/emptystar.png"/></div>
+            </div>
+            <div class="email-sender" @click="changeBodyClass(email.id)">
+                <td :class="{read: this.email.isRead, unread: !this.email.isRead}">{{email.from}}</td>
+            </div>
+            <!-- <div class="email-info-media"> -->
+            <div :class="className"  class="email-title" @click="changeBodyClass(email.id)">
+                <td :class="{read: this.email.isRead, unread: !this.email.isRead}">{{email.subject}}</td>
+            </div>
+            <!-- <div> -->
+            <div :class="className" @click="changeBodyClass(email.id)">
+                <td class="email-item">{{email.body}}<span v-if="isHidden">...</span></td>
+            </div>
+           <!-- </div> -->
+            <div class="email-date">
+                <td :class="{read: this.email.isRead, unread: !this.email.isRead}">{{formattedTime}}</td>
+                <div v-if="isClicked">
+                    <button @click="deleteEmail(email.id)"><img src="img/trash.png"/></button>
+                    <router-link :to="'inbox/'+email.id"><button><img src="img/extand.png"/></button></router-link>
+                    <router-link :to="'compose/'+email.id"><button><img src="img/forward.png"/></button></router-link>
+                    <button><img src="img/save.png"/></button>
+                </div>
         </div>
-        <div :class="className"  class="email-title" @click="changeBodyClass(email.id)">
-        <td :class="{read: this.email.isRead, unread: !this.email.isRead}">{{email.subject}}</td>
-        </div>
-        <!-- <div> -->
-        <div :class="className" @click="changeBodyClass(email.id)">
-        <td class="email-item">{{email.body}}<span v-if="isHidden">...</span></td>
-        </div>
-        <div class="email-date">
-        <td :class="{read: this.email.isRead, unread: !this.email.isRead}">{{formattedTime}}</td>
-        <div v-if="isClicked">
-        <button @click="deleteEmail(email.id)"><img src="img/trash.png"/></button>
-        <router-link :to="'inbox/'+email.id"><button><img src="img/extand.png"/></button></router-link>
-               <router-link :to="'compose/'+email.id"><button><img src="img/forward.png"/></button></router-link>
-        <button><img src="img/save.png"/></button>
-        </div>
-        
-        </div>
-        </section>
-        `,
+    </section>
+    `,
     props: ['email'],
     data() {
         return {
@@ -72,8 +74,8 @@ export default {
     },
     computed: {
         formattedTime() {
-            var ampm = this.time.getHours() >= 12 ? 'PM' : 'AM';
-            return this.time.getHours() + ":" + this.time.getMinutes() + ":" + this.time.getSeconds() + ' ' + ampm
+            // var ampm = this.time.getHours() >= 12 ? 'PM' : 'AM';
+            return this.time.getHours() + ":" + this.time.getMinutes() + ":" + this.time.getSeconds()
         },
         // formattedTxt() {
         //     if (this.email.body.length > 20 && !this.isClicked) {

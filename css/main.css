@@ -95,3 +95,56 @@
             width: 340px;
         }
     }
+    
+    @import "./base.css";
+    @import "./fonts.css";
+    @import "./home-page.css";
+    @import "./main-nav-bar.css";
+    @import "./user-msg.css";
+    @import "./apps/book/book-main.css";
+    @import "./apps/email/email-main.css";
+    @import "./apps/note/note-main.css";
+    body {
+        background-color: #e8e8e8;
+        text-align: center;
+        margin: 0 0 0 0;
+        font: inherit;
+        box-sizing: border-box;
+    }
+    
+    .all-container {
+        display: flex;
+    }
+    
+    .main-pic {
+        margin-top: 30px;
+    }
+    
+    @media (max-width: 980px) {
+        .all-container {
+            flex-direction: column;
+        }
+    }
+    /**********helpers***********/
+    
+    .flex {
+        display: flex;
+        border: lightgray 1px solid;
+    }
+    
+    input {
+        border: none;
+    }
+    
+    textarea {
+        border: none;
+    }
+    
+    button {
+        background-color: Transparent;
+        background-repeat: no-repeat;
+        border: none;
+        cursor: pointer;
+        overflow: hidden;
+        outline: none;
+    }
