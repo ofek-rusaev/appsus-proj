@@ -62,3 +62,24 @@ label img:hover {
 .notes-container-image .pin {
     transform: rotate(45deg);
 }
+
+@media (max-width: 920px) {
+    .note-add{
+        margin-bottom: 10px;
+    }
+    .main-input{
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-input{
+        font-size: 12px;
+    }
+    .label img {
+        height: 17px;
+    }
+    .pinned {
+        height: 20px;
+    }
+}
