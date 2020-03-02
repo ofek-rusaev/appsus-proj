@@ -147,6 +147,19 @@ function createEmails() {
         },
         {
             id: utilService.makeId(),
+            from: 'Jake Peralta',
+            cc: '',
+            bcc: '',
+            isStar: false,
+            subject: 'Cool cool cool cool cool',
+            isRead: false,
+            isDraft: false,
+            isSent: true,
+            body: utilService.makeLorem(300),
+            sentAt: new Date()
+        },
+        {
+            id: utilService.makeId(),
             from: 'Phoebe Buffay',
             cc: '',
             bcc: '',

@@ -1,6 +1,7 @@
 .email-preview {
     display: flex;
     /* width: 100%; */
+    justify-content: space-around;
     background-color: white;
     border-bottom: lightgray 1px solid;
     cursor: pointer;
@@ -65,7 +66,7 @@ a:-webkit-any-link {
 }
 
 .star {
-    padding: 25px 0 0 0;
+    padding: 22px 0 0 0;
     /* padding: 30px 10px 0 10px; */
 }
 
@@ -74,23 +75,19 @@ a:-webkit-any-link {
     min-width: 110px;
     /* padding: 25px 0 0 0; */
     /* padding: 35px 0 0 25px; */
-    padding: 10px 0 10px 0;
+    padding: 0.8em 0 0.8em 0.8em;
 }
 
 .email-title {
     /* width: 70%; */
     min-width: 210px;
     /* padding: 15px 0 0 7px; */
-    padding: 10px 0 0 20px;
+    padding: 10px 0 0 50px;
 }
 
 .email-content {
-    /* width: 100%; */
-    
-    
     min-width: 250px;
-    /* padding: 35px 0 0 25px; */
-    padding: 25px 0 0 0;
+    padding: 25px 0 20px 0;
 }
 
 .email-content-expended {
@@ -128,6 +125,11 @@ a:-webkit-any-link {
     height: 40px;
 }
 
+@media (max-width: 1000px) {
+    .email-title{
+        padding: 10px 0 0 30px;
+    }
+}
 
 @media (max-width: 980px) {
     .email-preview{
@@ -160,8 +162,14 @@ a:-webkit-any-link {
 }
 
 @media (max-width: 760px) {
-    .email-title{
+    .star{
         padding-left: 1em;
+    }
+    .email-sender{
+        margin-left: 3em;
+    }
+    .email-title{
+        padding-left: 2.5em;
         width: 10em;
     }
     .email-content{
@@ -176,9 +184,6 @@ a:-webkit-any-link {
     .email-content-expended{
         display: block;
     }
-}
-
-@media (max-width: 760px) {
     .txt-side-bar{
         /* font-size: 0.8em; */
         display: none;
@@ -189,24 +194,36 @@ a:-webkit-any-link {
     .email-content-expended{
         width: 95%;
     }
-    .email-sender{
-        margin-left: 5em;
-    }
+
     .email-date{
         margin-left: 0;
         padding-left: 0;
     }
-    .unread{
-        padding-left: 0;
-    }
+    /* .unread{ */
+        /* padding-left: 0; */
+    /* } */
 }
 
 @media (max-width: 540px) {
+    .emails-container{
+        font-size: 0.8rem;
+        /* width: 95vw; */
+    }
     .email-side-bar * {
         padding: 5px 5px;
     }
+    .star {
+        padding-left: 0;
+    }
+    .email-preview img {
+        height: 12px;
+    }
     .email-sender{
         margin-left: 0.8em;
+    }
+    .email-title{
+        padding-left: 0;
+        min-width: 150px;
     }
     .new-mail{
         width: 90%;
