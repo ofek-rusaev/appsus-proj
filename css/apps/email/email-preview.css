@@ -107,10 +107,10 @@ a:-webkit-any-link {
     .email-preview{
         justify-content: space-between;
     }
-    .email-item{
+    /* .email-item{ */
         /* width: -10%; */
         /* display: none; */
-    }
+    /* } */
     .email-title{
         padding-left: 1.8em;
         width: 30em;
