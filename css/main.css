@@ -62,7 +62,7 @@
         justify-content: flex-end;
     }
     
-    @media (max-width: 500px) {
+    @media (max-width: 540px) {
         .menu-img {
             display: block;
         }
