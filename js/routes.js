@@ -5,6 +5,7 @@ import emailCompose from './apps/email/cmps/email-compose.cmp.js'
 import emailList from './apps/email/cmps/email-list.cmp.js'
 // import emailPreview from './apps/email/cmps/email-preview.cmp.js'
 import noteApp from './apps/note/cmps/note-app.cmp.js'
+import home from './home.js'
 
 
 const routes = [{
@@ -19,6 +20,7 @@ const routes = [{
 
         ]
     },
-    { path: '/note/main', component: noteApp }
+    { path: '/note/main', component: noteApp },
+    { path: '/', component: home }
 ];
 export default routes;

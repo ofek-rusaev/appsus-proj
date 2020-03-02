@@ -18,6 +18,10 @@ body {
     display: flex;
 }
 
+.main-pic {
+    margin-top: 30px;
+}
+
 
 /**********helpers***********/
 

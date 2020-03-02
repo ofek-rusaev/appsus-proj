@@ -50,10 +50,7 @@ export default {
             noteService.removeNote(noteId)
                 .then(() => {
                     console.log(`Note ${noteId} deleted successfully`);
-                    // eventBus.$emit(EVENT_SHOW_MSG, {
-                    // txt: `Car ${carId} deleted succesfully`,
-                    // type: 'success'
-                    // })
+
                 })
         },
         togglePinNote(noteId) {

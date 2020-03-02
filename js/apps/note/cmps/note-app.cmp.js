@@ -8,7 +8,6 @@ export default {
     <section class="note-app">
         <note-creation @render="render"></note-creation>
         <hr />
-        <h1>Your Notes</h1>
         <img class="pinned" src="img/pinned.svg" />
         <note-list @render="render" :notes="notesPinned"></note-list>
         <hr/>

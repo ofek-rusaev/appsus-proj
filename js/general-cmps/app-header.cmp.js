@@ -1,9 +1,9 @@
 export default {
     template: `
     <div class="app-header">
-    <div class="logo">Appsus</div>
+    <router-link to="/home/main" exact> <div class="logo">Appsus</div> </router-link>
     <div class="a-link">
-        <router-link to="/" exact>
+        <router-link to="/home/main" exact>
         Home
         </router-link>
         <router-link to="/email/inbox" exact>

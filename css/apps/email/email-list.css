@@ -12,6 +12,7 @@
     padding: 10px;
     display: flex;
     margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 .input-filter {
@@ -37,9 +38,13 @@
     font-family: 'Times New Roman', Times, serif;
 }
 
+.email-side-bar {
+    margin-top: -2px;
+}
+
 .email-side-bar * {
     cursor: pointer;
-    padding: 5px 10px;
+    padding: 10px 10px;
     border-top-right-radius: 100px;
     border-bottom-right-radius: 100px;
 }
@@ -51,6 +56,8 @@
 .item {
     display: flex;
     box-sizing: border-box;
+    margin-top: -15px;
+    margin-left: 7px;
 }
 
 .txt-side-bar {
@@ -71,17 +78,20 @@
 .compose {
     box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302), 0 1px 3px 1px rgba(60, 64, 67, 0.149);
     background: white;
-    padding: 15px 10px;
-    font-size: 0.85rem;
+    padding: 10px 20px;
+    font-size: 1rem;
     border-radius: 50px;
     border: 0;
     color: #5f6368;
     cursor: pointer;
     margin: 20px;
     transition: all 0.4s;
+    margin-top: 68px;
+    margin-left: 6px;
 }
 
 .new-mail {
+    margin: 40px 20px;
     background-color: white;
     width: 100%;
     border: grey 2px solid;
@@ -92,17 +102,21 @@
 .new-msg {
     background-color: black;
     color: white;
+    padding: 7px;
     font-weight: 700;
     border: grey 2px solid;
 }
 
 .txt-input {
     width: 100%;
+    margin-bottom: 10px;
 }
 
 .email-bottom {
-    margin: 0 auto;
+    width: 100%;
     display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
 }
 
 .email-bottom button {
@@ -124,15 +138,16 @@
 }
 
 .buttons-container-edit {
-    margin-top: -18px;
+    margin-top: -22px;
 }
 
-.buttons-container-edit button{
+.buttons-container-edit button {
     opacity: 50%;
 }
 .buttons-container-edit button .pin{
     transform: rotate(45deg);
 }
-.buttons-container-edit button:hover{
+
+.buttons-container-edit button:hover {
     opacity: 100%;
 }

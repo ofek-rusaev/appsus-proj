@@ -17,17 +17,17 @@ export default {
     <section class="notes-container">
         <div v-for="note in notesToShow" :key="note.id" class="note" :style="{backgroundColor: note.style.backgroundColor}">
         <div v-if="noteEdit">
-        <input type="text" v-model="note.info.txt" @keyup.enter="updateNote(note.id, note.info.txt)"/>
+        <input type="text" class="edit-text-input" v-model="note.info.txt" @keyup.enter="updateNote(note.id, note.info.txt)"/>
         </div>
         <component 
                 :note="note"
                 :is="note.type" 
                 :info="note.info">
        </component>
-            <!-- <action-btns :note="note"></action-btns> -->
-            <!-- <div v-if="hover"> -->
             <div class="buttons-container-edit">
-            <button @click="pinTheNote(note.id)"><img class="notes-container-image pin" src="img/pin.png"/></button>
+            <button @click="pinTheNote(note.id)">
+            <img v-if="pinned" class="notes-container-image pin" src="img/redpin.png"/>
+            <img v-else class="notes-container-image pin" src="img/pin.png"/></button>
             <button @click="removeNote(note.id)"><img class="notes-container-image" src="img/trash.png"/></button>
             <button @click="emailNote(note.id)"><img class="notes-container-image" src="img/email.png"/></button>
             <button @click="editNote(note.id)"><img class="notes-container-image" src="img/edit.png"/></button>
@@ -43,17 +43,9 @@ export default {
             hover: false,
             backgroundColor: '',
             noteEdit: false,
-            filterBy: ''
+            filterBy: '',
+            pinned: false
         }
-    },
-    watch: {
-        notes: {
-            handler(newVal) {
-                console.log('NOTES CHANGED! To:', newVal);
-                //  this.emitFilter();
-            },
-            deep: true,
-        },
     },
     computed: {
         notesToShow() {
@@ -63,6 +55,16 @@ export default {
                 console.log(txt)
                 return note.info.txt.includes(txt.toLowerCase())
             })
+        },
+        render() {
+            noteService.queryPin()
+                .then(notes => {
+                    this.notesPinned = notes
+                })
+            noteService.queryUnpin()
+                .then(notes => {
+                    this.notesUnPinned = notes
+                })
         }
     },
     methods: {
@@ -81,6 +83,7 @@ export default {
             this.filterBy = filterBy;
         },
         pinTheNote(noteId) {
+            this.pinned = !this.pinned;
             noteService.changePinned(noteId)
                 .then(pin => {
                     this.$emit('render')
@@ -109,12 +112,6 @@ export default {
                 })
             this.editNote();
             this.$emit('render')
-                // noteService.query()
-                //     .then(() => {
-                //         this.$emit('render')
-                //         this.editNote();
-                //         return txt
-                //     })
         }
     },
 

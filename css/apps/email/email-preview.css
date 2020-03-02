@@ -72,3 +72,25 @@ a:-webkit-any-link {
     width: 50px;
     padding: 20px;
 }
+
+.send-button {
+    color: white;
+    background: #1a73e8;
+    text-align: center;
+    padding: 12px 17px;
+    border: none;
+    box-shadow: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.4s;
+    margin: 5px;
+}
+
+.draft-button {
+    margin: 7px;
+}
+
+.draft-button img {
+    height: 40px;
+}
