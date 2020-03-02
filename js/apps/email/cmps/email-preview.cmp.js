@@ -21,6 +21,7 @@ export default {
 
         </div>
                 <div class="email-content" :class="{'email-content-expended': this.isClicked}" >
+                    <!-- <td class="email-item">{{email.body}}<span v-if="isHidden">...</span></td> -->
                     <td class="email-item">{{formattedTxt}}<span v-if="isHidden">...</span></td>
                 </div>
 
@@ -84,6 +85,7 @@ export default {
             return this.time.getHours() + ":" + this.time.getMinutes() + ":" + this.time.getSeconds()
         },
         formattedTxt() {
+            if (!this.email.body) return this.email.body;
             if (this.email.body.length > 50 && !this.isClicked) {
                 this.isHidden = true;
                 return this.email.body.substring(0, 50);

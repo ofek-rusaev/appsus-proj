@@ -20,6 +20,6 @@ export default {
         'book-preview': bookPreview
     },
     created() {
-        console.log(emails)
+        console.log(this.books)
     }
 }

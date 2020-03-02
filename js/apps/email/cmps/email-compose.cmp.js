@@ -7,7 +7,7 @@ export default {
     <section class="new-mail">
         <div class="new-msg">New Message</div>
         <div class="input-mail">To:<input class="txt-inupt" type="text" name="To" v-model="email.from"></div>
-        <div class="input-mail">CC:<input type="text" class="txt-inupt" name="Cc" v-model="email.cc"></div>
+        <div class="input-mail">CC:<input type="text" class="txt-input" name="Cc" v-model="email.cc"></div>
         <div class="input-mail">Bcc:<input type="text" v-model="email.bcc"></div>
         <div class="input-mail">Subject:<input type="text" v-model="email.subject"></div>
         <div class="input-mail"><textarea name="message" rows="10" cols="30" v-model="email.body"></textarea></div>
