@@ -7,12 +7,13 @@
 
 .note-add {
     margin: 0 auto;
-    width: 75%;
+    width: 60%;
     text-align: center;
     background-color: white;
     padding: 10px;
     display: flex;
     margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 .pinned {
@@ -46,9 +47,10 @@ label {
 }
 
 label img {
-    height: 30px;
+    height: 20px;
     opacity: 50%;
 }
+
 label img:hover {
     opacity: 100%;
 }
@@ -57,6 +59,6 @@ label img:hover {
     height: 20px;
 }
 
-.notes-container-image .pin{
+.notes-container-image .pin {
     transform: rotate(45deg);
 }

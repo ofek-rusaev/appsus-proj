@@ -123,7 +123,7 @@ function getEmptyNote() {
         type: '',
         isPinned: false,
         info: { txt: '' },
-        style: { backgroundColor: '' },
+        style: { backgroundColor: '#ffb6b9' },
     }
 }
 
@@ -149,14 +149,14 @@ function createNotes() {
             type: 'noteText',
             isPinned: true,
             info: { txt: 'Fullstack Me Baby!' },
-            style: { backgroundColor: '#FFFF00' },
+            style: { backgroundColor: '#fff591' },
         },
         {
             id: utilService.makeId(),
             type: 'noteImg',
             isPinned: false,
             info: { txt: 'https://www.w3.org/TR/2016/WD-html51-20160310/images/elo.png', title: 'Me playing Mi' },
-            style: { backgroundColor: '#FFFF00' }
+            style: { backgroundColor: '#beebe9' }
         },
         {
             id: utilService.makeId(),
@@ -176,7 +176,7 @@ function createNotes() {
             type: 'noteVid',
             isPinned: false,
             info: { txt: 'https://www.youtube.com/watch?v=zY-ugO6SCBQ&list=RDzY-ugO6SCBQ&start_radio=1&t=0' },
-            style: { backgroundColor: '#add8e6' },
+            style: { backgroundColor: '#75daad' },
         }
     ]
     return Promise.resolve(notes)
