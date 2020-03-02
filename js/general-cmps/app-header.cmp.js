@@ -21,10 +21,10 @@ export default {
         Home
         </router-link>
         <router-link to="/email/inbox" exact>
-        misterEmail
+        MisterEmail
         </router-link>
         <router-link to="/note/main">
-        missKeep
+        MissKeep
         </router-link>
         </section>
 </section>

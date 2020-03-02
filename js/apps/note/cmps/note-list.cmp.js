@@ -41,13 +41,8 @@ export default {
             backgroundColor: '',
             noteEdit: false,
             filterBy: '',
-            <<
-            << << < HEAD
             filterType: '',
-            pinClassName: 'notes-container-image pin' ===
-                === =
-                imgSrc: 'pin.png' >>>
-                >>> > efacded325fecbc0737a7c4a7e822e610d1caaa4
+            imgSrc: 'pin.png'
         }
 
     },
