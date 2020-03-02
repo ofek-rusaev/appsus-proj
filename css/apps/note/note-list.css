@@ -1,16 +1,15 @@
 .notes-container {
     column-count: 3;
     column-fill: auto;
+    margin: 0 20px;
 }
 
 .note {
-    /* width: ; */
-    /* height: 100px; */
     background-color: #F2C288;
-    /* background-color: rgb(250, 250, 124); */
     margin-bottom: 20px;
-    padding: 5px 20px;
+    padding: 10px 0 0 0;
     break-inside: avoid;
+    border: #113340 2px solid;
 }
 
 .search-note {
@@ -20,8 +19,13 @@
 }
 
 .note-img-container {
-    /* height: 150px; */
-    /* width: 250px; */
+    padding-top: 40px;
+    padding-bottom: 20px;
+}
+
+.note-vid-container {
+    padding-top: 40px;
+    padding-bottom: 20px;
 }
 
 .note-text img,
