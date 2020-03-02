@@ -21,6 +21,6 @@ const routes = [{
         ]
     },
     { path: '/note/main', component: noteApp },
-    { path: '/home/main', component: home }
+    { path: '/', component: home }
 ];
 export default routes;
