@@ -195,3 +195,15 @@ a:-webkit-any-link {
         padding-left: 0;
     }
 }
+
+@media (max-width: 540px) {
+    .email-side-bar * {
+        padding: 5px 5px;
+    }
+    .email-sender{
+        margin-left: 0.8em;
+    }
+    .new-mail{
+        width: 90%;
+    }
+}
