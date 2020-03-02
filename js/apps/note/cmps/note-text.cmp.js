@@ -1,7 +1,7 @@
 export default {
     name: 'noteText',
     template: `
-  <section class="note-text">
+  <section class="note-text" @click="toggleTextLength">
       <p>{{formattedTxt}}<span v-if="isHidden">...</span></p>
       <img src="img/text.svg"/>
   </section>
@@ -24,6 +24,11 @@ export default {
                 this.isHidden = false;
                 return this.info.txt;
             }
+        }
+    },
+    methods: {
+        toggleTextLength() {
+            this.isClicked = !this.isClicked;
         }
     }
 }

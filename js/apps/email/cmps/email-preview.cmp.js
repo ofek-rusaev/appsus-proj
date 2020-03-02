@@ -74,18 +74,17 @@ export default {
     },
     computed: {
         formattedTime() {
-            // var ampm = this.time.getHours() >= 12 ? 'PM' : 'AM';
             return this.time.getHours() + ":" + this.time.getMinutes() + ":" + this.time.getSeconds()
         },
-        // formattedTxt() {
-        //     if (this.email.body.length > 20 && !this.isClicked) {
-        //       this.isHidden = true;
-        //       return this.email.body.substring(0,20);
-        //     } else {
-        //       this.isHidden = false;
-        //       return this.email.body;
-        //     }
-        //   }
+        formattedTxt() {
+            if (this.email.body.length > 20 && !this.isClicked) {
+                this.isHidden = true;
+                return this.email.body.substring(0, 20);
+            } else {
+                this.isHidden = false;
+                return this.email.body;
+            }
+        }
     },
 
 }
