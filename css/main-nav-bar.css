@@ -1,23 +1,33 @@
 .app-header {
     margin: 0;
-    /* background-color: #822E81; */
-    /* background-color: #0C46F2; */
     background-color: #113340;
-    color: white;
+    color: #ffffff;
     display: flex;
     justify-content: space-between;
     top: 0;
-    height: 50px;
+    height: 52px;
     align-items: center;
+    border-color: grey;
+    letter-spacing: 1px;
 }
 
 .app-header a {
     text-decoration: none;
     color: black;
-    padding: 20px;
+    padding: 17px;
+}
+
+.app-header a:hover {
+    color: lightpink;
+    border-color: lightpink;
+    box-shadow: 2px 0 0 #1d1d1d, inset 0 -4px 0 lightpink;
 }
 
 .logo {
     font-size: 30px;
     margin-left: 35px;
+    color: #ffffff;
+    text-transform: capitalize;
+    font-size: 2rem;
+    letter-spacing: 2px;
 }

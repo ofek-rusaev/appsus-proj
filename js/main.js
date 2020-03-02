@@ -14,6 +14,7 @@ new Vue({
         <user-msg></user-msg>
         <!-- <note-app></note-app> -->
         <router-view></router-view>
+        <footer> © Ofek & Keren Ba'am</footer>
         </section>
     `,
     components: {

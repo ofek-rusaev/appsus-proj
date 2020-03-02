@@ -16,7 +16,7 @@ export default {
     <section class="notes-container">
         <div v-for="note in notesToShow" :key="note.id" class="note" :style="{backgroundColor: note.style.backgroundColor}">
         <div v-if="noteEdit">
-        <input type="text" v-model="note.info.txt"  @render="@keyup.enter="updateNote(note.id, note.info.txt)"/>
+        <input type="text" v-model="note.info.txt"  class="edit-txt" @keyup.enter="updateNote(note.id, note.info.txt)"/>
         </div>
         <component  @render="render" 
                 :note="note"
@@ -46,15 +46,7 @@ export default {
             filterBy: '',
             pinClassName: 'notes-container-image pin'
         }
-    },
-    watch: {
-        notes: {
-            handler(newVal) {
-                // console.log('NOTES CHANGED! To:', newVal);
-                //  this.emitFilter();
-            },
-            deep: true,
-        },
+
     },
     computed: {
         notesToShow() {
@@ -70,7 +62,7 @@ export default {
         changePinClass() {
             if (this.className === 'notes-container-image pin') {
                 console.log('IF this.className: ', this.className);
-                
+
                 this.className = 'notes-container-image pin pinned-active';
             } else {
                 this.className = 'notes-container-image pin';

@@ -44,19 +44,23 @@
     opacity: 50%;
 }
 
-.buttons-container-edit button .pin{
+.buttons-container-edit button .pin {
     transform: rotate(45deg);
 }
 
-.pinned-active{
-    /* filter: sepia(100%); */
-    filter: invert(100%); 
+.pinned-active {
+    filter: invert(100%);
     opacity: 100%;
 }
 
 .note-vid iframe {
     height: 150px;
     width: 250px;
+}
+
+.edit-txt {
+    border-radius: 5px;
+    background-color: #E8E8E8;
 }
 
 .done {
@@ -67,6 +71,11 @@
 .undone {
     text-decoration: none;
     cursor: pointer;
+}
+
+.menu-img {
+    display: none;
+    height: 20px;
 }
 
 @media (max-width: 920px) {
