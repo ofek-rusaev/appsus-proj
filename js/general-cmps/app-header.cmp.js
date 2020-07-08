@@ -7,14 +7,14 @@ export default {
         <router-link to="/" exact>
         Home
         </router-link>
-        <router-link to="/book" exact>
-        MissBook
-        </router-link>
         <router-link to="/email/inbox" exact>
         MisterEmail
         </router-link>
         <router-link to="/note/main">
         MissKeep
+        </router-link>
+        <router-link to="/book" exact>
+        MissBook
         </router-link>
     </div>
         <button @click="toggleMenu"><img class="menu-img"src="img/hamburger.png"/></button>
@@ -23,14 +23,14 @@ export default {
         <router-link to="/home/main" exact>
         Home
         </router-link>
-        <router-link to="/book" exact>
-        MissBook
-        </router-link>
         <router-link to="/email/inbox" exact>
         MisterEmail
         </router-link>
         <router-link to="/note/main">
         MissKeep
+        </router-link>
+        <router-link to="/book" exact>
+        MissBook
         </router-link>
         </section>
 </section>
