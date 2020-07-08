@@ -14,7 +14,7 @@ export default {
         MissKeep
         </router-link>
         <router-link to="/book" exact>
-        MissBook
+        MisterBook
         </router-link>
     </div>
         <button @click="toggleMenu"><img class="menu-img"src="img/hamburger.png"/></button>
@@ -30,7 +30,7 @@ export default {
         MissKeep
         </router-link>
         <router-link to="/book" exact>
-        MissBook
+        MisterBook
         </router-link>
         </section>
 </section>

@@ -1,7 +1,6 @@
 export default {
     template: `
     <section class="book-filter">
-        <h3>Filter Books</h3>
         <input type="text" 
             placeholder="Start typing book title.." 
             v-model="filterBy.title" 
@@ -25,7 +24,7 @@ export default {
     },
     methods: {
         emitFilter() {
-            this.$emit('set-filter', {...this.filterBy })
+            this.$emit('set-filter', { ...this.filterBy })
         }
     }
 }

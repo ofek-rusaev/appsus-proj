@@ -4,7 +4,6 @@ import { eventBus } from '../services/event-bus.service.js'
 export default {
     name: 'book-add',
     template: `<section>
-    <h1>keren</h1>
     Add A Book: <input type="search" placeholder="Search for a book..." v-model="value" @input="searchBooks">
     <div class="gBooks">
         <div v-for="book in gBooks" :key="book.id">{{book.title}}

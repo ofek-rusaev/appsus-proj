@@ -1,7 +1,6 @@
 @import "./book-details.css";
 @import "./book-list.css";
 @import "./book-preview.css";
-
 body {
     background-color: lightyellow;
     text-align: center;
